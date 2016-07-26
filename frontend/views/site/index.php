@@ -9,19 +9,27 @@ $this->title = 'olam development';
 		<nav class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="row">
-				<!-- Navbar Links -->
-		        <div class="collapse navbar-collapse">
-		            <ul class="nav nav-justified">
-	 	                <li><a href="#"><?= Yii::t('app', 'top_mnu.news') ?></a></li>
-		                <li><a href="#"><?= Yii::t('app', 'top_mnu.realty') ?></a></li>
-		                <li><a href="#"><?= Yii::t('app', 'top_mnu.auto') ?></a></li>
-		                <li><a href="#"><?= Yii::t('app', 'top_mnu.work') ?></a></li>
-		                <li><a href="#"><?= Yii::t('app', 'top_mnu.ads') ?></a></li>
-		                <li><a href="#"><?= Yii::t('app', 'top_mnu.poster') ?></a></li>
-		                <li><a href="#"><?= Yii::t('app', 'top_mnu.tv') ?></a></li>
-		                <li><a href="#"><?= Yii::t('app', 'top_mnu.search') ?></a></li>
-		            </ul>
-		        </div>
+					<!-- Navbar Links -->
+			        <div class="collapse navbar-collapse">
+			            <ul class="nav nav-justified">
+		 	                <li><a class="top_mnu_news" href="#"><?= Yii::t('app', 'top_mnu.news') ?></a></li>
+			                <li><a class="top_mnu_realty" href="#"><?= Yii::t('app', 'top_mnu.realty') ?></a></li>
+			                <li><a class="top_mnu_auto" href="#"><?= Yii::t('app', 'top_mnu.auto') ?></a></li>
+			                <li><a class="top_mnu_work" href="#"><?= Yii::t('app', 'top_mnu.work') ?></a></li>
+			                <li><a class="top_mnu_ads" href="#"><?= Yii::t('app', 'top_mnu.ads') ?></a></li>
+			                <li><a class="top_mnu_poster" href="#"><?= Yii::t('app', 'top_mnu.poster') ?></a></li>
+			                <li><a class="top_mnu_tv" href="#"><?= Yii::t('app', 'top_mnu.tv') ?></a></li>
+			                <li>
+			                	<div class="container-search">
+			                		<form class="searchbox">
+			                			<input type="text" placeholder="<?= Yii::t('app', 'search.phrase.placeholder') ?>" name="search" class="searchbox-input" required>
+			                			<input type="submit" class="searchbox-submit" value="GO">
+			                			<span class="searchbox-icon"><img src="/img/search_icon.png"></span>
+			                		</form>
+			                	</div>
+			                </li>
+			            </ul>
+			        </div>
 		        </div>
 		        <!-- Header -->
 		        <div class="navbar-header">
@@ -36,11 +44,12 @@ $this->title = 'olam development';
 		                <img src="/img/logo.png">
 		            </a>
 		        </div>
-
-		        <!-- <ul class="pull-right">
-		        	<li>lang</li>
-		        	<li>auth</li>
-		        </ul> -->
+		        <div class="pull-right auth-block">
+		        	<a class="login-link" href=""><?= Yii::t('app', 'user.login') ?></a><a class="register-link" href=""><?= Yii::t('app', 'user.register') ?></a>
+		        </div>
+		        <div class="pull-right">
+		        	
+		        </div>
 			</div>
 		</nav>
 	</div>
