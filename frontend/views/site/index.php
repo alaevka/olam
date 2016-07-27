@@ -78,7 +78,33 @@ $this->title = 'olam development';
 </div>
 
 <div class="container main-container-area">
-	<div class="row"></div>
+	<div class="row banners-block">
+		<div class="col-md-12">
+			<img class="img-responsive" src="/img/temp/banner.jpg">
+		</div>
+		
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="lft_mnu">
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.uzbekistan') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.ussr_cntr') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.world') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.sport') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.business') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.tech') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.culture') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.internet') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.travel') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'lft_mnu.photo') ?></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9"></div>
+	</div>
 </div>
 <?php
 	Modal::begin ( [

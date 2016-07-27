@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Exo+2:400,500,700&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Exo+2:400,500,700,600,300&subset=latin,cyrillic);
 
 body {
   background-color: #ebeaea;
@@ -11,6 +11,7 @@ a {
   background-color: #ffffff;
   min-height: 2000px;
   box-shadow: 0 0 10px rgba(0,0,0,0.13);
+  padding: 0 40px;
 }
 .header-container-area {
 	box-shadow: 0 0 10px rgba(0,0,0,0.13);
@@ -333,7 +334,30 @@ h4.modal-title {
   box-shadow: none;
 }
 
-
+.banners-block {
+  margin: 34px 0;
+}
+.lft_mnu {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0px;
+  border-top: 1px solid #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
+}
+.lft_mnu li {
+  padding: 5px 0;
+}
+.lft_mnu li a {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #376ca2;
+}
+.lft_mnu li a:hover {
+  color: #aedd27;
+  text-decoration: none;
+}
 
 /*.top_mnu_news:before {
     content: "";

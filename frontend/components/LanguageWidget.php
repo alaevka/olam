@@ -51,7 +51,7 @@ class LanguageWidget extends Widget
             // echo Yii::$app->language;
             // echo '<pre>';
             // print_r($lang_array); die();
-            //$result_html = '<ul>';
+            $result_html = '';
             foreach ($lang_array as $item) {
                 $active_string = '';
                 if($item['url']['language'] == Yii::$app->language) {
