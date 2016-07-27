@@ -202,12 +202,69 @@ a.register-link {
   font-size: 14px;
   margin-left: 30px;
 }
-.auth-block {
-  padding: 25px;
+.auth-block, .currency-block, .i18n-block {
+  padding: 25px 10px;
   border-left: 1px solid #edece7;
 }
+.social-block {
+  padding: 23px 10px;
+  border-left: 1px solid #edece7;
+}
+.social-block a, .i18n-block a {
+  margin: 0 5px;
+}
+.i18n-block a.active {
+  color: #626262;
+}
 
-
+.currency-block span.symbol-euro {
+  margin: 0 2px 0 20px;
+  color: #676161;
+  font-size: 14px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+}
+.currency-block span.symbol-dollar {
+  margin: 0 2px 0 0px;
+  color: #676161;
+  font-size: 14px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+}
+.currency-block a {
+  color: #e84660;
+  font-size: 14px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+}
+.auth-block {
+  margin-right: 15px;
+}
+.modal-content  {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important; 
+}
+button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: #dfdfdf;
+    border: 0;
+}
+.modal-header .close {
+    margin: -15px -15px;
+    padding: 5px 8px;
+    background: #dfdfdf;
+}
+h4.modal-title {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+}
+.modal-width {
+  width: 430px;
+}
 
 /*.top_mnu_news:before {
     content: "";

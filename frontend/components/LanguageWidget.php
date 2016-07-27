@@ -51,15 +51,15 @@ class LanguageWidget extends Widget
             // echo Yii::$app->language;
             // echo '<pre>';
             // print_r($lang_array); die();
-            $result_html = '<ul>';
+            //$result_html = '<ul>';
             foreach ($lang_array as $item) {
                 $active_string = '';
                 if($item['url']['language'] == Yii::$app->language) {
-                    $active_string = '<-active';
+                    $active_string = 'active';
                 }
-                $result_html .= '<li><a href="'.Url::to('/'.$item['url']['language'].$item['url'][0]).'">'.$item['label'].$active_string.'</a></li>';
+                $result_html .= '<a class="'.$active_string.'" href="'.Url::to('/'.$item['url']['language'].$item['url'][0]).'">'.$item['label'].'</a>';
             }
-            $result_html .= '</ul>';
+            //$result_html .= '</ul>';
             return $result_html;
         }
     }
@@ -68,9 +68,9 @@ class LanguageWidget extends Widget
     {
         if (self::$_labels===null) {
             self::$_labels = [
-                'ru' => 'ru',
-                'uz' => 'uz',
-                'uzl' => 'uzl',
+                'ru' => Yii::t('app', 'lng.ru'),
+                'uz' => Yii::t('app', 'lng.uz'),
+                'uzl' => Yii::t('app', 'lng.uzl'),
             ];
         }
 
