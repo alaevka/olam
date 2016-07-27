@@ -1,14 +1,13 @@
 <?php
 
 use frontend\components\LanguageWidget;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-if ($this->beginCache($id)) {
 
-    $currency_data = Yii::$app->CbRF->filter(['currency' => 'usd, eur'])->all();
 
-    $this->endCache();
-}
+$currency_data = Yii::$app->CbRF->filter(['currency' => 'usd, eur'])->all();
 
 
 $this->title = 'olam development';
@@ -55,7 +54,12 @@ $this->title = 'olam development';
 		        </div>
 		        
 		        <div class="pull-right auth-block">
-		        	<a class="login-link" href=""><?= Yii::t('app', 'user.login') ?></a><a class="register-link" href="#" data-toggle="modal" data-target="#registration-modal"><?= Yii::t('app', 'user.register') ?></a>
+		        	<?php if(Yii::$app->user->isGuest) { ?>
+			        	<a class="login-link" href=""><?= Yii::t('app', 'user.login') ?></a><a class="register-link" id="register-link" href="<?= Url::to(['/user/registration/register']) ?>" data-toggle="modal" data-target="#registration-modal"><?= Yii::t('app', 'user.register') ?></a>
+
+					<?php } else { ?>
+						<a data-method="post" href="<?= Url::to(['/user/security/logout']); ?>"><?= Yii::t('app', 'logout') ?></a>
+					<?php } ?>
 		        </div>
 		        <div class="pull-right currency-block">
 		        	<span class="symbol-dollar">$</span><a href="#"><?= $currency_data['USD']['value'] ?> <span class="caret"></span></a><span class="symbol-euro">&euro;</span><a href="#"><?= $currency_data['EUR']['value'] ?> <span class="caret"></span></a>
@@ -76,22 +80,15 @@ $this->title = 'olam development';
 <div class="container main-container-area">
 	<div class="row"></div>
 </div>
-
-<!-- registration -->
-<div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel">
-	<div class="modal-dialog modal-width" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="registrationModalLabel"><?= Yii::t('app', 'modal.registration') ?></h4>
-			</div>
-			<div class="modal-body">
-				
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-			</div>
-		</div>
-	</div>
-</div>
+<?php
+	Modal::begin ( [
+	    'header' => '<h4 class="modal-title" id="registrationModalLabel">'.Yii::t('app', 'modal.registration').'</h4>',
+	    'id' => 'registration-modal',
+	    'size' => 'modal-width',
+	    'toggleButton' => [
+	        'tag' => 'a',
+	        'style' => ['display' => 'none']
+	    ]
+	] );
+	Modal::end ();
+?>
