@@ -3,8 +3,20 @@ $(document).ready(function(){
 
 	$('#register-link').click(function() {
 		var url = $(this).attr('href');
-		var modal = $('.modal');
-		var modalbody = $('.modal-body');
+		var modal = $('#registration-modal');
+		var modalbody = $('#registration-modal .modal-body');
+		$.get(url, function(data) {
+			modalbody.html(data);
+			modal.modal('show');
+		});
+
+		return false;
+	});
+
+	$('#login-link').click(function() {
+		var url = $(this).attr('href');
+		var modal = $('#login-modal');
+		var modalbody = $('#login-modal .modal-body');
 		$.get(url, function(data) {
 			modalbody.html(data);
 			modal.modal('show');

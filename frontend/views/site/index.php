@@ -48,17 +48,17 @@ $this->title = 'olam development';
 		                <span class="icon-bar"></span>
 		                <span class="icon-bar"></span>
 		            </button>
-		            <a class="navbar-brand" href="#">
+		            <a class="navbar-brand" href="<?= Url::to(['/']) ?>">
 		                <img src="/img/logo.png">
 		            </a>
 		        </div>
 		        
 		        <div class="pull-right auth-block">
 		        	<?php if(Yii::$app->user->isGuest) { ?>
-			        	<a class="login-link" href=""><?= Yii::t('app', 'user.login') ?></a><a class="register-link" id="register-link" href="<?= Url::to(['/user/registration/register']) ?>" data-toggle="modal" data-target="#registration-modal"><?= Yii::t('app', 'user.register') ?></a>
+			        	<a class="login-link" id="login-link"  data-toggle="modal" data-target="#login-modal" href="<?= Url::to(['/user/login']) ?>"><?= Yii::t('app', 'user.login') ?></a><a class="register-link" id="register-link" href="<?= Url::to(['/user/registration/register']) ?>" data-toggle="modal" data-target="#registration-modal"><?= Yii::t('app', 'user.register') ?></a>
 
 					<?php } else { ?>
-						<a data-method="post" href="<?= Url::to(['/user/security/logout']); ?>"><?= Yii::t('app', 'logout') ?></a>
+						<a class="register-link" data-method="post" href="<?= Url::to(['/user/security/logout']); ?>"><?= Yii::t('app', 'logout') ?></a>
 					<?php } ?>
 		        </div>
 		        <div class="pull-right currency-block">
@@ -84,6 +84,18 @@ $this->title = 'olam development';
 	Modal::begin ( [
 	    'header' => '<h4 class="modal-title" id="registrationModalLabel">'.Yii::t('app', 'modal.registration').'</h4>',
 	    'id' => 'registration-modal',
+	    'size' => 'modal-width',
+	    'toggleButton' => [
+	        'tag' => 'a',
+	        'style' => ['display' => 'none']
+	    ]
+	] );
+	Modal::end ();
+?>
+<?php
+	Modal::begin ( [
+	    'header' => '<h4 class="modal-title" id="loginModalLabel">'.Yii::t('app', 'modal.login').'</h4>',
+	    'id' => 'login-modal',
 	    'size' => 'modal-width',
 	    'toggleButton' => [
 	        'tag' => 'a',

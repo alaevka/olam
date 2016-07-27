@@ -20,6 +20,7 @@ return [
             'modelMap' => [
                 'User' => 'common\models\User',
                 'RegistrationForm' => 'frontend\models\RegistrationForm',
+                'LoginForm' => 'frontend\models\LoginForm',
             ],
         ],
     ],

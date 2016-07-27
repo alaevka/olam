@@ -272,21 +272,21 @@ h4.modal-title {
 .modal-body {
   padding: 30px;
 }
-#registration-form label {
+#registration-form label, #login-form label {
   color: #333333;
   font-size: 14px;
   font-family: 'Exo 2', sans-serif;
   font-weight: 500;
 }
-#registration-form .form-control {
+#registration-form .form-control, #login-form .form-control {
   border-radius: 0px;
 }
-#registration-form .help-block {
+#registration-form .help-block, #login-form .help-block {
   font-size: 12px;
   font-family: 'Exo 2', sans-serif;
   font-weight: 500;
 }
-#registration-form .help-block-format {
+#registration-form .help-block-format, #login-form .help-block-format {
  font-size: 12px;
  font-family: 'Exo 2', sans-serif;
  font-weight: 500;
@@ -295,6 +295,12 @@ h4.modal-title {
 #registration-form .login-link {
   padding: 7px;
 }
+#login-form .registration-link {
+  padding: 7px;
+  text-transform: uppercase;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+}
 #registration-form .terms-of-use {
   margin-top: 20px;
   font-size: 14px;
@@ -302,7 +308,7 @@ h4.modal-title {
   font-weight: 500;
   color: #626262;
 }
-#registration-form h4.social-login-title {
+#registration-form h4.social-login-title, #login-form h4.social-login-title {
   font-size: 14px;
   font-family: 'Exo 2', sans-serif;
   font-weight: 700;
