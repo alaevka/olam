@@ -153,16 +153,121 @@ $this->title = 'olam development';
 		            </a>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-4">1</div>
-				<div class="col-md-4">2</div>
-				<div class="col-md-4">3</div>
-				<div class="col-md-4">4</div>
-				<div class="col-md-4">5</div>
-				<div class="col-md-4">6</div>
-				<div class="col-md-4">7</div>
+			<div class="row other-news">
+				<div class="col-md-4 other-new">
+					<a href=""><img class="img-responsive" src="/img/temp/new1.jpg"></a>
+					<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
+					<a href="">
+						<div class="other-new-subtitle">
+							Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
+						</div>
+					</a>
+					<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
+				</div>
+				<div class="col-md-4 other-new">
+					<a href=""><img class="img-responsive" src="/img/temp/new2.jpg"></a>
+					<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
+					<a href="">
+						<div class="other-new-subtitle">
+							Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
+						</div>
+					</a>
+					<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
+				</div>
+				<div class="col-md-4 other-new">
+					<a href=""><img class="img-responsive" src="/img/temp/new3.jpg"></a>
+					<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
+					<a href="">
+						<div class="other-new-subtitle">
+							Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
+						</div>
+					</a>
+					<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
+				</div>
+				<div class="col-md-4 other-new">
+					<a href=""><img class="img-responsive" src="/img/temp/new4.jpg"></a>
+					<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
+					<a href="">
+						<div class="other-new-subtitle">
+							Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
+						</div>
+					</a>
+					<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
+				</div>
+				<div class="col-md-4 other-new">
+					<a href=""><img class="img-responsive" src="/img/temp/new5.jpg"></a>
+					<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
+					<a href="">
+						<div class="other-new-subtitle">
+							Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
+						</div>
+					</a>
+					<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
+				</div>
+				<div class="col-md-4 other-new">
+					<a href=""><img class="img-responsive" src="/img/temp/new6.jpg"></a>
+					<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
+					<a href="">
+						<div class="other-new-subtitle">
+							Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
+						</div>
+					</a>
+					<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
+				</div>
 			</div>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 direct-block"> 
+			<img src="/img/temp/direct.jpg" class="img-responsive">
+		</div>
+	</div>
+	<div class="row persons-block">
+		<div class="col-md-8 bottom-new">
+			<img src="/img/temp/bottom_new.jpg" class="img-responsive">
+			<div class="caption bottom-new-post-content">
+                <div class="bottom-new-post-content-category"><?= Yii::t('app', 'new.category') ?></div>
+                <div class="bottom-new-post-content-title">"Интерактивная игра, в которой нужно угадать" ответы предыдущего читателя</div>
+                <div class="bottom-new-post-content-subtitle">Петербуржец — о том, как именно он поймал рекордное количество покемонов ответы предыдущего читателя</div>
+                <div class="bottom-new-post-content-link">
+                	<a href=""><?= Yii::t('app', 'new.read_interview') ?></a>
+                </div>
+            </div>
+		</div>
+		<div class="col-md-4 persons">
+			<h3><?= Yii::t('app', 'new.persons_feed') ?></h3>
+			<ul class="persons-feed">
+				<li>
+					<a href="">
+						<h4>Петербуржец — о том, как именно он поймал рекордное количество покемонов</h4>
+					</a>
+					<img src="/img/temp/person.jpg" class="img-responsive" align="left"><span>Интерактивная игра, в которой нужно угадать ответы предыдущего читателя</span>
+					<div class="clear"></div>
+				</li>
+				<li>
+					<a href="">
+						<h4>Петербуржец — о том, как именно он поймал рекордное количество покемонов</h4>
+					</a>
+					<img src="/img/temp/person.jpg" class="img-responsive" align="left"><span>Интерактивная игра, в которой нужно угадать ответы предыдущего читателя</span>
+					<div class="clear"></div>
+				</li>
+			</ul>
+			<div class="all-news-link"><a href=""><?= Yii::t('app', 'new.read_more') ?></a></div>
+		</div>
+	</div>
+	<div class="row works-top-ads">
+		<div class="col-md-1 works-top-ads-left-panel">
+			<?= Yii::t('app', 'ads.wors') ?>
+		</div>
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-3">1</div>
+				<div class="col-md-3">2</div>
+				<div class="col-md-3">3</div>
+				<div class="col-md-3">4</div>
+			</div>
+		</div>
+		<div class="col-md-1">2</div>
 	</div>
 </div>
 <?php

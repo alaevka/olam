@@ -25,6 +25,9 @@ $(document).ready(function(){
 		return false;
 	});
 
+	var right_persons_block_height = $('.persons').height();
+	$('.bottom-new, .bottom-new img').height(right_persons_block_height);
+
   var submitIcon = $('.searchbox-icon');
   var inputBox = $('.searchbox-input');
   var searchBox = $('.searchbox');
