@@ -103,7 +103,66 @@ $this->title = 'olam development';
 				</div>
 			</div>
 		</div>
-		<div class="col-md-9"></div>
+		<div class="col-md-9">
+			
+				<div class="col-md-8 top-new">
+					<a href="#"><img src="/img/temp/top_new.jpg" class="img-responsive"></a>
+					<a href="#"><div class="top-new-category"><?= Yii::t('app', 'new.category') ?></div></a>
+					<a href="#"><h1>Как и зачем художница Катрин Ненашева гуляет по городу, привязанная к кровати</h1></a>
+					<a href="#"><div class="top-new-subtitle">Вчера стало известно о петербургском студенте, поймавшем всех покемонов, которых можно получить в игре Pokémon GO. Чтобы побить предыдущий рекорд по ловле покемонов, 19-летнему Георгию Тимофееву (в игре — Gosha443) пришлось потратить две недели, пройти 60 километров..</div></a>
+				</div>
+				<div class="col-md-4 top-other-news">
+					<h3><?= Yii::t('app', 'new.news_feed') ?></h3>
+					<ul class="news-feed">
+						<li>
+							<a href="">
+								<div class="new-date"><?= Yii::t('app', 'new.date') ?></div>
+								<h4>Петербуржец — о том, как именно он поймал рекордное количество покемонов</h4>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="new-date"><?= Yii::t('app', 'new.date') ?></div>
+								<h4>Директору Библиотеки украинской литературы продлили домашний арест</h4>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="new-date"><?= Yii::t('app', 'new.date') ?></div>
+								<h4>Владимир Путин — о целенаправленной кампании против российских спортсменов</h4>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="new-date"><?= Yii::t('app', 'new.date') ?></div>
+								<h4>На руководителя приюта для животных «Эко Вешняки» завели уголовное дело</h4>
+							</a>
+						</li>
+					</ul>
+					<div class="all-news-link"><a href=""><?= Yii::t('app', 'new.all_news') ?></a></div>
+				</div>
+			
+			<div class="row">
+				<div class="col-md-12 big-new">
+					<a href="">
+						<img src="/img/temp/big_new.jpg" class="img-responsive">
+						<div class="caption post-content">
+			                <div class="big-new-category"><?= Yii::t('app', 'new.category') ?></div>
+	        		        <h1>«Конь БоДжек» и ещё 6 хороших мультсериалов для взрослых</h1>
+			            </div>
+		            </a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">1</div>
+				<div class="col-md-4">2</div>
+				<div class="col-md-4">3</div>
+				<div class="col-md-4">4</div>
+				<div class="col-md-4">5</div>
+				<div class="col-md-4">6</div>
+				<div class="col-md-4">7</div>
+			</div>
+		</div>
 	</div>
 </div>
 <?php

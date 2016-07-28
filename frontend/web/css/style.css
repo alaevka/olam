@@ -358,6 +358,111 @@ h4.modal-title {
   color: #aedd27;
   text-decoration: none;
 }
+.top-new .top-new-category {
+  color: #c4bcb9;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.top-new h1 {
+  color: #000000;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  padding: 0px;
+  margin-top: 5px;
+}
+.top-new .top-new-subtitle {
+  color: #9c9999;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  margin-top: 5px;
+}
+.top-new a:hover {
+  text-decoration: none;
+}
+.top-new {
+  padding-left: 0px;
+}
+.top-other-news h3 {
+  color: #000000;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0px;
+  padding: 20px 20px;
+  border-bottom: 1px solid #d7d7d7;
+}
+.top-other-news {
+  border: 1px solid #d7d7d7;
+  padding: 0px;
+}
+ul.news-feed {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+ul.news-feed div.new-date {
+  color: #376ca2;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+}
+ul.news-feed h4 {
+  color: #000000;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.6;
+}
+ul.news-feed a:hover {
+  text-decoration: none;
+  color: #376ca2;
+}
+ul.news-feed a:hover h4 {
+  color: #376ca2;
+}
+ul.news-feed li {
+  border-bottom: 1px solid #d7d7d7;
+  padding: 10px 10px 10px 20px;
+}
+.all-news-link {
+  padding: 20px;
+}
+.all-news-link a {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.post-content {
+    /*background: none repeat scroll 0 0 #FFFFFF;
+    opacity: 0.5;*/
+    bottom:30px;
+    left:50px;
+    position: absolute;
+}
+.post-content .big-new-category {
+  color: #c4bcb9;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+.post-content h1 {
+  color: #ffffff;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+}
+.big-new {
+    position:relative;
+    margin-top: 35px;
+}
+
 
 /*.top_mnu_news:before {
     content: "";
