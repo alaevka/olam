@@ -102,6 +102,12 @@ $this->title = 'olam development';
 					</ul>
 				</div>
 			</div>
+			<div class="row ads-left-banner">
+				<img src="/img/temp/ads.jpg" class="img-responsive">
+			</div>
+			<div class="row ads-left-banner">
+				<img src="/img/temp/bads2.jpg" class="img-responsive">
+			</div>
 		</div>
 		<div class="col-md-9">
 			
@@ -256,20 +262,77 @@ $this->title = 'olam development';
 		</div>
 	</div>
 	<div class="row works-top-ads">
-		<div class="col-md-1 works-top-ads-left-panel">
+		<div class="works-top-ads-left-panel-vertical">
 			<?= Yii::t('app', 'ads.wors') ?>
 		</div>
-		<div class="col-md-10">
+		<div style="margin-left: 50px; float: left; width: 87%;" class="col-md-12">
 			<div class="row">
-				<div class="col-md-3">1</div>
-				<div class="col-md-3">2</div>
-				<div class="col-md-3">3</div>
-				<div class="col-md-3">4</div>
+				<div class="col-md-3 work-top-ads-item">
+					<div class="works-top-ads-title"><a href="">Менеджер по продажам</a></div>
+					<div class="works-top-ads-price">до 45 000 руб.</div>
+					<div class="works-top-ads-company">ООО НПП "Сенсор"</div>
+				</div>
+				<div class="col-md-3 work-top-ads-item">
+					<div class="works-top-ads-title"><a href="">Менеджер по продажам</a></div>
+					<div class="works-top-ads-price">до 45 000 руб.</div>
+					<div class="works-top-ads-company">ООО НПП "Сенсор"</div>
+				</div>
+				<div class="col-md-3 work-top-ads-item">
+					<div class="works-top-ads-title"><a href="">Менеджер по продажам</a></div>
+					<div class="works-top-ads-price">до 45 000 руб.</div>
+					<div class="works-top-ads-company">ООО НПП "Сенсор"</div>
+				</div>
+				<div class="col-md-3 work-top-ads-item">
+					<div class="works-top-ads-title"><a href="">Менеджер по продажам</a></div>
+					<div class="works-top-ads-price">до 45 000 руб.</div>
+					<div class="works-top-ads-company">ООО НПП "Сенсор"</div>
+				</div>
 			</div>
+			
 		</div>
-		<div class="col-md-1">2</div>
+		<div class="col-md-1 works-top-ads-right-panel">
+			<a href=""><img src="/img/refresh.png"></a>
+		</div>
+		<div class="clear"></div>
 	</div>
 </div>
+<footer>
+	<div class="container footer-container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="footer-menu">
+					<ul>
+						<li><a href=""><?= Yii::t('app', 'footer.project_news') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'footer.ads') ?></a></li>
+						<li><a href=""><?= Yii::t('app', 'footer.support') ?></a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+
+				<div class="footer-copyrights">
+					&copy; olam.uz, 2016
+				</div>
+				<div class="social-block-footer">
+		        	<a href=""><img src="/img/social_fb.png"></a>
+		        	<a href=""><img src="/img/social_vk.png"></a>
+		        	<a href=""><img src="/img/social_tw.png"></a>
+		        </div>
+			</div>
+			<div class="col-md-4">
+				<div class="footer-subscribe-title"><?= Yii::t('app', 'footer.subscribe_for_news') ?></div>
+				<div class="footer-subscribe">
+					<input type="text" class="form-control input-sm" maxlength="128" placeholder="<?= Yii::t('app', 'footer.your_email') ?>" />
+				 	<button type="submit" class="btn btn-subscribe"><?= Yii::t('app', 'footer.btn') ?></button>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="footer-terms-of-use"><a href=""><?= Yii::t('app', 'footer.terms_of_use_site_materials') ?></a></div>
+				<div class="footer-address"><?= Yii::t('app', 'footer.company_address') ?></div>
+				<div class="footer-counter"><img src="/img/temp/li_counter.png"></div>
+			</div>
+		</div>
+	</div>
+</footer>
 <?php
 	Modal::begin ( [
 	    'header' => '<h4 class="modal-title" id="registrationModalLabel">'.Yii::t('app', 'modal.registration').'</h4>',

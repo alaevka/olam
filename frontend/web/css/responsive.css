@@ -1,5 +1,5 @@
 @media only screen and (max-width: 999px) {
-	.currency-block, .social-block, .i18n-block {
+	.currency-block, .social-block, .i18n-block, .works-top-ads {
 		display: none;
 	}
 	.auth-block {
