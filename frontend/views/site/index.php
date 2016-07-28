@@ -28,7 +28,7 @@ $this->title = 'olam development';
 			                <li><a class="top_mnu_poster" href="#"><?= Yii::t('app', 'top_mnu.poster') ?></a></li>
 			                <li><a class="top_mnu_tv" href="#"><?= Yii::t('app', 'top_mnu.tv') ?></a></li>
 			                <li>
-			                	<div class="container-search">
+			                	<div class="container-search pull-right">
 			                		<form class="searchbox">
 			                			<input type="text" placeholder="<?= Yii::t('app', 'search.phrase.placeholder') ?>" name="search" class="searchbox-input" required>
 			                			<input type="submit" class="searchbox-submit" value="GO">
