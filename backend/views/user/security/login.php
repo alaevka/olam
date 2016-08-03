@@ -13,11 +13,6 @@
 				OLAM.UZ
 			</a>
 			<p class="description">Пожалуйста, заполните форму для продолжения работы в системе!</p>
-			<!-- progress bar indicator -->
-			<div class="login-progressbar-indicator">
-				<h3>43%</h3>
-				<span>logging in...</span>
-			</div>
 		</div>
 	</div>
 	<?php //echo $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
