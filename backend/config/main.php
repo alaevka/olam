@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'language' => 'ru',
     'modules' => [
         'user' => [
             // following line will restrict access to profile, recovery, registration and settings controllers from backend

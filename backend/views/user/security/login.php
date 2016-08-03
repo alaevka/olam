@@ -3,6 +3,7 @@
 	use yii\widgets\ActiveForm;
 
 	$this->context->layout = '@app/views/layouts/login';
+	$this->title = 'Система администрирования';
 ?>
 
 <div class="login-container">
@@ -30,32 +31,46 @@
 				<p>Enter <strong>demo</strong>/<strong>demo</strong> as login and password.</p>
 			</div>
 			<?php $form = ActiveForm::begin([
-                'id'                     => 'login-form',
+                'id'                     => 'form_login',
                 'enableAjaxValidation'   => true,
                 'enableClientValidation' => false,
                 'validateOnBlur'         => false,
                 'validateOnType'         => false,
                 'validateOnChange'       => false,
             ]) ?>
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon">
-							<i class="entypo-user"></i>
-						</div>
-						<input type="text" class="form-control" name="username" id="username" placeholder="Логин" autocomplete="off" />
-					</div>
-				</div>
+				<?= $form->field($model, 'login', 
+					[
+						'inputOptions' => 
+							[
+								'autofocus' => 'autofocus', 
+								'placeholder' => 'Логин', 
+								'class' => 'form-control', 
+								'tabindex' => '1'
+							],
+						'template' => '<div class="input-group">
+											<div class="input-group-addon">
+												<i class="entypo-user"></i>
+											</div>
+											{input}
+										</div>{error}'
+					])->label(false) ?>
 
-				<?= $form->field($model, 'login', ['inputOptions' => ['autofocus' => 'autofocus', 'placeholder' => 'Логин', 'class' => 'form-control', 'tabindex' => '1']])->label(false) ?>
+				<?= $form->field($model, 'password', 
+					[
+						'inputOptions' => 
+							[
+								'placeholder' => 'Пароль', 
+								'class' => 'form-control', 
+								'tabindex' => '2'
+							],
+						'template' => '<div class="input-group">
+											<div class="input-group-addon">
+												<i class="entypo-key"></i>
+											</div>
+											{input}
+										</div>{error}'
+					])->passwordInput()->label(false) ?>
 
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon">
-							<i class="entypo-key"></i>
-						</div>
-						<input type="password" class="form-control" name="password" id="password" placeholder="Пароль" autocomplete="off" />
-					</div>
-				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary btn-block btn-login">
 						<i class="entypo-login"></i>
