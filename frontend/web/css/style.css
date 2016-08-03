@@ -30,6 +30,10 @@ a {
   font-size: 13px;
   font-weight: 700;
 }
+.nav-justified > li > a:hover, .nav-justified > li > a:focus {
+    text-decoration: none;
+    background-color: #2f6499;
+}
 .nav-justified > li > a:hover {
   background-color: #2f6499;
   color: #f8f8f7;
@@ -735,3 +739,4 @@ ul.persons-feed span {
 .ads-left-banner {
   margin: 20px 0;
 }
+

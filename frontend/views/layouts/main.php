@@ -26,11 +26,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-	<!-- 
-	<a href="<?= Url::to(['/user/registration/register']); ?>"><?= Yii::t('app', 'register') ?></a>
-	<a href="<?= Url::to(['/user/security/login']); ?>"><?= Yii::t('app', 'login') ?></a>
-	<a data-method="post" href="<?= Url::to(['/user/security/logout']); ?>"><?= Yii::t('app', 'logout') ?></a> -->
-        <?= $content ?>
+	    <?= $content ?>
 <?php $this->endBody() ?>
 </body>
 </html>

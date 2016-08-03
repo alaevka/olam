@@ -15,11 +15,20 @@ return [
         'user' => [
             // following line will restrict access to profile, recovery, registration and settings controllers from backend
             'as backend' => 'dektrium\user\filters\BackendFilter',
+            'class' => 'dektrium\user\Module',
+            'admins' => ['alaevka']
         ],
     ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
         ],
         // 'user' => [
         //     'identityClass' => 'common\models\User',
@@ -42,14 +51,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        
     ],
     'params' => $params,
 ];
