@@ -2608,6 +2608,13 @@ select[multiple].input-lg {
 .has-error .checkbox-inline {
   color: #ff3030;
 }
+.actions_row {
+  text-align: center;
+  width: 100px;
+}
+.has-error .help-block {
+  font-size: 11px;
+}
 .has-error .form-control {
   border-color: #ffafbd;
 }

@@ -7,8 +7,10 @@ use backend\assets\AppBackendAsset;
 use yii\helpers\Html;
 use common\widgets\Alert;
 use yii\helpers\Url;
+use yii\widgets\Breadcrumbs;
 
 AppBackendAsset::register($this);
+$active_url_str = Yii::$app->controller->id;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -17,7 +19,7 @@ AppBackendAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title>Система управления сайтом</title>
     <?php $this->head() ?>
     <!--[if lt IE 9]><script src="/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -33,6 +35,12 @@ AppBackendAsset::register($this);
 	<div class="sidebar-menu">
 		<div class="sidebar-menu-inner">
 			<header class="logo-env">
+				<div class="logo">
+					<a href="">
+						<img src="/images/logo.png" width="120" alt="" />
+					</a>
+				</div>
+
 				<div class="sidebar-collapse">
 					<a href="#" class="sidebar-collapse-icon">
 						<i class="entypo-menu"></i>
@@ -46,20 +54,20 @@ AppBackendAsset::register($this);
 				</div>
 			</header>
 			<ul id="main-menu" class="main-menu">
-				<li class="opened active">
+				<li <?php if($active_url_str == 'newscategory' || $active_url_str == 'news') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-list"></i>
 						<span class="title">Новости</span>
 					</a>
 					<ul>
-						<li>
-							<a href="#">
-								<span class="title">Категории</span>
+						<li <?php if($active_url_str == 'newscategory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/newscategory/index']) ?>">
+								<span class="title">Категории новостей</span>
 							</a>
 						</li>
-						<li>
+						<li <?php if($active_url_str == 'news') { ?>class="active"<?php } ?>>
 							<a href="#">
-								<span class="title">Новости</span>
+								<span class="title">Список новостей</span>
 							</a>
 						</li>
 					</ul>
@@ -120,7 +128,16 @@ AppBackendAsset::register($this);
 			</div>
 		</div>
 		<hr />
-		<ol class="breadcrumb bc-3" >
+
+		<?= Breadcrumbs::widget([
+			'homeLink' => [ 
+                'label' => 'Ситема управления',
+                'url' => Yii::$app->homeUrl,
+             ],
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+
+		<!-- <ol class="breadcrumb bc-3" >
 			<li>
 				<a href="index.html"><i class="fa-home"></i>Home</a>
 			</li>
@@ -130,7 +147,7 @@ AppBackendAsset::register($this);
 			<li class="active">
 				<strong>Chat Open</strong>
 			</li>
-		</ol>
+		</ol> -->
 					
 		<?= $content ?>
 		

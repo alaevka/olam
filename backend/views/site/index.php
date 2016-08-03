@@ -2,7 +2,8 @@
 
 /* @var $this yii\web\View */
 use yii\helpers\Url;
-$this->title = 'My Yii Application';
+//$this->params['breadcrumbs'][] = ['label' => 'Главная', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Главная';
 ?>
 
 
