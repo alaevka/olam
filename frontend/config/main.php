@@ -105,7 +105,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            
+                'news/<slug>' => 'news/index',
             ],
         ],
         

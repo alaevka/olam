@@ -2,6 +2,7 @@
 
 body {
   background-color: #ebeaea;
+  font-family: 'Exo 2', sans-serif;
 }
 a {
   color: #4576a8;
@@ -9,7 +10,7 @@ a {
 }
 .main-container-area {
   background-color: #ffffff;
-  min-height: 2000px;
+  min-height: 800px;
   box-shadow: 0 0 10px rgba(0,0,0,0.13);
   padding: 0 40px;
 }
@@ -740,3 +741,10 @@ ul.persons-feed span {
   margin: 20px 0;
 }
 
+.central-content h1 {
+  border-top: 3px solid #285d93;
+  margin: 0px;
+  color: #000000;
+  font-size: 26px;
+  padding: 20px 0 0 0;
+}

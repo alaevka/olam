@@ -7,7 +7,8 @@
 
 use yii\helpers\Html;
 use frontend\components\NewsLeftMenuWidget;
-$this->title = $name;
+use romi45\seoContent\components\SeoContentHelper;
+SeoContentHelper::registerAll($news_category);
 ?>
 
 <div class="row">
@@ -18,11 +19,8 @@ $this->title = $name;
             </div>
         </div>
     </div>
-    <div class="col-md-9">
-        <h1><?= Html::encode($this->title) ?></h1>
-        <div>
-            <?= nl2br(Html::encode($message)) ?>
-        </div>
+    <div class="col-md-9 central-content">
+        <h1><?= $news_category->title; ?></h1>
     </div>
 </div>
 
