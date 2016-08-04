@@ -24,6 +24,16 @@ class NewscategoryController extends Controller
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'sorting' => [
+                'class' => \kotchuprik\sortable\actions\Sorting::className(),
+                'query' => NewsCategory::find(),
+            ],
+        ];
+    }
+
     
     public function actionIndex()
     {

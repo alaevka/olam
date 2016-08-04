@@ -28,6 +28,7 @@ class SearchNewsCategory extends NewsCategory
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['order'=>SORT_ASC]]
         ]);
 
         if (!($this->load($params) && $this->validate())) {

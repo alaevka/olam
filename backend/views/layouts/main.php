@@ -5,9 +5,9 @@
 
 use backend\assets\AppBackendAsset;
 use yii\helpers\Html;
-use common\widgets\Alert;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
+use yii\web\View;
 
 AppBackendAsset::register($this);
 $active_url_str = Yii::$app->controller->id;
@@ -66,7 +66,7 @@ $active_url_str = Yii::$app->controller->id;
 							</a>
 						</li>
 						<li <?php if($active_url_str == 'news') { ?>class="active"<?php } ?>>
-							<a href="#">
+							<a href="<?= Url::to(['/news/index']) ?>">
 								<span class="title">Список новостей</span>
 							</a>
 						</li>
@@ -137,23 +137,22 @@ $active_url_str = Yii::$app->controller->id;
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
 
-		<!-- <ol class="breadcrumb bc-3" >
-			<li>
-				<a href="index.html"><i class="fa-home"></i>Home</a>
-			</li>
-			<li>
-				<a href="layout-api.html">Layouts</a>
-			</li>
-			<li class="active">
-				<strong>Chat Open</strong>
-			</li>
-		</ol> -->
-					
 		<?= $content ?>
 		
 	</div>
 </div>
-    
+
+<?php if (Yii::$app->getSession()->hasFlash('admin_flash_message')): ?>
+    <?=
+        $this->registerJs(
+            "
+            	toastr.info('".Yii::$app->getSession()->getFlash('admin_flash_message')."');
+            ", 
+            View::POS_END, 
+            'flash_message'
+        );
+    ?>
+<?php endif; ?>   
    
 <?php $this->endBody() ?>
 </body>

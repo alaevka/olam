@@ -24,12 +24,13 @@ class AppBackendAsset extends AssetBundle
     ];
     public $js = [
         "js/gsap/main-gsap.js",
-        "js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js",
+        //"js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js",
         "js/bootstrap.js",
         "js/joinable.js",
         "js/resizeable.js",
         "js/neon-api.js",
         "js/jquery.validate.min.js",
+        "/js/toastr.js",
         "js/neon-login.js",
         "js/neon-custom.js",
     ];

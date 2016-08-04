@@ -24,48 +24,59 @@ $this->params['breadcrumbs'][] = $this->title;
 			</ul>
 		</div>
 	</div>
-
+	
 	<!-- panel body -->
 	<div class="panel-body">
 		<div class="tab-content">
 			<div class="tab-pane active" id="tab1">
+				<div class="alert alert-info"><strong>Внимание!</strong> Вы можете отсортировать последовательность расположения категорий перетащив любую из категорий левой клавишей мыши за символ ☰</div>
 				<?= GridView::widget([
 				    'dataProvider' => $dataProvider,
 				    'filterModel' => $searchModel,
-				    'options' => ['class'=>'ibox-content'],
+				    'options' => [
+				        'data' => [
+				            'sortable-widget' => 1,
+				            'sortable-url' => \yii\helpers\Url::toRoute(['sorting']),
+				        ]
+				    ],
+				    'rowOptions' => function ($model, $key, $index, $grid) {
+				        return ['data-sortable-id' => $model->id];
+				    },
 				    'tableOptions' => ['class'=>'table table-striped table-bordered table-hover dataTables-example'],
 				    'layout' => "<div class=\"pull-right\">{summary}</div>\n{items}\n{pager}",
 				    'columns' => [
-				        // ['class' => 'yii\grid\SerialColumn'],
+				        [
+				            'class' => \kotchuprik\sortable\grid\Column::className(),
+				        ],
 				        [
 				            'attribute' => 'title',
 				        ],
 				        [
 				            'attribute' => 'slug',
 				        ],
-				            [
-				                'class' => 'yii\grid\ActionColumn',
-				                'contentOptions' => ['class' => 'actions_row'],
-				                'template' => '{update} {delete}',
-				                'buttons' => [
-				                    'update' => function ($url, $model) {
-				                        return Html::a('<i class="glyphicon glyphicon-wrench"></i>', $url, [
-				                            'class' => 'btn btn-xs btn-primary',
-				                            'title' => Yii::t('yii', 'Update'),
-				                        ]);
-				                    },
-				                    'delete' => function ($url, $model) {
-				                        return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url, [
-				                            'class' => 'btn btn-xs btn-danger',
-				                            'data-method' => 'post',
-				                            'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?',
-				                            'title' => Yii::t('yii', 'Delete'),
-				                        ]);
-				                    },
-				                ]
-				            ],
+			            [
+			                'class' => 'yii\grid\ActionColumn',
+			                'contentOptions' => ['class' => 'actions_row'],
+			                'template' => '{update} {delete}',
+			                'buttons' => [
+			                    'update' => function ($url, $model) {
+			                        return Html::a('<i class="glyphicon glyphicon-wrench"></i>', $url, [
+			                            'class' => 'btn btn-xs btn-primary',
+			                            'title' => Yii::t('yii', 'Update'),
+			                        ]);
+			                    },
+			                    'delete' => function ($url, $model) {
+			                        return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url, [
+			                            'class' => 'btn btn-xs btn-danger',
+			                            'data-method' => 'post',
+			                            'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+			                            'title' => Yii::t('yii', 'Delete'),
+			                        ]);
+			                    },
+			                ]
+			            ],
 				    ],
-				]); ?>									
+				]); ?>	
 			</div>
 		</div>
 	</div>

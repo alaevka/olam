@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-use romi45\seoContent\components\SeoBehavior;
+use backend\components\ExtendedSeoBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 /**
@@ -35,7 +35,7 @@ class NewsCategory extends \yii\db\ActiveRecord
                 'value' => new Expression('NOW()'),
             ],
             'seo' => [
-                'class' => SeoBehavior::className(),
+                'class' => ExtendedSeoBehavior::className(),
                 'titleAttribute' => 'seoTitle',
                 'keywordsAttribute' => 'seoKeywords',
                 'descriptionAttribute' => 'seoDescription'
@@ -51,7 +51,11 @@ class NewsCategory extends \yii\db\ActiveRecord
                 'immutable' => false,
                 // If intl extension is enabled, see http://userguide.icu-project.org/transforms/general. 
                 'transliterateOptions' => 'Russian-Latin/BGN; Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC;'
-            ]
+            ],
+            'sortable' => [
+                'class' => \kotchuprik\sortable\behaviors\Sortable::className(),
+                'query' => self::find(),
+            ],
         ];
     }
 
