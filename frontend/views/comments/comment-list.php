@@ -139,7 +139,7 @@ echo yii\widgets\ListView::widget([
                         <?php
                         if (!$Comment->isDeleted()) {
                             if ($Comment->canCreate()) {
-                                echo Html::a(FA::icon('reply') . ' ' . Yii::t('app', 'Reply'), '#', [
+                                echo Html::a(FA::icon('reply') . ' ' . Yii::t('app', 'app.news_comment_reply'), '#', [
                                     'class' => 'btn btn-info btn-xs',
                                     'data-role' => 'reply',
                                 ]);
@@ -147,7 +147,7 @@ echo yii\widgets\ListView::widget([
 
                             if ($Comment->canUpdate()) {
                                 echo Html::a(
-                                    FA::icon('pencil') . ' ' . Yii::t('app', 'Edit'),
+                                    FA::icon('pencil') . ' ' . Yii::t('app', 'app.news_comment_edit'),
                                     '#',
                                     [
                                         'data-role' => 'edit',
@@ -158,7 +158,7 @@ echo yii\widgets\ListView::widget([
 
                             if ($Comment->canDelete()) {
                                  echo Html::a(
-                                    FA::icon('times') . ' ' . Yii::t('app', 'Delete'),
+                                    FA::icon('times') . ' ' . Yii::t('app', 'app.news_comment_delete'),
                                     Url::current(['delete-comment' => $Comment->id]),
                                     ['class' => 'btn btn-danger btn-xs']
                                 );
