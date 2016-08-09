@@ -22,9 +22,29 @@ return [
                 'RegistrationForm' => 'frontend\models\RegistrationForm',
                 'LoginForm' => 'frontend\models\LoginForm',
             ],
+            'controllerMap' => [
+                'security' => 'frontend\controllers\user\SecurityController',
+                'registration' => 'frontend\controllers\user\RegistrationController'
+            ],
         ],
+        'comments' => [
+            'class' => 'rmrevin\yii\module\Comments\Module',
+            'userIdentityClass' => 'common\models\User',
+            'useRbac' => false,
+            'modelMap' => [
+                'Comment' => 'common\models\CommentModel',
+                'CommentCreateForm' => 'common\models\CommentCreateFormModel',
+            ]
+        ]
     ],
     'components' => [
+        'formatter' => [
+           'dateFormat' => 'php:d.m.Y',
+           'datetimeFormat' => 'd-M-Y H:i:s',
+           'timeFormat' => 'H:i:s',
+           'locale' => 'ru', //your language locale
+           'defaultTimeZone' => 'Europe/Berlin', // time zone
+        ],
         'authClientCollection' => [
             'class'   => \yii\authclient\Collection::className(),
             'clients' => [
@@ -63,7 +83,8 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user'
+                    '@dektrium/user/views' => '@app/views/user',
+                    '@vendor/rmrevin/yii2-comments/widgets/views' => '@app/views/comments'
                 ],
             ],
         ],
@@ -106,6 +127,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'news/<slug>' => 'news/index',
+                'news/<category>/<slug>' => 'news/view',
             ],
         ],
         

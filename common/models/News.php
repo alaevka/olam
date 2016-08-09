@@ -57,6 +57,11 @@ class News extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getCategory()
+    {
+        return $this->hasOne(\common\models\NewsCategory::className(), ['id' => 'category_id']);
+    }
+
     /**
      * @inheritdoc
      */

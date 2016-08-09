@@ -16,6 +16,7 @@ class AppAsset extends AssetBundle
         'css/responsive.css',
     ];
     public $js = [
+        'js/jquery.scrollTo.min.js',
         'js/script.js',
     ];
     public $depends = [

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f83311343f8e51561529cc598adb3947",
-    "content-hash": "7b73f9e260c674ab1da991c5172d05e8",
+    "hash": "1814de1514df5c6487dda1267ec455ef",
+    "content-hash": "1f48a5a1ee1479c7452b967fcc3e9e8f",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -489,6 +489,54 @@
             "time": "2016-07-16 12:58:58"
         },
         {
+            "name": "fzaninotto/faker",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3|^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": []
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2016-04-29 12:21:54"
+        },
+        {
             "name": "kotchuprik/yii2-sortable-widgets",
             "version": "v2.0.2",
             "source": {
@@ -576,6 +624,108 @@
                 "курсы"
             ],
             "time": "2015-07-29 16:23:51"
+        },
+        {
+            "name": "rmrevin/yii2-comments",
+            "version": "1.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmrevin/yii2-comments.git",
+                "reference": "dfc463a37336a3fc7c39698b4b41b2c79f2fb56a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmrevin/yii2-comments/zipball/dfc463a37336a3fc7c39698b4b41b2c79f2fb56a",
+                "reference": "dfc463a37336a3fc7c39698b4b41b2c79f2fb56a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "rmrevin/yii2-fontawesome": "~2.10",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "rmrevin\\yii\\module\\Comments\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Revin",
+                    "email": "xgismox@gmail.com",
+                    "homepage": "http://rmrevin.ru/"
+                }
+            ],
+            "description": "Comments module for Yii2",
+            "keywords": [
+                "comment",
+                "module",
+                "widget",
+                "yii"
+            ],
+            "time": "2016-06-27 10:30:28"
+        },
+        {
+            "name": "rmrevin/yii2-fontawesome",
+            "version": "2.15.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmrevin/yii2-fontawesome.git",
+                "reference": "d2777130bc926bc670a4e50c2f504a0fb782efb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/d2777130bc926bc670a4e50c2f504a0fb782efb1",
+                "reference": "d2777130bc926bc670a4e50c2f504a0fb782efb1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "rmrevin\\yii\\fontawesome\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Revin Roman",
+                    "email": "roman@rmrevin.com",
+                    "homepage": "https://rmrevin.com/"
+                }
+            ],
+            "description": "Asset Bundle for Yii2 with Font Awesome",
+            "keywords": [
+                "asset",
+                "awesome",
+                "bundle",
+                "font",
+                "yii"
+            ],
+            "time": "2016-05-28 21:18:32"
         },
         {
             "name": "romi45/yii2-seo-behavior",
@@ -958,6 +1108,53 @@
             "time": "2016-02-06 00:49:24"
         },
         {
+            "name": "yiisoft/yii2-faker",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-faker.git",
+                "reference": "b88ca69ee226a3610b2c26c026c3203d7ac50f6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/b88ca69ee226a3610b2c26c026c3203d7ac50f6c",
+                "reference": "b88ca69ee226a3610b2c26c026c3203d7ac50f6c",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\faker\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Jebri",
+                    "email": "mark.github@yandex.ru"
+                }
+            ],
+            "description": "Fixture generator. The Faker integration for the Yii framework.",
+            "keywords": [
+                "Fixture",
+                "faker",
+                "yii2"
+            ],
+            "time": "2015-03-01 06:22:44"
+        },
+        {
             "name": "yiisoft/yii2-jui",
             "version": "2.0.6",
             "source": {
@@ -1178,54 +1375,6 @@
             }
         },
         {
-            "name": "fzaninotto/faker",
-            "version": "v1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3|^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": []
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2016-04-29 12:21:54"
-        },
-        {
             "name": "phpspec/php-diff",
             "version": "v1.1.0",
             "source": {
@@ -1354,53 +1503,6 @@
                 "yii2"
             ],
             "time": "2016-03-17 03:50:19"
-        },
-        {
-            "name": "yiisoft/yii2-faker",
-            "version": "2.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-faker.git",
-                "reference": "b88ca69ee226a3610b2c26c026c3203d7ac50f6c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/b88ca69ee226a3610b2c26c026c3203d7ac50f6c",
-                "reference": "b88ca69ee226a3610b2c26c026c3203d7ac50f6c",
-                "shasum": ""
-            },
-            "require": {
-                "fzaninotto/faker": "*",
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "yii\\faker\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Jebri",
-                    "email": "mark.github@yandex.ru"
-                }
-            ],
-            "description": "Fixture generator. The Faker integration for the Yii framework.",
-            "keywords": [
-                "Fixture",
-                "faker",
-                "yii2"
-            ],
-            "time": "2015-03-01 06:22:44"
         },
         {
             "name": "yiisoft/yii2-gii",

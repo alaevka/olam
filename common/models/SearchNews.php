@@ -13,7 +13,7 @@ class SearchNews extends News
     {
         return [
             [['id'], 'integer'],
-            [['title', 'slug'], 'safe'],
+            [['title', 'slug', 'category_id'], 'safe'],
         ];
     }
 
@@ -37,6 +37,7 @@ class SearchNews extends News
 
         $query->andFilterWhere(['like', 'title', $this->title]);
         $query->andFilterWhere(['like', 'slug', $this->slug]);
+        $query->andFilterWhere(['category_id' => $this->category_id]);
 
         return $dataProvider;
     }

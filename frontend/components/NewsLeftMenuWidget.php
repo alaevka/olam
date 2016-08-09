@@ -8,6 +8,7 @@ use yii\helpers\Url;
 class NewsLeftMenuWidget extends Widget
 {
     public $news_categories;
+    public $current_category;
 
     public function init()
     {
@@ -18,9 +19,9 @@ class NewsLeftMenuWidget extends Widget
 
     public function run()
     {
-
         return $this->render('news_left_menu_widget', [
-            'news_categories' => $this->news_categories
+            'news_categories' => $this->news_categories,
+            'current_category' => $this->current_category,
         ]);
     }
 }

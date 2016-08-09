@@ -138,6 +138,7 @@ AppAsset::register($this);
 	    'header' => '<h4 class="modal-title" id="registrationModalLabel">'.Yii::t('app', 'modal.registration').'</h4>',
 	    'id' => 'registration-modal',
 	    'size' => 'modal-width',
+	    'closeButton' => ['label' => '✖'],
 	    'toggleButton' => [
 	        'tag' => 'a',
 	        'style' => ['display' => 'none']
@@ -150,6 +151,7 @@ AppAsset::register($this);
 	    'header' => '<h4 class="modal-title" id="loginModalLabel">'.Yii::t('app', 'modal.login').'</h4>',
 	    'id' => 'login-modal',
 	    'size' => 'modal-width',
+	    'closeButton' => ['label' => '✖'],
 	    'toggleButton' => [
 	        'tag' => 'a',
 	        'style' => ['display' => 'none']

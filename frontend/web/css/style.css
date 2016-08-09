@@ -743,8 +743,125 @@ ul.persons-feed span {
 
 .central-content h1 {
   border-top: 3px solid #285d93;
-  margin: 0px;
+  margin: 0 0 20px 0;
   color: #000000;
   font-size: 26px;
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.news-big-new h2 {
+  color: #000000;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  padding: 0px;
+  margin-top: 5px;
+}
+.news-big-new .news-big-subtitle {
+  color: #9c9999;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 400;
+  margin-top: 5px;
+}
+.news-big-new a:hover {
+  text-decoration: none;
+}
+.news-big-date {
+  font-size: 12px;
+  color: #9c9999;
+  padding: 10px 0 0 0;
+}
+.new-block-height {
+  min-height: 400px;
+}
+.news-list hr {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.not_yet_been {
+  margin: 15px;
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 10px 0 20px 0;
+    border-radius: 0px;
+}
+.pagination > li > a, .pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #000;
+    text-decoration: none;
+    background-color: #fff;
+    border: 0px solid #ddd;
+    font-weight: 700;
+    font-size: 18px;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    z-index: 3;
+    color: #9c9999;
+    cursor: default;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    font-weight: 700;
+
+}
+.pagination-container {
+  text-align: center;
+}
+.pagination-container a.news-arch {
   padding: 20px 0 0 0;
+}
+.central-content h1.page-title {
+  font-size: 36px;
+  font-weight: 700;
+}
+.new-detail-top-data {
+  color: #9c9999;
+  font-size: 12px;
+  font-weight: 500;
+}
+.new-detail-top-data a {
+  text-transform: uppercase;
+  padding-left: 30px;
+}
+.new-detail-img {
+  margin-top: 20px;
+}
+.new-content {
+  font-size: 15px;
+  color: #676161;
+  line-height: 1.4;
+  margin-top: 20px;
+}
+h3.comments {
+  font-size: 26px;
+  font-weight: 700;
+  color: #000;
+}
+.comments-list .btn {
+  border-radius: 0px;
+  padding: 20px;
+}
+.comments-list .comment .actions > a {
+  padding: 5px 15px;
+}
+#commentcreateformmodel-text {
+  border-radius: 0px;
+}
+.comment-form form {
+  margin: 20px 0;
+}
+.btn-comment-send {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-radius: 0px;
+  padding: 15px 20px;
 }

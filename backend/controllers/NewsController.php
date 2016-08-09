@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
-
+use Faker;
 
 class NewsController extends Controller
 {
@@ -131,5 +131,24 @@ class NewsController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+
+    public function actionFaker() {
+        $faker = Faker\Factory::create();
+        
+        for ($i=0; $i < 100; $i++) { 
+            $new = new News;
+            $new->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $new->image_name = 'photo_2016-07-20_15-58-47.jpg';
+            $new->content = $faker->text($maxNbChars = 500);
+            $new->category_id = 25;
+            $new->seoTitle = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $new->seoKeywords = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $new->seoDescription = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $new->save();
+        }
+
+
     }
 }

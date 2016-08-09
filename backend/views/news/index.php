@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use common\models\NewsCategory;
+
 $this->title = 'Список новостей';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -40,6 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
 				        ],
 				        [
 				            'attribute' => 'slug',
+				        ],
+				        [
+				            'attribute' => 'category_id',
+				            'filter' => Arrayhelper::map(NewsCategory::find()->orderBy('order')->asArray()->all(), 'id', 'title'),
+				            'value' => function ($model, $index, $widget) {
+			                    return $model->category->title;
+			                },
 				        ],
 			            [
 			                'class' => 'yii\grid\ActionColumn',
