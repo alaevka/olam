@@ -19,7 +19,7 @@ $Widget = $this->context;
 
         if (\Yii::$app->getUser()->getIsGuest()) {
             echo $form->field($CommentCreateForm, 'from')
-                ->textInput();
+                ->textInput(['placeholder' => Yii::t('app', 'app.new_comment_your_name_placeholder')])->label(false);
         }
 
         $options = [];

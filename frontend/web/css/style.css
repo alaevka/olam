@@ -851,7 +851,7 @@ h3.comments {
 .comments-list .comment .actions > a {
   padding: 5px 15px;
 }
-#commentcreateformmodel-text {
+#commentcreateformmodel-text, #commentcreateformmodel-from {
   border-radius: 0px;
 }
 .comment-form form {
