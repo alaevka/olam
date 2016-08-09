@@ -59,6 +59,20 @@ class NewsController extends Controller
         ]);
     }
 
+    public function actionArchive() {
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => News::find()->orderBy('created_at DESC'),
+            'pagination' => [
+                'pageSize' => 15,
+            ],
+        ]);
+
+        return $this->render('archive', [
+            'listDataProvider' => $dataProvider
+        ]);
+    }
+
     protected function findModelNews($slug)
     {
         if (($model = News::find()->where(['slug' => $slug])->one()) !== null) {

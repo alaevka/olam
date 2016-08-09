@@ -7,10 +7,9 @@
 
 use yii\helpers\Html;
 use frontend\components\NewsLeftMenuWidget;
-use romi45\seoContent\components\SeoContentHelper;
 use yii\widgets\ListView;
 use yii\helpers\Url;
-SeoContentHelper::registerAll($news_category);
+
 ?>
 <?php
     $this->registerJs(
@@ -23,19 +22,26 @@ SeoContentHelper::registerAll($news_category);
     <div class="col-md-3">
         <div class="row">
             <div class="col-md-12">
-                <?= NewsLeftMenuWidget::widget(['current_category' => $news_category->id]) ?>
+                <?= NewsLeftMenuWidget::widget() ?>
             </div>
         </div>
     </div>
     <div class="col-md-9 central-content" id="central-content">
-        <h1><?= $news_category->title; ?></h1>
+        <h1>
+            <?= Yii::t('app', 'news.new_archive') ?>
+            
+            <a href="#" class="pull-right arch_year">2014</a>
+            <a href="#" class="pull-right arch_year">2015</a>
+            <a href="#" class="pull-right arch_year">2016</a>
+            <a href="#" class="pull-right arch_year"><?= Yii::t('app', 'news.all_time') ?></a>
+        </h1>
         <div class="row news-list">
         <?php \yii\widgets\Pjax::begin() ?>
         <?= 
             ListView::widget([
                 'dataProvider' => $listDataProvider,
-                'itemView' => '_new_item',
-                'layout' => "{items}<hr><div class=\"col-md-12 pagination-container\">{pager}<a class=\"pull-right news-arch\" data-pjax=\"0\" href=\"".Url::to(['/news/archive'])."\">".Yii::t('app', 'news.new_archive')."</a></div>",
+                'itemView' => '_new_item_titles',
+                'layout' => "{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
                 'emptyText' => Yii::t('app', 'news.not_yet_been_added_to_this_category_news'),
                 'emptyTextOptions' => ['class' => 'not_yet_been'],
                 'pager' => [

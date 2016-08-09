@@ -26,6 +26,7 @@ echo yii\widgets\ListView::widget([
     'dataProvider' => $CommentsDataProvider,
     'options' => ['class' => 'comments-list'],
     'layout' => "{items}\n{pager}",
+    'emptyText' => Yii::t('app', 'news.comments_not_added'),
     'itemView' =>
         function (Comments\models\Comment $Comment, $key, $index, yii\widgets\ListView $Widget)
         use (&$comments, $CommentListWidget) {

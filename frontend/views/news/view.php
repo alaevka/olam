@@ -29,10 +29,10 @@ SeoContentHelper::registerAll($model);
     </div>
     <div class="col-md-9 central-content" id="central-content">
         <h1 class="page-title"><?= $model->title; ?></h1>
-        <div class="new-detail-top-data"><?= Yii::$app->formatter->asDate($model->created_at); ?> <?= Yii::t('app', 'app.count_views') ?>: 200 <a href=""><?= $model->category->title; ?></a></div>
+        <div class="new-detail-top-data"><?= Yii::$app->formatter->asDate($model->created_at); ?> <?= Yii::t('app', 'app.count_views') ?>: 200 <a href="/news/<?= $model->category->slug ?>"><?= $model->category->title; ?></a></div>
         <div class="row new-detail-img">
 	        <div class="col-md-1">
-	        	1
+	        	<img src="/img/temp/share_vertical.png" class="img-responsive">
 	        </div>
 	        <div class="col-md-11">
 	        	<img class="img-responsive" src="<?= Yii::$app->params['uploadsLink'] ?>/<?= $model->image_name; ?>">
