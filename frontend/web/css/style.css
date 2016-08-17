@@ -18,11 +18,11 @@ a {
 	box-shadow: 0 0 10px rgba(0,0,0,0.13);
 }
 
-.nav-justified {
+.top-line-mnu {
   background-color: #285d93;
   padding: 0 40px;
 }
-.nav-justified > li > a {
+.top-line-mnu > li > a {
   padding-top: 15px;
   padding-bottom: 15px;
   color: #ffffff;
@@ -31,11 +31,11 @@ a {
   font-size: 13px;
   font-weight: 700;
 }
-.nav-justified > li > a:hover, .nav-justified > li > a:focus {
+.top-line-mnu > li > a:hover, .top-line-mnu > li > a:focus {
     text-decoration: none;
     background-color: #2f6499;
 }
-.nav-justified > li > a:hover {
+.top-line-mnu > li > a:hover {
   background-color: #2f6499;
   color: #f8f8f7;
 }
@@ -43,7 +43,7 @@ a {
   background-color: #b0dd27;
   }*/
   @media (min-width: 768px) {
-    .nav-justified {
+    .top-line-mnu {
       max-height: 52px;
     }
   }
@@ -873,4 +873,49 @@ h3.comments {
 .arch_year:hover {
   text-decoration: none;
   background-color: #f2f1e9;
+}
+
+.filter-content {
+  border-bottom: 10px solid #285d93;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #ebeaea;
+}
+.filter-content .tab-pane .row {
+  padding: 10px;
+}
+
+.nav-tabs.filter-tabs > .active > a, .nav-tabs.filter-tabs > .active > a:hover, .nav-tabs.filter-tabs > .active > a:focus {
+    border-bottom: 5px solid #ebeaea;
+    background-color: #ebeaea;
+    color: #285d93;
+    /*border-right: 5px solid #1f476f;*/
+}
+.nav-tabs.filter-tabs > li > a {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-bottom: 5px solid #1f476f;
+  border-radius: 10px 10px 0 0;
+
+}
+.nav-tabs.filter-tabs > li {
+  background-color: #3e6d9c;
+}
+.nav-tabs.filter-tabs > li:first-child {
+  border-top-left-radius: 11px;
+}
+.nav-tabs.filter-tabs > li:last-child {
+  border-top-right-radius: 10px;
+}
+.nav-tabs.filter-tabs > li > a:hover {
+    background-color: #b0dd27;
+    border: 1px solid #b0dd27;
+    border-bottom: 5px solid #ffffff;
+}
+.add-position-button {
+  padding: 10px;
+  border: 1px solid #285d93;
+  margin-left: 20px;
 }

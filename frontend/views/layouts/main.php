@@ -30,9 +30,9 @@ AppAsset::register($this);
 				<div class="row">
 					<!-- Navbar Links -->
 			        <div class="collapse navbar-collapse">
-			            <ul class="nav nav-justified">
-		 	                <li><a class="top_mnu_news" href="#"><?= Yii::t('app', 'top_mnu.news') ?></a></li>
-			                <li><a class="top_mnu_realty" href="#"><?= Yii::t('app', 'top_mnu.realty') ?></a></li>
+			            <ul class="nav nav-justified top-line-mnu">
+		 	                <li><a class="top_mnu_news" href="<?= Url::to(['/news']) ?>"><?= Yii::t('app', 'top_mnu.news') ?></a></li>
+			                <li><a class="top_mnu_realty" href="<?= Url::to(['/realty']) ?>"><?= Yii::t('app', 'top_mnu.realty') ?></a></li>
 			                <li><a class="top_mnu_auto" href="#"><?= Yii::t('app', 'top_mnu.auto') ?></a></li>
 			                <li><a class="top_mnu_work" href="#"><?= Yii::t('app', 'top_mnu.work') ?></a></li>
 			                <li><a class="top_mnu_ads" href="#"><?= Yii::t('app', 'top_mnu.ads') ?></a></li>
@@ -70,6 +70,7 @@ AppAsset::register($this);
 
 					<?php } else { ?>
 						<a class="register-link" data-method="post" href="<?= Url::to(['/user/security/logout']); ?>"><?= Yii::t('app', 'user.logout') ?></a>
+						<a class="add-position-button" href="<?= Url::to(['/realty/create']); ?>"><?= Yii::t('app', 'user.add_position') ?></a>
 					<?php } ?>
 		        </div>
 		        <div class="pull-right currency-block">
