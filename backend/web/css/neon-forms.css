@@ -4862,7 +4862,7 @@ input[type="button"].btn-block {
 	}
 }*/
 .select2 {
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
 .page-body .select2-container {
   display: block;

@@ -54,6 +54,12 @@ $active_url_str = Yii::$app->controller->id;
 				</div>
 			</header>
 			<ul id="main-menu" class="main-menu">
+				<li>
+					<a href="<?= Url::to(['/user/admin/index']) ?>">
+						<i class="entypo-users"></i>
+						<span class="title">Управление пользователями</span>
+					</a>
+				</li>
 				<li <?php if($active_url_str == 'newscategory' || $active_url_str == 'news') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-list"></i>

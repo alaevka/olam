@@ -22,10 +22,13 @@ class AppBackendAsset extends AssetBundle
         "css/custom.css",
         "css/skins/white.css"
     ];
+    // public $jsOptions = array(
+    //     'position' => \yii\web\View::POS_HEAD
+    // );
     public $js = [
         "js/gsap/main-gsap.js",
         //"js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js",
-        "js/bootstrap.js",
+        //"js/bootstrap.js",
         "js/joinable.js",
         "js/resizeable.js",
         "js/neon-api.js",
@@ -36,6 +39,6 @@ class AppBackendAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        //'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 }

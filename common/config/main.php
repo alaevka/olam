@@ -8,6 +8,7 @@ return [
 	        // or if need different configuration for frontend and backend you may
 	        // configure in needed configs
 	    ],
+	    'rbac' => 'dektrium\rbac\RbacWebModule',
 	],
     'components' => [
         'cache' => [

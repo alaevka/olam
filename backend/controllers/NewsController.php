@@ -29,13 +29,18 @@ class NewsController extends Controller
     
     public function actionIndex()
     {
-        $searchModel = new SearchNews;
-        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+        if(\Yii::$app->user->can('view-news')) {
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-        ]);
+            $searchModel = new SearchNews;
+            $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+            return $this->render('index', [
+                'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+            ]);
+        } else {
+            throw new \yii\web\ForbiddenHttpException('Вы не имеете права на доступ в данный раздел');    
+        }
     }
 
        
