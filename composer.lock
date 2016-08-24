@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "75634d6c646cb5018f17bbdd73cb9939",
-    "content-hash": "2f7f19acd7a6f08f7748980e5ada06a7",
+    "hash": "b92a1fe32666218f7d8619ea1d00117a",
+    "content-hash": "8ddfdce12f78f99466767e99d49150b5",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -629,6 +629,59 @@
             "time": "2016-04-29 12:21:54"
         },
         {
+            "name": "kartik-v/bootstrap-fileinput",
+            "version": "v4.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
+                "reference": "abde5a9611d4939b951fdd00f70a9fec935c7b6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/abde5a9611d4939b951fdd00f70a9fec935c7b6b",
+                "reference": "abde5a9611d4939b951fdd00f70a9fec935c7b6b",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\fileinput\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced HTML 5 file input for Bootstrap 3.x with features for file preview for many file types, multiple selection, ajax uploads, and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+            "keywords": [
+                "ajax",
+                "bootstrap",
+                "delete",
+                "file",
+                "image",
+                "input",
+                "jquery",
+                "multiple",
+                "preview",
+                "progress",
+                "upload"
+            ],
+            "time": "2016-08-07 07:50:42"
+        },
+        {
             "name": "kartik-v/yii2-krajee-base",
             "version": "1.8.5",
             "source": {
@@ -678,6 +731,61 @@
                 "yii2"
             ],
             "time": "2016-05-07 19:45:52"
+        },
+        {
+            "name": "kartik-v/yii2-widget-fileinput",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-fileinput.git",
+                "reference": "6fc8922716bf0b3638c67ff0895a9ff688b6c027"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/6fc8922716bf0b3638c67ff0895a9ff688b6c027",
+                "reference": "6fc8922716bf0b3638c67ff0895a9ff688b6c027",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-fileinput": "~4.2",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\file\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced FileInput widget for Bootstrap 3.x with file preview, multiple selection, and more features (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-fileinput",
+            "keywords": [
+                "extension",
+                "file",
+                "form",
+                "input",
+                "jquery",
+                "plugin",
+                "upload",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-07-23 15:30:48"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -1855,7 +1963,8 @@
         "dektrium/yii2-user": 20,
         "microinginer/yii2-cbrf-rates": 20,
         "dektrium/yii2-rbac": 20,
-        "zelenin/yii2-i18n-module": 20
+        "zelenin/yii2-i18n-module": 20,
+        "kartik-v/yii2-widget-fileinput": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

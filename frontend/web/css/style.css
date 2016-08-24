@@ -972,3 +972,23 @@ h3.comments {
 #create-ads-form input, #create-ads-form select {
   border-radius: 0px;
 }
+.of_levels {
+  padding: 5px 0 0 25px;
+}
+.area_label, .help-block-currency {
+  font-size: 11px;
+}
+.submit-button {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.file-preview, .kv-fileinput-caption, .btn-file {
+    border-radius: 0px;
+}
+.upload-photo-text {
+  padding: 0 0 10px 0;
+}
+.error-summary {
+  color: #a94442;
+  
+}

@@ -85,7 +85,7 @@ $active_url_str = Yii::$app->controller->id;
 					</ul>
 				</li>
 				<li>
-					<a href="#">
+					<a href="<?= Url::to(['/realty/index']) ?>">
 						<i class="entypo-network"></i>
 						<span class="title">Недвижимость</span>
 					</a>

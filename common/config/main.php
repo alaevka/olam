@@ -11,6 +11,13 @@ return [
 	    'rbac' => 'dektrium\rbac\RbacWebModule',
 	],
     'components' => [
+    	'image'=>array(
+            'class'=>'common\components\CImageHandler',
+            // GD or ImageMagick
+            'driver'=>'GD',
+            // ImageMagick setup path
+            //'params'=>array('directory'=>'/opt/local/bin'),
+        ),
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
