@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "155e1fc06cb2324e0678f70f07f44471",
-    "content-hash": "4c6cb4e1ad075498758320a79ffd3e64",
+    "hash": "75634d6c646cb5018f17bbdd73cb9939",
+    "content-hash": "2f7f19acd7a6f08f7748980e5ada06a7",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -245,6 +245,45 @@
                     "package.json"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/semantic",
+            "version": "2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Semantic-Org/Semantic-UI.git",
+                "reference": "eece06b12817133131d87f5302bdb65c68e7e3ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Semantic-Org/Semantic-UI/zipball/eece06b12817133131d87f5302bdb65c68e7e3ac",
+                "reference": "eece06b12817133131d87f5302bdb65c68e7e3ac",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.8"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "src/semantic.less",
+                    "dist/semantic.js"
+                ],
+                "bower-asset-ignore": [
+                    "src/site",
+                    "test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Semantic empowers designers and developers by creating a shared vocabulary for UI.",
+            "keywords": [
+                "css3",
+                "framework",
+                "semantic",
+                "ui"
+            ]
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -1458,6 +1497,101 @@
             "time": "2015-12-23 00:06:30"
         },
         {
+            "name": "zelenin/yii2-i18n-module",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zelenin/yii2-i18n-module.git",
+                "reference": "4b0eb4c711778c6ae282d89a4d33a786184ef8a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zelenin/yii2-i18n-module/zipball/4b0eb4c711778c6ae282d89a4d33a786184ef8a0",
+                "reference": "4b0eb4c711778c6ae282d89a4d33a786184ef8a0",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2",
+                "zelenin/yii2-semantic-ui": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "Zelenin\\yii\\modules\\I18n\\Bootstrap"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zelenin\\yii\\modules\\I18n\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aleksandr Zelenin",
+                    "email": "aleksandr@zelenin.me",
+                    "homepage": "http://zelenin.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Yii2 i18n (internalization) module makes the translation of your application so simple",
+            "homepage": "https://github.com/zelenin/yii2-i18n-module",
+            "keywords": [
+                "i18n",
+                "translation",
+                "translations",
+                "yii2"
+            ],
+            "time": "2015-10-27 18:38:39"
+        },
+        {
+            "name": "zelenin/yii2-semantic-ui",
+            "version": "2.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zelenin/yii2-semantic-ui.git",
+                "reference": "509bc7f0abc6b08b2088f2510e08639363a2fd1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zelenin/yii2-semantic-ui/zipball/509bc7f0abc6b08b2088f2510e08639363a2fd1b",
+                "reference": "509bc7f0abc6b08b2088f2510e08639363a2fd1b",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/semantic": "~2",
+                "yiisoft/yii2": "~2"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "Zelenin\\yii\\SemanticUI\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aleksandr Zelenin",
+                    "email": "aleksandr@zelenin.me",
+                    "homepage": "http://zelenin.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Semantic UI extension for Yii2",
+            "homepage": "https://github.com/zelenin/yii2-semantic-ui",
+            "keywords": [
+                "semantic",
+                "semantic ui",
+                "widgets",
+                "yii2"
+            ],
+            "time": "2016-04-11 14:51:55"
+        },
+        {
             "name": "zelenin/yii2-slug-behavior",
             "version": "1.5.1",
             "source": {
@@ -1720,7 +1854,8 @@
     "stability-flags": {
         "dektrium/yii2-user": 20,
         "microinginer/yii2-cbrf-rates": 20,
-        "dektrium/yii2-rbac": 20
+        "dektrium/yii2-rbac": 20,
+        "zelenin/yii2-i18n-module": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

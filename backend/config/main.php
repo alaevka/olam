@@ -19,6 +19,7 @@ return [
             'class' => 'dektrium\user\Module',
             'admins' => ['alaevka']
         ],
+        'i18n' => Zelenin\yii\modules\I18n\Module::className()
     ],
     'components' => [
         'request' => [
@@ -27,7 +28,8 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user'
+                    '@dektrium/user/views' => '@app/views/user',
+                    '@Zelenin/yii/modules/I18n/views' => '@app/views/i18n'
                 ],
             ],
         ],

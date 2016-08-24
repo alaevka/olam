@@ -345,6 +345,27 @@ h4.modal-title {
   box-shadow: none;
 }
 
+.btn-blue-light {
+  background: #ffffff;
+  color: #285d93;
+  border-radius:0;
+  font-size: 16px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 400;
+  border: 1px solid #d9d9d9;
+}
+
+.btn-blue-light:hover, .btn-blue-light:focus, .btn-blue-light:active, .btn-blue-light.active, .open > .dropdown-toggle.btn-blue-light {
+  background: #30679e;
+  color: #ffffff;
+}
+
+.btn-blue-light:active, .btn-blue-light.active {
+  background: #30679e;
+  box-shadow: none;
+  color: #ffffff;
+}
+
 .banners-block {
   margin: 34px 0;
 }
@@ -918,4 +939,36 @@ h3.comments {
   padding: 10px;
   border: 1px solid #285d93;
   margin-left: 20px;
+}
+.btn-group-width-100 {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.btn-group-width-100 .btn16 {
+  width: 16.7%;
+  font-size: 12px;
+}
+
+.btn-group-width-100 .btn25 {
+  width: 25%;
+}
+.create-separator {
+  border-top: 2px solid #b0dd27;
+}
+#create-ads-form h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+#create-ads-form h3 span {
+  font-size: 18px;
+  font-weight: 400;
+  color: #bfbfbf;
+}
+#create-ads-form label {
+  text-align: left;
+  font-weight: 400;
+}
+#create-ads-form input, #create-ads-form select {
+  border-radius: 0px;
 }

@@ -60,6 +60,12 @@ $active_url_str = Yii::$app->controller->id;
 						<span class="title">Управление пользователями</span>
 					</a>
 				</li>
+				<li>
+					<a href="<?= Url::to(['/translations']) ?>">
+						<i class="entypo-language"></i>
+						<span class="title">Языковые настройки</span>
+					</a>
+				</li>
 				<li <?php if($active_url_str == 'newscategory' || $active_url_str == 'news') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-list"></i>
