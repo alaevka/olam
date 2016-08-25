@@ -9,6 +9,11 @@ use common\models\Ads;
 
 class SearchAds extends Ads
 {
+    public $area_from;
+    public $area_to;
+    public $price_from;
+    public $price_to;
+
     public function rules()
     {
         return [

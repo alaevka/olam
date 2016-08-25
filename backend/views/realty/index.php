@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				    'columns' => [
 				    	[
 				    		'attribute' => 'id',
+				    		'contentOptions' => ['style' => 'width: 50px;']
 				    	],
 				        [
 				            'attribute' => 'location_city',
@@ -48,7 +49,13 @@ $this->params['breadcrumbs'][] = $this->title;
 			                },
 				        ],
 				        [
-				            'attribute' => 'location_street',
+				            'attribute' => 'contacts_username',
+				        ],
+				        [
+				            'attribute' => 'contacts_phone',
+				        ],
+				        [
+				            'attribute' => 'contacts_email',
 				        ],
 				        
 			            [

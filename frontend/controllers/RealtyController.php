@@ -9,15 +9,30 @@ use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use common\models\Adsgallery;
 use common\models\Ads;
+use common\models\SearchAds;
 
 class RealtyController extends Controller
 {
     public function actionIndex()
     {
         
+        $last_10_objects = Ads::find()->orderBy('created_at')->limit(8)->all();
+        $hot_objects = Ads::find()->orderBy('RAND()')->limit(12)->all();
+
+        $search = new SearchAds;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Ads::find()->orderBy('created_at DESC'),
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
 
         return $this->render('index', [
-           
+            'last_10_objects' => $last_10_objects,
+            'hot_objects' => $hot_objects,
+            'search' => $search,
+            'listDataProvider' => $dataProvider,
         ]);
     }
 

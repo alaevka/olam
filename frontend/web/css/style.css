@@ -345,6 +345,26 @@ h4.modal-title {
   box-shadow: none;
 }
 
+.btn-green {
+  background: #afdc27;
+  color: #ffffff;
+  border-radius:0;
+  font-size: 14px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.btn-green:hover, .btn-green:focus, .btn-green:active, .btn-green.active, .open > .dropdown-toggle.btn-green {
+  background: #b8e231;
+}
+
+.btn-green:active, .btn-green.active {
+  background: #b8e231;
+  box-shadow: none;
+}
+
+
 .btn-blue-light {
   background: #ffffff;
   color: #285d93;
@@ -991,4 +1011,89 @@ h3.comments {
 .error-summary {
   color: #a94442;
   
+}
+.last_10_objects {
+  margin-top: 20px;
+}
+.object-item .price {
+  background-color: #285d93;
+  padding: 3px 10px;
+  color: #ffffff;
+}
+.object-item {
+  margin-bottom: 20px;
+}
+.flat_type {
+  text-decoration: none;
+  color: #285d93;
+  padding: 3px 10px;
+}
+.flat_location {
+  padding: 0px 10px 3px 10px;
+  color: #9c9999;
+}
+.hot-objects {
+  border: 2px solid #b0dd27;
+  padding: 20px;
+  background-color: #f2f2f6;
+}
+.carousel-control {
+  padding-top:60px;
+  width:5%;
+}
+.hot-objects .price {
+  background-color: #d43327;
+  padding: 3px 10px;
+  color: #ffffff;
+}
+.object-item a:hover {
+  text-decoration: none;
+}
+.header-page {
+  margin-top: 20px;
+}
+.realty-item {
+  padding: 5px 0;
+}
+.list-realty {
+  margin-top: 20px;
+}
+.realty-item {
+  font-size: 12px;
+  cursor: pointer;
+}
+.list-realty .odd {
+  background-color: #d4dfe9;
+}
+.realty-item:hover {
+  background-color: #daeec2;
+}
+.header-list {
+  font-size: 12px;
+  background-color: #e6e6e6;
+  padding: 10px 0;
+  color: #285d93;
+  font-weight: 700;
+}
+#filter-form-1 select, #filter-form-1 input {
+  border-radius: 0px;
+  font-size: 12px;
+}
+#filter-form-1 label {
+  font-size: 11px;
+  font-weight: 400;
+  color: #676161;
+}
+#filter-form-1 .radio label {
+    padding-left: 0px;
+}
+#searchads-rooms_count {
+  padding-top: 5px;
+}
+.small-padding {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.search-button {
+  padding-top: 22px;
 }

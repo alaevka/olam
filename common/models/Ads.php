@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "ads".
  *
@@ -90,6 +91,39 @@ class Ads extends \yii\db\ActiveRecord
     
     public function _getHouseMaterial() {
         return ['1' => Yii::t('app', 'rlty.house_material_type_1'), '2' => Yii::t('app', 'rlty.house_material_type_2')];
+    }
+
+    public function _getRltyActions() {
+        return [
+            '1' => Yii::t('app', 'rlty.action_type_1'), 
+            '2' => Yii::t('app', 'rlty.action_type_2'),
+            '3' => Yii::t('app', 'rlty.action_type_3'),
+            '4' => Yii::t('app', 'rlty.action_type_4'),
+
+        ];
+    }
+
+    public function _getRealtyLocationRaion() {
+        return ArrayHelper::map(Ads::find()->groupBy('location_raion')->all(), 'id', 'location_raion');
+    }
+
+    public function _getImage() {
+        $gallery = \common\models\Adsgallery::find()->where(['ads_id' => $this->id])->limit(1)->one();
+        if($gallery) {
+            return $gallery->image_name;
+        }
+    }
+
+    public function _getFlatTypeObject() {
+        switch ($this->flat_type) {
+            case 1:
+                return Yii::t('app', 'rlty.flat_type_1');
+                break;
+            
+            case 2:
+                return Yii::t('app', 'rlty.flat_type_2');
+                break;
+        }
     }
 
 
