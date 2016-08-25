@@ -47,6 +47,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			                    return $model->location->location;
 			                },
 				        ],
+				        [
+				            'attribute' => 'location_street',
+				        ],
 				        
 			            [
 			                'class' => 'yii\grid\ActionColumn',

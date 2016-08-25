@@ -68,6 +68,33 @@ class Ads extends \yii\db\ActiveRecord
         return $this->hasOne(\common\models\Locations::className(), ['id' => 'location_city']);
     }
 
+    public function _getFlatType() {
+        return ['1' => Yii::t('app', 'rlty.flat_type_1'), '2' => Yii::t('app', 'rlty.flat_type_2')];
+    }
+
+    public function _getFlatPlan() {
+        return ['1' => Yii::t('app', 'rlty.flat_plan_type_1'), '2' => Yii::t('app', 'rlty.flat_plan_type_2')];
+    }
+
+    public function _getFlatRepairs() {
+        return ['1' => Yii::t('app', 'rlty.flat_repairs_type_1'), '2' => Yii::t('app', 'rlty.flat_repairs_type_2')];
+    }
+
+    public function _getTypeOfOwnership() {
+        return ['1' => Yii::t('app', 'rlty.type_of_ownership_type_1'), '2' => Yii::t('app', 'rlty.type_of_ownership_type_2')];
+    }
+
+    public function _getHouseType() {
+        return ['1' => Yii::t('app', 'rlty.house_type_type_1'), '2' => Yii::t('app', 'rlty.house_type_type_2')];
+    }
+    
+    public function _getHouseMaterial() {
+        return ['1' => Yii::t('app', 'rlty.house_material_type_1'), '2' => Yii::t('app', 'rlty.house_material_type_2')];
+    }
+
+
+
+
     /**
      * @inheritdoc
      */
@@ -75,7 +102,7 @@ class Ads extends \yii\db\ActiveRecord
     {
         return [
             [['rlty_type', 'rlty_action', 'location_city', 'location_street', 'location_house', 'price', 'contacts_username', 'contacts_phone'], 'required'],
-            [['slug', 'location_street', 'location_house', 'location_raion', 'area_total', 'area_for_living', 'area_kitchen', 'level', 'total_levels', 'loggias_count', 'balconies_count', 'year_of_construction', 'additional_info', 'contacts_username', 'contacts_phone', 'contacts_email'], 'string'],
+            // [['slug', 'location_street', 'location_house', 'location_raion', 'area_total', 'area_for_living', 'area_kitchen', 'level', 'total_levels', 'loggias_count', 'balconies_count', 'year_of_construction', 'additional_info', 'contacts_username', 'contacts_phone', 'contacts_email'], 'string'],
             [['price_conditions', 'gallery'], 'safe'],
             [['rlty_type', 'rlty_action', 'location_city', 'rooms_count', 'flat_type', 'flat_plan', 'flat_repairs', 'type_of_ownership', 'house_type', 'house_material', 'user_id', 'created_at', 'updated_at'], 'integer'],
             [['price'], 'number'],

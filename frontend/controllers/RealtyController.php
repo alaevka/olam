@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use common\models\Adsgallery;
+use common\models\Ads;
 
 class RealtyController extends Controller
 {
@@ -28,6 +29,7 @@ class RealtyController extends Controller
 
         if(!Yii::$app->user->isGuest) {
             $model->contacts_email = Yii::$app->user->identity->email;
+            $model->user_id = Yii::$app->user->identity->id;
         }
 
         if ($model->load(Yii::$app->request->post())) {
@@ -36,11 +38,6 @@ class RealtyController extends Controller
                 if(!empty($model->price_conditions)) {
                     $model->price_conditions = serialize($model->price_conditions);
                 }
-
-                // echo '<pre>';
-                // print_r($_FILES); die();
-                // echo '<pre>';
-                // print_r($model); die();
 
                 if($model->save()) {
 
@@ -71,12 +68,12 @@ class RealtyController extends Controller
         return $this->render('create', [
             'model' => $model,
             'locations' => \common\models\Locations::_getLocations(),
-            'flat_type' => ['1' => Yii::t('app', 'rlty.flat_type_1'), '2' => Yii::t('app', 'rlty.flat_type_2')],
-            'flat_plan' => ['1' => Yii::t('app', 'rlty.flat_plan_type_1'), '2' => Yii::t('app', 'rlty.flat_plan_type_2')],
-            'flat_repairs' => ['1' => Yii::t('app', 'rlty.flat_repairs_type_1'), '2' => Yii::t('app', 'rlty.flat_repairs_type_2')],
-            'type_of_ownership' => ['1' => Yii::t('app', 'rlty.type_of_ownership_type_1'), '2' => Yii::t('app', 'rlty.type_of_ownership_type_2')],
-            'house_type' => ['1' => Yii::t('app', 'rlty.house_type_type_1'), '2' => Yii::t('app', 'rlty.house_type_type_2')],
-            'house_material' => ['1' => Yii::t('app', 'rlty.house_material_type_1'), '2' => Yii::t('app', 'rlty.house_material_type_2')],
+            'flat_type' => Ads::_getFlatType(),
+            'flat_plan' => Ads::_getFlatPlan(),
+            'flat_repairs' => Ads::_getFlatRepairs(),
+            'type_of_ownership' => Ads::_getTypeOfOwnership(),
+            'house_type' => Ads::_getHouseType(),
+            'house_material' => Ads::_getHouseMaterial(),
         ]);
     }
 
