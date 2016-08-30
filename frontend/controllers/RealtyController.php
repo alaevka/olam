@@ -39,9 +39,17 @@ class RealtyController extends Controller
     public function actionView($id) {
 
         $model = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Ads::find()->orderBy('created_at DESC')->limit(7),
+            'totalCount' => 7,
+            'pagination' => [
+                'pageSize' => 7,
+            ],
+        ]);
 
         return $this->render('view', [
-            'model' => $model
+            'model' => $model,
+            'listDataProvider' => $dataProvider,
         ]);
     }
 

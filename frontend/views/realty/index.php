@@ -4,6 +4,7 @@ use yii\widgets\ListView;
 use yii\web\View;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 ?>
 <div class="row">
     <div class="col-md-12 central-content" id="central-content">
@@ -62,6 +63,33 @@ use yii\widgets\ActiveForm;
                     </div>
                     <div class="col-xs-2 search-button">
                         <?= Html::submitButton(Yii::t('app', 'realty.search'), ['class' => 'btn btn-green']) ?>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-xs-2">
+                        <?= $form->field($search, 'location_city')->dropDownList(Arrayhelper::map(\common\models\Locations::find()->asArray()->all(), 'id', 'location')) ?>
+                    </div>
+                    <div class="col-xs-2">
+                        <?= $form->field($search, 'house_type')->dropDownList(Arrayhelper::map(\common\models\Housetypes::find()->asArray()->all(), 'id', 'title')) ?>
+                    </div>
+                    <div class="col-xs-2">
+                        <?= $form->field($search, 'house_material')->dropDownList(Arrayhelper::map(\common\models\Housematerials::find()->asArray()->all(), 'id', 'title')) ?>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="col-xs-6 small-padding">
+                            <?= $form->field($search, 'level_from')->textInput()->label('Level') ?>
+                        </div>
+                        <div class="col-xs-6 small-padding">
+                            <?= $form->field($search, 'level_to')->textInput()->label('from/to') ?>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 checkbox-in-filter">
+                        <div class="checkbox checkbox-primary">
+                            <input id="checkbox2" class="styled" type="checkbox">
+                            <label for="checkbox2">
+                                <?= Yii::t('app', 'rlty.is_new_building') ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>

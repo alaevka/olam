@@ -13,6 +13,8 @@ class SearchAds extends Ads
     public $area_to;
     public $price_from;
     public $price_to;
+    public $level_from;
+    public $level_to;
 
     public function rules()
     {

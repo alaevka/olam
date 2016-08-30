@@ -923,7 +923,7 @@ h3.comments {
   background-color: #ebeaea;
 }
 .filter-content .tab-pane .row {
-  padding: 10px;
+  padding: 10px 10px 0 10px;
 }
 
 .nav-tabs.filter-tabs > .active > a, .nav-tabs.filter-tabs > .active > a:hover, .nav-tabs.filter-tabs > .active > a:focus {
@@ -1099,4 +1099,75 @@ h3.comments {
 }
 .last_10_objects .object-item {
   min-height: 260px;
+}
+.checkbox-in-filter {
+  padding: 20px 0 0 20px;
+}
+.object-breadcrumbs {
+  color: #9c9999;
+  font-size: 12px;
+  padding: 0 0 20px;
+}
+.object-model h3 {
+  color: #9c9999;
+  font-weight: 700;
+  font-size: 12px;
+  padding-bottom: 20px;
+}
+.object-model .price {
+  color: #6dc500;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 20px 0;
+}
+.object-model .price span {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 50px;
+}
+.selected img {
+  opacity:0.5;
+}
+#slider-thumbs {
+  margin-top: 10px;
+}
+#gallery-slides .carousel-control {
+  padding-top: 150px;
+}
+.object-model h4 {
+  padding-top: 20px;
+}
+.contacts-block {
+  padding: 20px;
+  background-color: #ebeaea;
+  margin-bottom: 30px;
+}
+.contacts-block .username {
+  font-weight: 700;
+  font-size: 16px;
+  color: #000000;
+}
+.contacts-block .phone {
+  font-weight: 700;
+  font-size: 24px;
+  color: #285d93;
+  position: relative;
+  padding: 20px 0 20px 25px;
+}
+.contacts-block .phone:before {
+    content: "\f098";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    
+    padding-right: 0.5em;
+    position: absolute;
+    
+    left: 0;
+}
+.similar {
+  margin-bottom: 30px;
 }

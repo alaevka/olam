@@ -130,6 +130,11 @@ $active_url_str = Yii::$app->controller->id;
 								<span class="title">Справочник "Населенные пункты"</span>
 							</a>
 						</li>
+						<li <?php if($active_url_str == 'realty') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/realty/upload']) ?>">
+								<span class="title">Импорт данных</span>
+							</a>
+						</li>
 					</ul>
 				</li>
 				<li>

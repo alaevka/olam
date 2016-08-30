@@ -68,6 +68,22 @@ class Ads extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\common\models\Locations::className(), ['id' => 'location_city']);
     }
+    public function getHouseMaterial()
+    {
+        return $this->hasOne(\common\models\Housematerials::className(), ['id' => 'house_material']);
+    }
+    public function getFlatType()
+    {
+        return $this->hasOne(\common\models\Flattypes::className(), ['id' => 'flat_type']);
+    }
+    public function getFlatPlan()
+    {
+        return $this->hasOne(\common\models\Flatplans::className(), ['id' => 'flat_plan']);
+    }
+    public function getFlatRepairs()
+    {
+        return $this->hasOne(\common\models\Flatrepairs::className(), ['id' => 'flat_repairs']);
+    }
 
     public function _getFlatType() {
         return Arrayhelper::map(\common\models\Flattypes::find()->asArray()->all(), 'id', 'title');
@@ -99,8 +115,57 @@ class Ads extends \yii\db\ActiveRecord
             '2' => Yii::t('app', 'rlty.action_type_2'),
             '3' => Yii::t('app', 'rlty.action_type_3'),
             '4' => Yii::t('app', 'rlty.action_type_4'),
-
         ];
+    }
+
+    public function _getAction() {
+        switch ($this->rlty_action) {
+            case 1:
+                return Yii::t('app', 'rlty.action_type_1'). ' / ';
+                break;
+            case 2:
+                return Yii::t('app', 'rlty.action_type_2'). ' / ';
+                break;
+            case 3:
+                return Yii::t('app', 'rlty.action_type_3'). ' / ';
+                break;
+            case 4:
+                return Yii::t('app', 'rlty.action_type_4'). ' / ';
+                break;
+        }
+    }
+
+    public function _getType() {
+        switch ($this->rlty_type) {
+            case 1:
+                return Yii::t('app', 'rlty.type_for_living'). ' / ';
+                break;
+            case 2:
+                return Yii::t('app', 'rlty.type_for_rent'). ' / ';
+                break;
+            case 3:
+                return Yii::t('app', 'rlty.type_commercial'). ' / ';
+                break;
+            case 4:
+                return Yii::t('app', 'rlty.type_houses_cottages'). ' / ';
+                break;
+            case 5:
+                return Yii::t('app', 'rlty.type_garages'). ' / ';
+                break;
+            case 6:
+                return Yii::t('app', 'rlty.type_land'). ' / ';
+                break;
+        }
+    }
+
+    public function _getRoomsCount() {
+        if(!empty($this->rooms_count)) {
+            return $this->rooms_count.'-'.Yii::t('app', 'rlty.phrase_rooms_count_flats'). ' / ';
+        }    
+    }
+
+    public function _getVariant() {
+        return Yii::t('app', 'rlty.object_variant'). ' №'.$this->id;
     }
 
     public function _getRealtyLocationRaion() {
@@ -117,6 +182,10 @@ class Ads extends \yii\db\ActiveRecord
     public function _getFlatTypeObject() {
         $flattypes = \common\models\Flattypes::findOne($this->flat_type);
         return $flattypes->title;
+    }
+
+    public function _getPriceOneMeter() {
+        return number_format($this->price/$this->area_total, 0, ',', ' ' ). 'руб. м2'; 
     }
 
     /**
@@ -173,6 +242,7 @@ class Ads extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'build_type' => Yii::t('app', 'rlty.is_new_building'),
         ];
     }
 }
