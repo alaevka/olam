@@ -1097,3 +1097,6 @@ h3.comments {
 .search-button {
   padding-top: 22px;
 }
+.last_10_objects .object-item {
+  min-height: 260px;
+}

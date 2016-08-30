@@ -126,10 +126,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                //'realty/view/' => 'news/archive',
                 'news/archive' => 'news/archive',
                 'news/<slug>' => 'news/index',
                 'news/<category>/<slug>' => 'news/view',
-
                 'realty' => 'realty/index',
             ],
         ],

@@ -326,8 +326,8 @@ use yii\widgets\ActiveForm;
                 foreach($last_10_objects as $object) {
             ?>
             <div class="col-md-3 object-item">
-                <a href="">
-                    <img class="img-responsive" src="/uploads/ads/<?= $object->_getImage() ?>">
+                <a href="<?= Url::to(['/realty/view/', 'id' => $object->id]) ?>">
+                    <img class="img-responsive" src="/uploads/objects/<?= $object->_getImage() ?>">
                     <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
                     <div class="flat_type"><?= $object->_getFlatTypeObject() ?></div>
                     <div class="flat_location"><?= $object->location->location.', '.$object->location_raion ?></div>
@@ -350,8 +350,8 @@ use yii\widgets\ActiveForm;
 
                             ?>
                             <div class="col-sm-3 object-item">
-                                <a href="">
-                                    <img class="img-responsive" src="/uploads/ads/<?= $object->_getImage() ?>">
+                                <a href="<?= Url::to(['/realty/view/', 'id' => $object->id]) ?>">
+                                    <img class="img-responsive" src="/uploads/objects/<?= $object->_getImage() ?>">
                                     <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
                                     <div class="flat_type"><?= $object->_getFlatTypeObject() ?></div>
                                     <div class="flat_location"><?= $object->location->location.', '.$object->location_raion ?></div>

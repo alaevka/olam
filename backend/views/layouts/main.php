@@ -84,7 +84,7 @@ $active_url_str = Yii::$app->controller->id;
 						</li>
 					</ul>
 				</li>
-				<li <?php if($active_url_str == 'realty' || $active_url_str == 'directory') { ?>class="opened active"<?php } ?>>
+				<li <?php if($active_url_str == 'realty' || $active_url_str == 'directory' || $active_url_str == 'locations') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-network"></i>
 						<span class="title">Недвижимость</span>
@@ -123,6 +123,11 @@ $active_url_str = Yii::$app->controller->id;
 						<li <?php if($active_url_str == 'directory') { ?>class="active"<?php } ?>>
 							<a href="<?= Url::to(['/directory/housematerials']) ?>">
 								<span class="title">Справочник "Материалы домов"</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'locations') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/locations/index']) ?>">
+								<span class="title">Справочник "Населенные пункты"</span>
 							</a>
 						</li>
 					</ul>

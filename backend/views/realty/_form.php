@@ -57,6 +57,27 @@
 
 	)->label(false) ?>
 
+	<?= $form->field($model, 'build_type', ['template' => '<div class="col-sm-12">{input}</div>'])->radioList(
+				['1' => Yii::t('app', 'rlty.new_building'), '2' => Yii::t('app', 'rlty.resale')],
+				[
+                    'item' => function($index, $label, $name, $checked, $value) {
+
+                        $return = '<div class="radio radio-primary col-sm-3">';
+                        
+                        if($checked) {
+	                    	$return .= '<input checked id="build_type'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+	                    } else {
+	                    	$return .= '<input id="build_type'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+	                    }
+                        $return .= '<label for="build_type'.$index.'">'. ucwords($label) .'</label>';
+                        $return .= '</div>';
+
+                        return $return;
+                    }
+                ]
+
+		)->label(false) ?>
+
 
 	<div id="affix_location">
 		<hr class="create-separator">
@@ -202,7 +223,7 @@
 				$initialPreviewConfig = [];
 				if($gallery) {
 					foreach ($gallery as $key => $value) {
-						$initial_preview_array[] = "http://olam.front/uploads/ads/cropped_".$value->image_name;
+						$initial_preview_array[] = "http://olam.front/uploads/objects/cropped_".$value->image_name;
 						$initialPreviewConfig[] = ['caption' => $value->image_name];
 					}
 				}
@@ -227,6 +248,8 @@
 	<div id="affix_additional_info">
 		<hr class="create-separator">
 		<h3><?= Yii::t('app', 'rlty.affix_additional_info') ?> <span><?= Yii::t('app', 'rlty.step_6_of_7') ?></span></h3>
+		
+		<?= $form->field($model, 'title')->textInput() ?>
 
 		<?= $form->field($model, 'additional_info', ['template' => "{label}\n<div class=\"col-sm-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->widget(\dosamigos\tinymce\TinyMce::className(), [
 	        'options' => ['rows' => 6],

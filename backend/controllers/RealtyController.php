@@ -59,10 +59,10 @@ class RealtyController extends Controller
                         foreach($_FILES['Ads']['tmp_name']['gallery'] as $key=>$file) {
                             $ext = end((explode(".", $_FILES['Ads']['name']['gallery'][$key])));
                             $name = Yii::$app->security->generateRandomString().'.'.$ext;
-                            move_uploaded_file($_FILES['Ads']['tmp_name']['gallery'][$key], Yii::getAlias('@frontend'). '/web/uploads/ads/' . $name);
+                            move_uploaded_file($_FILES['Ads']['tmp_name']['gallery'][$key], Yii::getAlias('@frontend'). '/web/uploads/objects/' . $name);
                            
-                            Image::thumbnail(Yii::getAlias('@frontend'). '/web/uploads/ads/' . $name, 120, 120)
-                                ->save(Yii::getAlias('@frontend'). '/web/uploads/ads/cropped_'. $name, ['quality' => 100]);
+                            Image::thumbnail(Yii::getAlias('@frontend'). '/web/uploads/objects/' . $name, 120, 120)
+                                ->save(Yii::getAlias('@frontend'). '/web/uploads/objects/cropped_'. $name, ['quality' => 100]);
 
                             $gallery = new Adsgallery();
                             $gallery->ads_id = $model->id;
@@ -121,10 +121,10 @@ class RealtyController extends Controller
                         foreach($_FILES['Ads']['tmp_name']['gallery'] as $key=>$file) {
                             $ext = end((explode(".", $_FILES['Ads']['name']['gallery'][$key])));
                             $name = Yii::$app->security->generateRandomString().'.'.$ext;
-                            move_uploaded_file($_FILES['Ads']['tmp_name']['gallery'][$key], Yii::getAlias('@frontend'). '/web/uploads/ads/' . $name);
+                            move_uploaded_file($_FILES['Ads']['tmp_name']['gallery'][$key], Yii::getAlias('@frontend'). '/web/uploads/objects/' . $name);
                            
-                            Image::thumbnail(Yii::getAlias('@frontend'). '/web/uploads/ads/' . $name, 120, 120)
-                                ->save(Yii::getAlias('@frontend'). '/web/uploads/ads/cropped_'. $name, ['quality' => 100]);
+                            Image::thumbnail(Yii::getAlias('@frontend'). '/web/uploads/objects/' . $name, 120, 120)
+                                ->save(Yii::getAlias('@frontend'). '/web/uploads/objects/cropped_'. $name, ['quality' => 100]);
 
                             $gallery = new Adsgallery();
                             $gallery->ads_id = $model->id;
@@ -181,6 +181,27 @@ class RealtyController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionIshot() {
+        if (Yii::$app->request->isAjax) {
+            $param = Yii::$app->request->post('param');
+            $row_id = Yii::$app->request->post('row_id');
+
+            $ads = \common\models\Ads::findOne($row_id);
+            $ads->is_hot = $param;
+            
+
+            if($ads->save()) {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return ['error' => 0];
+            } else {
+                //print_r($permissions->errors); die();
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return ['error' => 1];
+            }
+            
+        }
+    }
        
 
     public function actionFaker() {
@@ -188,9 +209,11 @@ class RealtyController extends Controller
         
         for ($i=0; $i < 100; $i++) { 
             $ad = new Ads;
-            $ad->rlty_type = rand(0,5);
+            $ad->rlty_type = rand(1,3);
+            $ad->build_type = rand(1,2);
+            $ad->title = $faker->sentence($nbWords = 5, $variableNbWords = true);
             $ad->rlty_action = rand(0,3);
-            $ad->location_city = rand(1,30);
+            $ad->location_city = rand(1,5);
             $ad->location_street = $faker->streetName;
             $ad->location_house = rand(1, 100);
             $ad->location_raion = $faker->sentence($nbWords = 2, $variableNbWords = true);
@@ -200,9 +223,9 @@ class RealtyController extends Controller
             $ad->area_kitchen = rand(10, $ad->area_total);
             $ad->level = rand(1,25);
             $ad->total_levels = rand($ad->level, 25);
-            $ad->flat_type = rand(1,2);
-            $ad->flat_plan = rand(1,2);
-            $ad->flat_repairs = rand(1,2);
+            $ad->flat_type = rand(1,3);
+            $ad->flat_plan = rand(1,3);
+            $ad->flat_repairs = rand(1,3);
             $ad->loggias_count = rand(10,20);
             $ad->balconies_count = rand(10,20);
             $ad->price = rand(1000000, 20000000);
@@ -241,5 +264,7 @@ class RealtyController extends Controller
             }
         }
     }
+
+
     
 }

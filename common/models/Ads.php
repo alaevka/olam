@@ -115,19 +115,9 @@ class Ads extends \yii\db\ActiveRecord
     }
 
     public function _getFlatTypeObject() {
-        switch ($this->flat_type) {
-            case 1:
-                return Yii::t('app', 'rlty.flat_type_1');
-                break;
-            
-            case 2:
-                return Yii::t('app', 'rlty.flat_type_2');
-                break;
-        }
+        $flattypes = \common\models\Flattypes::findOne($this->flat_type);
+        return $flattypes->title;
     }
-
-
-
 
     /**
      * @inheritdoc
@@ -135,10 +125,10 @@ class Ads extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rlty_type', 'rlty_action', 'location_city', 'location_street', 'location_house', 'price', 'contacts_username', 'contacts_phone'], 'required'],
+            [['rlty_type', 'rlty_action', 'location_city', 'location_street', 'location_house', 'price', 'contacts_username', 'contacts_phone', 'title'], 'required'],
             // [['slug', 'location_street', 'location_house', 'location_raion', 'area_total', 'area_for_living', 'area_kitchen', 'level', 'total_levels', 'loggias_count', 'balconies_count', 'year_of_construction', 'additional_info', 'contacts_username', 'contacts_phone', 'contacts_email'], 'string'],
             [['price_conditions', 'gallery'], 'safe'],
-            [['rlty_type', 'rlty_action', 'location_city', 'rooms_count', 'flat_type', 'flat_plan', 'flat_repairs', 'type_of_ownership', 'house_type', 'house_material', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['rlty_type', 'rlty_action', 'location_city', 'rooms_count', 'flat_type', 'flat_plan', 'flat_repairs', 'type_of_ownership', 'house_type', 'house_material', 'user_id', 'created_at', 'updated_at', 'build_type', 'is_hot'], 'integer'],
             [['price'], 'number'],
         ];
     }
@@ -151,6 +141,7 @@ class Ads extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'slug' => 'Slug',
+            'title' => Yii::t('app', 'rlty.title'),
             'rlty_type' => Yii::t('app', 'rlty.rlty_type'),
             'rlty_action' => Yii::t('app', 'rlty.rlty_action'),
             'location_city' => Yii::t('app', 'rlty.location_city'),
@@ -178,6 +169,7 @@ class Ads extends \yii\db\ActiveRecord
             'contacts_username' => Yii::t('app', 'rlty.contacts_username'),
             'contacts_phone' => Yii::t('app', 'rlty.contacts_phone'),
             'contacts_email' => Yii::t('app', 'rlty.contacts_email'),
+            'is_hot' => 'Горячее предложение',
             'user_id' => 'User ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

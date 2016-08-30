@@ -24,7 +24,30 @@ $this->params['breadcrumbs'][] = $this->title;
 			</ul>
 		</div>
 	</div>
-	
+	<?php
+		$script = '
+			$(function(){
+		        $(".is_hot_status_checkbox").change(function(){
+		            if($(this).prop(\'checked\') == true) {
+		                var is_done = 1;   
+		            } else {
+		                var is_done = 0;
+		            }
+		            var row_id = $(this).attr(\'data-key\');
+		            $.ajax({
+		                type: "POST",
+		                dataType: \'json\',
+		                url: \''.Url::toRoute("/realty/ishot").'\',
+		                data: "param="+is_done+"&row_id="+row_id,
+		                success: function(data,status){
+		                    console.log(\'saved\');
+		                }
+		            });
+		        });
+		    });';
+		$this->registerJs($script, yii\web\View::POS_READY);
+	?>
+
 	<!-- panel body -->
 	<div class="panel-body">
 		<div class="tab-content">
@@ -57,7 +80,23 @@ $this->params['breadcrumbs'][] = $this->title;
 				        [
 				            'attribute' => 'contacts_email',
 				        ],
-				        
+				        [
+		                    'attribute' => 'is_hot',
+		                    'filter' => ['0' => 'Нет', '1' => 'Да'],
+		                    'value' => function ($model) {
+		                        if($model->is_hot == 1) {
+		                            return '<input type="checkbox" class="is_hot_status_checkbox" data-key="'.$model->id.'" name="is_hot_status" checked>';
+		                        } else {
+		                            return '<input type="checkbox" class="is_hot_status_checkbox" data-key="'.$model->id.'" name="is_hot_status">';
+		                        }
+		                        
+		                    },
+		                    'contentOptions' => ['style' => 'text-align: center;'],
+		                    'format' => 'raw',
+		                    'headerOptions' => [
+		                        'class' => 'header-grid'
+		                    ],
+		                ],
 			            [
 			                'class' => 'yii\grid\ActionColumn',
 			                'contentOptions' => ['class' => 'actions_row'],

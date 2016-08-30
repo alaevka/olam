@@ -17,7 +17,7 @@ class RealtyController extends Controller
     {
         
         $last_10_objects = Ads::find()->orderBy('created_at')->limit(8)->all();
-        $hot_objects = Ads::find()->orderBy('RAND()')->limit(12)->all();
+        $hot_objects = Ads::find()->where(['is_hot' => 1])->orderBy('RAND()')->limit(12)->all();
 
         $search = new SearchAds;
 
@@ -34,6 +34,24 @@ class RealtyController extends Controller
             'search' => $search,
             'listDataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionView($id) {
+
+        $model = $this->findModel($id);
+
+        return $this->render('view', [
+            'model' => $model
+        ]);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Ads::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
 
@@ -61,7 +79,7 @@ class RealtyController extends Controller
                         foreach($_FILES['Ads']['tmp_name']['gallery'] as $key=>$file) {
                             $ext = end((explode(".", $_FILES['Ads']['name']['gallery'][$key])));
                             $name = Yii::$app->security->generateRandomString().'.'.$ext;
-                            move_uploaded_file($_FILES['Ads']['tmp_name']['gallery'][$key], 'uploads/ads/' . $name);
+                            move_uploaded_file($_FILES['Ads']['tmp_name']['gallery'][$key], 'uploads/objects/' . $name);
                             //$this->_createThumbImage($name, 170, 130);
                             $gallery = new Adsgallery();
                             $gallery->ads_id = $model->id;
@@ -94,10 +112,10 @@ class RealtyController extends Controller
 
     public function _createThumbImage($image_name, $width, $height) {
         Yii::$app->image
-                ->load($_SERVER['DOCUMENT_ROOT'] . '/uploads/ads' . $image_name)
+                ->load($_SERVER['DOCUMENT_ROOT'] . '/uploads/objects' . $image_name)
                 ->adaptiveThumb($width, $height)
                 //->watermark($_SERVER['DOCUMENT_ROOT'] . '/themes/prototype/images/my_account_template.png', 0, 0, CImageHandler::CORNER_LEFT_BOTTOM)
-                ->save($_SERVER['DOCUMENT_ROOT'] . '/uploads/ads/cropped_' . $image_name, \common\components\CImageHandler::IMG_JPEG, 100);
+                ->save($_SERVER['DOCUMENT_ROOT'] . '/uploads/objects/cropped_' . $image_name, \common\components\CImageHandler::IMG_JPEG, 100);
     }
     
 }

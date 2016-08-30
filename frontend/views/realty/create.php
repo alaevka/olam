@@ -66,7 +66,7 @@
                     'item' => function($index, $label, $name, $checked, $value) {
 
                         $return = '<div class="radio radio-primary col-sm-4">';
-                        $return .= '<input id="rlty_type'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        $return .= '<input class="rlty_type_radio" id="rlty_type'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
                         $return .= '<label for="rlty_type'.$index.'">'. ucwords($label) .'</label>';
                         $return .= '</div>';
 
@@ -75,6 +75,38 @@
                 ]
 
 		)->label(false) ?>
+
+		<?php
+			$script = '$(document).ready(function() {
+    			$(\'.rlty_type_radio\').change(function() {
+    				if($(this).val() == \'5\' || $(this).val() == \'6\') {
+    					$("#affix_info_about_apartment").hide();
+    					$("#affix_info_about_house").hide();
+    					$("#affix_info_about_apartment_li").hide();
+    					$("#affix_info_about_house_li").hide();
+	
+						$("#affix_location").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_1_of_5').'");
+						$("#affix_price_and_conditions").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_2_of_5').'");
+						$("#affix_photo_and_video").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_3_of_5').'");
+						$("#affix_additional_info").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_4_of_5').'");
+						$("#affix_contacts").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_5_of_5').'");
+
+    				} else {
+    					$("#affix_info_about_apartment").show();
+    					$("#affix_info_about_house").show();
+    					$("#affix_info_about_apartment_li").show();
+    					$("#affix_info_about_house_li").show();
+
+    					$("#affix_location").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_1_of_7').'");
+						$("#affix_price_and_conditions").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_3_of_7').'");
+						$("#affix_photo_and_video").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_5_of_7').'");
+						$("#affix_additional_info").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_6_of_7').'");
+						$("#affix_contacts").find("h3").find("span").html("'.Yii::t('app', 'rlty.step_7_of_7').'");
+    				}
+    			});
+    		});';	
+			$this->registerJs($script, yii\web\View::POS_READY);
+		?>
 
 		<?= $form->field($model, 'rlty_action', ['template' => '<div class="col-sm-12">{input}</div>'])->radioList(
 				['1' => Yii::t('app', 'rlty.action_sell'), '2' => Yii::t('app', 'rlty.action_buy'), '3' => Yii::t('app', 'rlty.action_pass'), '4' => Yii::t('app', 'rlty.action_shoot')],
@@ -91,6 +123,25 @@
                 ]
 
 		)->label(false) ?>
+
+
+		<?= $form->field($model, 'build_type', ['template' => '<div class="col-sm-12">{input}</div>'])->radioList(
+				['1' => Yii::t('app', 'rlty.new_building'), '2' => Yii::t('app', 'rlty.resale')],
+				[
+                    'item' => function($index, $label, $name, $checked, $value) {
+
+                        $return = '<div class="radio radio-primary col-sm-3">';
+                        $return .= '<input id="build_type'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        $return .= '<label for="build_type'.$index.'">'. ucwords($label) .'</label>';
+                        $return .= '</div>';
+
+                        return $return;
+                    }
+                ]
+
+		)->label(false) ?>
+
+
 	
 
 		<div id="affix_location">
@@ -228,6 +279,8 @@
 		<div id="affix_additional_info">
 			<hr class="create-separator">
 			<h3><?= Yii::t('app', 'rlty.affix_additional_info') ?> <span><?= Yii::t('app', 'rlty.step_6_of_7') ?></span></h3>
+			
+			<?= $form->field($model, 'title')->textInput() ?>
 
 			<?= $form->field($model, 'additional_info', ['template' => "{label}\n<div class=\"col-sm-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->widget(\dosamigos\tinymce\TinyMce::className(), [
 		        'options' => ['rows' => 6],
@@ -269,8 +322,8 @@
 		<nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs affix" > 
 			<ul class="nav bs-docs-sidenav"> 
 				<li class=""><a href="#affix_location"><?= Yii::t('app', 'rlty.affix_location') ?></a><li>
-				<li class=""><a href="#affix_info_about_apartment"><?= Yii::t('app', 'rlty.affix_info_about_apartment') ?></a><li>
-				<li class=""><a href="#affix_price_and_conditions"><?= Yii::t('app', 'rlty.affix_price_and_conditions') ?></a><li>
+				<li id="affix_info_about_apartment_li" class=""><a href="#affix_info_about_apartment"><?= Yii::t('app', 'rlty.affix_info_about_apartment') ?></a><li>
+				<li id="affix_info_about_house_li" class=""><a href="#affix_price_and_conditions"><?= Yii::t('app', 'rlty.affix_price_and_conditions') ?></a><li>
 				<li class=""><a href="#affix_info_about_house"><?= Yii::t('app', 'rlty.affix_info_about_house') ?></a><li>
 				<li class=""><a href="#affix_photo_and_video"><?= Yii::t('app', 'rlty.affix_photo_and_video') ?></a><li>
 				<li class=""><a href="#affix_additional_info"><?= Yii::t('app', 'rlty.affix_additional_info') ?></a><li>
