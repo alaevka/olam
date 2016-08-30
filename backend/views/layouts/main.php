@@ -84,11 +84,48 @@ $active_url_str = Yii::$app->controller->id;
 						</li>
 					</ul>
 				</li>
-				<li>
-					<a href="<?= Url::to(['/realty/index']) ?>">
+				<li <?php if($active_url_str == 'realty' || $active_url_str == 'directory') { ?>class="opened active"<?php } ?>>
+					<a href="#">
 						<i class="entypo-network"></i>
 						<span class="title">Недвижимость</span>
 					</a>
+					<ul>
+						<li <?php if($active_url_str == 'realty') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/realty/index']) ?>">
+								<span class="title">Список объектов</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'directory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/directory/flattypes']) ?>">
+								<span class="title">Справочник "Типы квартир"</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'directory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/directory/flatplans']) ?>">
+								<span class="title">Справочник "Планировки квартир"</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'directory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/directory/flatrepairs']) ?>">
+								<span class="title">Справочник "Виды ремонта"</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'directory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/directory/ownership']) ?>">
+								<span class="title">Справочник "Форма собственности"</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'directory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/directory/housetypes']) ?>">
+								<span class="title">Справочник "Типы домов"</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'directory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/directory/housematerials']) ?>">
+								<span class="title">Справочник "Материалы домов"</span>
+							</a>
+						</li>
+					</ul>
 				</li>
 				<li>
 					<a href="#">

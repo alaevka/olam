@@ -70,27 +70,27 @@ class Ads extends \yii\db\ActiveRecord
     }
 
     public function _getFlatType() {
-        return ['1' => Yii::t('app', 'rlty.flat_type_1'), '2' => Yii::t('app', 'rlty.flat_type_2')];
+        return Arrayhelper::map(\common\models\Flattypes::find()->asArray()->all(), 'id', 'title');
     }
 
     public function _getFlatPlan() {
-        return ['1' => Yii::t('app', 'rlty.flat_plan_type_1'), '2' => Yii::t('app', 'rlty.flat_plan_type_2')];
+        return Arrayhelper::map(\common\models\Flatplans::find()->asArray()->all(), 'id', 'title');
     }
 
     public function _getFlatRepairs() {
-        return ['1' => Yii::t('app', 'rlty.flat_repairs_type_1'), '2' => Yii::t('app', 'rlty.flat_repairs_type_2')];
+        return Arrayhelper::map(\common\models\Flatrepairs::find()->asArray()->all(), 'id', 'title');
     }
 
     public function _getTypeOfOwnership() {
-        return ['1' => Yii::t('app', 'rlty.type_of_ownership_type_1'), '2' => Yii::t('app', 'rlty.type_of_ownership_type_2')];
+        return Arrayhelper::map(\common\models\Ownership::find()->asArray()->all(), 'id', 'title');
     }
 
     public function _getHouseType() {
-        return ['1' => Yii::t('app', 'rlty.house_type_type_1'), '2' => Yii::t('app', 'rlty.house_type_type_2')];
+        return Arrayhelper::map(\common\models\Housetypes::find()->asArray()->all(), 'id', 'title');
     }
     
     public function _getHouseMaterial() {
-        return ['1' => Yii::t('app', 'rlty.house_material_type_1'), '2' => Yii::t('app', 'rlty.house_material_type_2')];
+        return Arrayhelper::map(\common\models\Housematerials::find()->asArray()->all(), 'id', 'title');
     }
 
     public function _getRltyActions() {
