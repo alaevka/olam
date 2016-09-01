@@ -10,9 +10,6 @@ use yii\data\ActiveDataProvider;
 use common\models\News;
 use yii\web\NotFoundHttpException;
 
-/**
- * Site controller
- */
 class NewsController extends Controller
 {
     public function actionIndex()

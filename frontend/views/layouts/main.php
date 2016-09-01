@@ -33,7 +33,7 @@ AppAsset::register($this);
 			            <ul class="nav nav-justified top-line-mnu">
 		 	                <li><a class="top_mnu_news" href="<?= Url::to(['/news']) ?>"><?= Yii::t('app', 'top_mnu.news') ?></a></li>
 			                <li><a class="top_mnu_realty" href="<?= Url::to(['/realty']) ?>"><?= Yii::t('app', 'top_mnu.realty') ?></a></li>
-			                <li><a class="top_mnu_auto" href="#"><?= Yii::t('app', 'top_mnu.auto') ?></a></li>
+			                <li><a class="top_mnu_auto" href="<?= Url::to(['/auto']) ?>"><?= Yii::t('app', 'top_mnu.auto') ?></a></li>
 			                <li><a class="top_mnu_work" href="#"><?= Yii::t('app', 'top_mnu.work') ?></a></li>
 			                <li><a class="top_mnu_ads" href="#"><?= Yii::t('app', 'top_mnu.ads') ?></a></li>
 			                <li><a class="top_mnu_poster" href="#"><?= Yii::t('app', 'top_mnu.poster') ?></a></li>
@@ -69,8 +69,15 @@ AppAsset::register($this);
 			        	<a class="login-link" id="login-link"  data-toggle="modal" data-target="#login-modal" href="<?= Url::to(['/user/login']) ?>"><?= Yii::t('app', 'user.login') ?></a><a class="register-link" id="register-link" href="<?= Url::to(['/user/registration/register']) ?>" data-toggle="modal" data-target="#registration-modal"><?= Yii::t('app', 'user.register') ?></a>
 
 					<?php } else { ?>
+						<a class="profile-link" href="<?= Url::to(['/profile']); ?>"><?= Yii::t('app', 'user.profile') ?></a>
 						<a class="register-link" data-method="post" href="<?= Url::to(['/user/security/logout']); ?>"><?= Yii::t('app', 'user.logout') ?></a>
-						<a class="add-position-button" href="<?= Url::to(['/realty/create']); ?>"><?= Yii::t('app', 'user.add_position') ?></a>
+						<?php if(Yii::$app->controller->id == 'realty') { ?>
+							<a class="add-position-button" href="<?= Url::to(['/realty/create']); ?>"><?= Yii::t('app', 'user.add_position_rlty') ?></a>
+						<?php } ?>
+						<?php if(Yii::$app->controller->id == 'auto') { ?>
+							<a class="add-position-button" href="<?= Url::to(['/auto/create']); ?>"><?= Yii::t('app', 'user.add_position_auto') ?></a>
+						<?php } ?>
+
 					<?php } ?>
 		        </div>
 		        <div class="pull-right currency-block">

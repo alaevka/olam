@@ -206,7 +206,14 @@ a.register-link {
   font-family: 'Exo 2', sans-serif;
   font-weight: 500;
   font-size: 14px;
-  margin-left: 30px;
+  margin-left: 20px;
+}
+a.profile-link {
+  color: #434343;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  margin-left: 20px;
 }
 .auth-block, .currency-block, .i18n-block {
   padding: 25px 10px;
@@ -975,21 +982,21 @@ h3.comments {
 .create-separator {
   border-top: 2px solid #b0dd27;
 }
-#create-ads-form h3 {
+#create-ads-form h3, #create-auto-form h3 {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 40px;
 }
-#create-ads-form h3 span {
+#create-ads-form h3 span, #create-auto-form h3 span {
   font-size: 18px;
   font-weight: 400;
   color: #bfbfbf;
 }
-#create-ads-form label {
+#create-ads-form label, #create-auto-form label {
   text-align: left;
   font-weight: 400;
 }
-#create-ads-form input, #create-ads-form select {
+#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select {
   border-radius: 0px;
 }
 .of_levels {
@@ -1170,4 +1177,8 @@ h3.comments {
 }
 .similar {
   margin-bottom: 30px;
+}
+.hint-for-additional-text {
+  font-size: 11px;
+  color: #ff0000;
 }

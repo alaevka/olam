@@ -14,11 +14,13 @@ class AppAsset extends AssetBundle
     public $css = [
         'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
         'css/awesome-bootstrap-checkbox.css',
+        'css/colorpicker.css',
         'css/style.css',
         'css/responsive.css',
     ];
     public $js = [
         'js/jquery.scrollTo.min.js',
+        'js/colorpicker.js',
         'js/script.js',
     ];
     public $depends = [
