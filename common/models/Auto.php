@@ -70,9 +70,14 @@ class Auto extends \yii\db\ActiveRecord
             [['auto_object_type', 'tech_category', 'tech_marka', 'tech_model', 'tech_helm', 'tech_transmission', 'tech_fuel', 'tech_gear', 'status', 'location_city', 'user_id', 'created_at', 'updated_at'], 'integer'],
             [['additional_info', 'contacts_username'], 'string'],
             [['price'], 'number'],
-            [['exchange'], 'safe'],
+            [['exchange', 'is_hot'], 'safe'],
             [['tech_vin', 'tech_construction_year', 'tech_mileage', 'tech_value', 'tech_horsepower', 'tech_color', 'special_notes', 'contacts_phone', 'contacts_email'], 'string', 'max' => 255],
         ];
+    }
+
+    public function getLocation()
+    {
+        return $this->hasOne(\common\models\Locations::className(), ['id' => 'location_city']);
     }
 
     /**

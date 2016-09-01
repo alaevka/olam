@@ -137,11 +137,19 @@ $active_url_str = Yii::$app->controller->id;
 						</li>
 					</ul>
 				</li>
-				<li>
+				<li <?php if($active_url_str == 'auto') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-rocket"></i>
 						<span class="title">Авто</span>
 					</a>
+					<ul>
+						<li <?php if($active_url_str == 'auto') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/auto/index']) ?>">
+								<span class="title">Список объектов</span>
+							</a>
+						</li>
+
+					</ul>
 				</li>
 				<li>
 					<a href="#">

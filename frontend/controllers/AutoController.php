@@ -112,7 +112,6 @@ class AutoController extends Controller
             15 => '#000000',
         ];
         return $color_array[$i];
-        //return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
     }
 
     public function actionGetmark() {

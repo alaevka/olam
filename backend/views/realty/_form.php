@@ -6,7 +6,7 @@
 ?>
 
 	<?php $form = ActiveForm::begin([
-        'id' => 'newscategory-form',
+        'id' => 'realty-form',
         'errorSummaryCssClass' => 'error-summary alert alert-danger',
         'options' => ['class' => 'form-horizontal form-groups-bordered', 'enctype' => 'multipart/form-data'],
         'fieldConfig' => [
