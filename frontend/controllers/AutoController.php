@@ -35,7 +35,7 @@ class AutoController extends Controller
 
     public function actionIndex()
     {
-        $last_10_objects = Auto::find()->orderBy('created_at')->limit(8)->all();
+        $last_10_objects = Auto::find()->where(['auto_object_type' => 1])->orderBy('created_at')->limit(8)->all();
 
         // $dataProvider = new ActiveDataProvider([
         //     'query' => Ads::find()->where(['auto_object_type' => 1])->orderBy('created_at DESC'),
