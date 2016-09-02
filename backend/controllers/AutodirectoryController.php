@@ -47,6 +47,17 @@ class AutodirectoryController extends Controller
         ]);
     }
 
+    public function actionAutoothercategory()
+    {
+        $searchModel = new \common\models\SearchAutoOtherCategory;
+        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+        return $this->render('othercategory', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
+    }
+
        
     public function actionCreate($model_name)
     {

@@ -158,7 +158,11 @@ $active_url_str = Yii::$app->controller->id;
 								<span class="title">Справочник "Производители шин"</span>
 							</a>
 						</li>
-
+						<li <?php if($active_url_str == 'autodirectory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/autodirectory/autoothercategory']) ?>">
+								<span class="title">Справочник "Категории прочих"</span>
+							</a>
+						</li>
 					</ul>
 				</li>
 				<li>

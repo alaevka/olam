@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			                    		}
 			                    		break;
 			                    	case '3':
-			                    		return '<span class="badge badge-roundless">Прочие объявления</span>';
+			                    		return '<span class="badge badge-roundless">Прочие объявления</span> '.$model->title;
 			                    		break;
 			                    }
 			                },

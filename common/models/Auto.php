@@ -45,8 +45,11 @@ class Auto extends \yii\db\ActiveRecord
                 }, 'whenClient' => "function (attribute, value) {
                     return $(\"#auto_object_type_radio:checked\").val() == '2';
                 }"],
-
-
+            [['contacts_username', 'contacts_phone', 'location_city', 'title', 'other_category'], 'required', 'when' => function ($model) {
+                    return $model->auto_object_type == '3';
+                }, 'whenClient' => "function (attribute, value) {
+                    return $(\"#auto_object_type_radio:checked\").val() == '3';
+                }"],
 
             [['wheel_manufacturer', 'wheel_pcd', 'price', 'location_city', 'contacts_phone', 'contacts_username'], 'required', 'when' => function ($model) {
                     return $model->wheel_tire_category == '1';
@@ -288,6 +291,10 @@ class Auto extends \yii\db\ActiveRecord
         return Arrayhelper::map(\common\models\WheelsManufacturer::find()->orderBy('title')->asArray()->all(), 'id', 'title');
     }
 
+    public function getOtherCategoryList() {
+        return Arrayhelper::map(\common\models\AutoOtherCategory::find()->orderBy('title')->asArray()->all(), 'id', 'title');
+    }
+
     public function getTireManufacturer() {
         return Arrayhelper::map(\common\models\TiresManufacturer::find()->orderBy('title')->asArray()->all(), 'id', 'title');
     }
@@ -371,6 +378,8 @@ class Auto extends \yii\db\ActiveRecord
             'tire_speed_index' => Yii::t('app', 'auto.tire_speed_index'),
             'tire_width' => Yii::t('app', 'auto.tire_width'),
             'tire_height' => Yii::t('app', 'auto.tire_height'),
+            'title' => Yii::t('app', 'auto.what_you_sell'),
+            'other_category' => Yii::t('app', 'auto.other_category_title'),
 
 
         ];

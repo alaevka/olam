@@ -305,7 +305,11 @@
 				</div>
 			</div>
 			<div id="for_auto_object_type3" <?php if($model->auto_object_type == 3) { ?>style="display: block;"<?php } else { ?>style="display: none;"<?php } ?>>
-				3
+				
+				<?= $form->field($model, 'other_category')->dropDownList(Auto::getOtherCategoryList(), ['prompt' => Yii::t('app', 'auto.select_category')]); ?>
+
+				<?= $form->field($model, 'title')->textInput() ?>
+
 			</div>
 			
 			<?= $form->field($model, 'additional_info', ['template' => "{label}\n<div class=\"col-sm-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}<span class='hint-for-additional-text'>".Yii::t('app', 'rlty.it_is_not_allowed_to_specify_the_phone_and_other')."</span></div>"])->widget(\dosamigos\tinymce\TinyMce::className(), [
@@ -370,6 +374,7 @@
 				
 			<?= $form->field($model, 'price', ['template' => "{label}\n<div class=\"col-sm-6\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6 help-block-currency\">".Yii::t('app', 'rlty.please_set_price_in_your_currency')."</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->textInput() ?>
 			
+			<div id="block-exchange" <?php if($model->auto_object_type == 1) { ?>style="display: block;"<?php } else { ?>style="display: none;"<?php } ?>>
 			<?= $form->field($model, 'exchange')->checkboxList(
 				['1' => Yii::t('app', 'auto.exchange_is_available')],
 				[
@@ -389,7 +394,9 @@
                 ]
 
 			) ?>
-
+			</div>
+			
+			<div id="block-status" <?php if($model->auto_object_type == 1) { ?>style="display: block;"<?php } else { ?>style="display: none;"<?php } ?>>
 			<?= $form->field($model, 'status', ['template' => '{label}<div class="col-sm-9">{input}</div>'])->radioList(
 				['1' => Yii::t('app', 'auto.is_available'), '2' => Yii::t('app', 'auto.on_the_way'), '3' => Yii::t('app', 'auto.custom')],
 				[
@@ -409,6 +416,7 @@
                 ]
 
 			) ?>
+			</div>
 
 			<?= $form->field($model, 'location_city')->dropDownList($locations) ?>
 
