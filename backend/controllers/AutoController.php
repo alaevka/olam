@@ -295,6 +295,65 @@ class AutoController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionFaker() {
+        $faker = Faker\Factory::create();
+        $object = 1;
+        for ($i=0; $i < 100; $i++) { 
+            $ad = new Auto;
+            $ad->auto_object_type = $object;
+            // $ad->tech_vin = $faker->iban(null);
+            // $ad->tech_category = \common\models\AutoCategory::find()->orderBy('RAND()')->one()->id;
+            // $ad->tech_marka = \common\models\AutoMarka::find()->orderBy('RAND()')->one()->marka_id;
+            // $ad->tech_model = \common\models\AutoModel::find()->where(['marka_id' => $ad->tech_marka])->orderBy('RAND()')->one()->id;
+            // $ad->tech_construction_year = (string)rand(2000, 2016);
+            // $ad->tech_mileage = (string)rand(10000, 300000);
+            // $ad->tech_helm = rand(1,2);
+            // $ad->tech_value = (string)rand(1500, 3000);
+            // $ad->tech_horsepower = (string)rand(80, 300);
+            // $ad->tech_transmission = rand(1,2);
+            // $ad->tech_fuel = rand(1,3);
+            // $ad->tech_gear = rand(1,3);
+            // $ad->tech_color = $this->_get_color(rand(0,15));
+            // $ad->special_notes = 'a:2:{i:0;s:1:"1";i:1;s:1:"2";}';
+            // $ad->additional_info = $faker->text($maxNbChars = 500);
+            // $ad->price = rand(100000, 3000000);
+            // $ad->exchange = 'a:1:{i:0;s:1:"1";}';
+            // $ad->status = rand(1,3);
+            // $ad->location_city = rand(1,5);
+            // $ad->contacts_username = $faker->name;
+            // $ad->contacts_phone = $faker->e164PhoneNumber;
+            // $ad->contacts_email = $faker->email;
+            // $ad->user_id = 2;
+            
+            // if($ad->save()) {
+
+            //     $gallery = new Autogallery;
+            //     $gallery->image_name = 'TSPNdMsF6Enw4J4pSa-LBU1Hrxhk2FVU.jpg';
+            //     $gallery->auto_id = $ad->id;
+            //     $gallery->save();
+
+
+            //     $gallery = new Autogallery;
+            //     $gallery->image_name = 'Ouz-9IT7fSMFRvdpUX3lOV5M1CpCQGm9.jpg';
+            //     $gallery->auto_id = $ad->id;
+            //     $gallery->save();
+
+            //     $gallery = new Autogallery;
+            //     $gallery->image_name = 'Kmvpc27qafbt44fuLmOu0cnmepFNicso.jpg';
+            //     $gallery->auto_id = $ad->id;
+            //     $gallery->save();
+
+            
+
+
+            } else {
+                echo '<pre>';
+                print_r($ad->errors);
+            }
+
+        }
+    }
     
 
 }

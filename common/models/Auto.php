@@ -287,6 +287,14 @@ class Auto extends \yii\db\ActiveRecord
         ];
     }
 
+    public function _getFuel() {
+        switch($this->tech_fuel) {
+            case 1: return Yii::t('app', 'auto.fuel_petrol'); break;
+            case 2: return Yii::t('app', 'auto.fuel_diesel'); break;
+            case 3: return Yii::t('app', 'auto.fuel_gaz'); break;
+        }
+    }
+
     public function getWheelManufacturer() {
         return Arrayhelper::map(\common\models\WheelsManufacturer::find()->orderBy('title')->asArray()->all(), 'id', 'title');
     }
@@ -327,6 +335,12 @@ class Auto extends \yii\db\ActiveRecord
         ];
     }
 
+    public function _getImage() {
+        $gallery = \common\models\Autogallery::find()->where(['auto_id' => $this->id])->limit(1)->one();
+        if($gallery) {
+            return $gallery->image_name;
+        }
+    }
 
 
     /**
