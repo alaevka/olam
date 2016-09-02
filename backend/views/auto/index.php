@@ -65,6 +65,31 @@ $this->params['breadcrumbs'][] = $this->title;
 				    		'attribute' => 'id',
 				    		'contentOptions' => ['style' => 'width: 50px;']
 				    	],
+				    	[
+				    		'attribute' => 'auto_object_type',
+				            'value' => function ($model, $index, $widget) {
+			                    switch ($model->auto_object_type) {
+			                    	case '1':
+			                    		return '<span class="badge badge-info badge-roundless">Автомобили</span> '. $model->marka->name.'-'.$model->modelauto->name;
+			                    		break;
+			                    	case '2':
+			                    		switch ($model->wheel_tire_category) {
+			                    			case '1':
+			                    				return '<span class="badge badge-success badge-roundless">Диски</span> '.$model->wheelmanu->title;
+			                    				break;
+			                    			case '2':
+			                    				return '<span class="badge badge-secondary badge-roundless">Шины</span> '.$model->tiremanu->title;
+			                    				break;
+			                    		}
+			                    		break;
+			                    	case '3':
+			                    		return '<span class="badge badge-roundless">Прочие объявления</span>';
+			                    		break;
+			                    }
+			                },
+			                'filter' => ['1' => 'Автомобили', '2' => 'Диски и шины', '3' => 'Прочие объявления'],
+			                'format' => 'raw'
+				    	],
 				        [
 				            'attribute' => 'location_city',
 				            'value' => function ($model, $index, $widget) {

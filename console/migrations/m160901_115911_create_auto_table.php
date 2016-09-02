@@ -31,7 +31,7 @@ class m160901_115911_create_auto_table extends Migration
             'special_notes' => Schema::TYPE_STRING,
             'additional_info' => Schema::TYPE_TEXT,
             'price' => Schema::TYPE_FLOAT,
-            'exchange' => Schema::TYPE_INTEGER,
+            'exchange' => Schema::TYPE_TEXT,
             'status' => Schema::TYPE_INTEGER,
             'location_city' => Schema::TYPE_INTEGER,
             'contacts_username' => Schema::TYPE_TEXT,

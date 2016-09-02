@@ -1182,3 +1182,9 @@ h3.comments {
   font-size: 11px;
   color: #ff0000;
 }
+.fileinput-remove, .file-upload-indicator, .kv-file-upload, .kv-file-zoom {
+  display: none;
+}
+#auto-tire_season label {
+  font-size: 12px;
+}

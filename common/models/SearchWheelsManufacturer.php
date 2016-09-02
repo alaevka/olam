@@ -5,15 +5,15 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Auto;
+use common\models\WheelsManufacturer;
 
-class SearchAuto extends Auto
+class SearchWheelsManufacturer extends WheelsManufacturer
 {
     public function rules()
     {
         return [
             [['id'], 'integer'],
-            [['location_city', 'auto_object_type'], 'safe'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -24,18 +24,17 @@ class SearchAuto extends Auto
 
     public function search($params)
     {
-        $query = Auto::find();
+        $query = WheelsManufacturer::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            //'sort'=> ['defaultOrder' => ['order'=>SORT_ASC]]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'auto_object_type', $this->auto_object_type]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

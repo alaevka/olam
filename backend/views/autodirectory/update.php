@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use yii\web\View;
 use yii\helpers\Url;
 $this->title = 'Изменеие позиции';
-$this->params['breadcrumbs'][] = ['label' => $model_name_title, 'url' => ['/directory/'.strtolower($model_name)]];
+$this->params['breadcrumbs'][] = ['label' => $model_name_title, 'url' => ['/autodirectory/'.strtolower($model_name)]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -19,10 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
 					<a href="#tab1" data-toggle="tab">Изменение позиции</a>
 				</li>
 				<li class="">
-					<a data-method="post" href="<?= Url::to(['/directory/delete/', 'id' => $model->id, 'model_name' => $model_name]) ?>"><i class="entypo-minus-squared"></i> Удалить</a>
+					<a data-method="post" href="<?= Url::to(['/autodirectory/delete/', 'id' => $model->id, 'model_name' => $model_name]) ?>"><i class="entypo-minus-squared"></i> Удалить</a>
 				</li>
 				<li class="">
-					<a href="<?= Url::to(['/directory/'.$model_name]) ?>"><i class="entypo-menu"></i> Список позиций</a>
+					<a href="<?= Url::to(['/autodirectory/'.$model_name]) ?>"><i class="entypo-menu"></i> Список позиций</a>
 				</li>
 			</ul>
 		</div>

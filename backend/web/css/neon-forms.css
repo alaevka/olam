@@ -7041,3 +7041,8 @@ hr + .mail-env {
   -ms-transform: scale(1.15, );
   transform: scale(1.15, );
 }
+
+
+.file-drag-handle, .kv-file-zoom, .file-upload-indicator, .kv-file-upload {
+  display: none;
+}

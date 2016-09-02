@@ -137,7 +137,7 @@ $active_url_str = Yii::$app->controller->id;
 						</li>
 					</ul>
 				</li>
-				<li <?php if($active_url_str == 'auto') { ?>class="opened active"<?php } ?>>
+				<li <?php if($active_url_str == 'auto' || $active_url_str == 'autodirectory') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-rocket"></i>
 						<span class="title">Авто</span>
@@ -146,6 +146,16 @@ $active_url_str = Yii::$app->controller->id;
 						<li <?php if($active_url_str == 'auto') { ?>class="active"<?php } ?>>
 							<a href="<?= Url::to(['/auto/index']) ?>">
 								<span class="title">Список объектов</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'autodirectory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/autodirectory/wheelsmanufacturer']) ?>">
+								<span class="title">Справочник "Производители дисков"</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'autodirectory') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/autodirectory/tiresmanufacturer']) ?>">
+								<span class="title">Справочник "Производители шин"</span>
 							</a>
 						</li>
 

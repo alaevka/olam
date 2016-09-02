@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -8,13 +9,31 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\helpers\Json;
 use common\models\Autogallery;
+use yii\filters\AccessControl;
 
 class AutoController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+
     public function actionIndex()
     {
-        
-
         return $this->render('index', [
             'news_category' => $news_category,
             'listDataProvider' => $dataProvider
@@ -25,6 +44,7 @@ class AutoController extends Controller
     {
         
         $model = new \common\models\Auto;
+        $model->auto_object_type = 1;
 
         if(!Yii::$app->user->isGuest) {
             $model->contacts_email = Yii::$app->user->identity->email;
@@ -121,7 +141,7 @@ class AutoController extends Controller
             if ($parents != null) {
                 $tech_category_id = $parents[0];
                 $out = \common\models\AutoMarka::getList($tech_category_id); 
-                echo Json::encode(['output'=>$out, 'selected'=>'']);
+                echo Json::encode(['output'=>$out, 'selected'=> isset($_GET['selected']) ? $selected = $_GET['selected'] : $selected = '']);
                 return;
             }
         }
@@ -136,7 +156,7 @@ class AutoController extends Controller
             $tech_marka_id = empty($ids[1]) ? null : $ids[1];
             if ($tech_category_id != null) {
                $data = \common\models\AutoModel::getList($tech_category_id, $tech_marka_id);
-               echo Json::encode(['output'=>$data, 'selected'=>'']);
+               echo Json::encode(['output'=>$data, 'selected'=>isset($_GET['selected']) ? $selected = $_GET['selected'] : $selected = '']);
                return;
             }
         }
