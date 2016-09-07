@@ -45,6 +45,8 @@ use yii\helpers\ArrayHelper;
 class Ads extends \yii\db\ActiveRecord
 {
     public $gallery;
+    public $new_location_raion;
+    public $new_location_street;
     /**
      * @inheritdoc
      */
@@ -68,6 +70,16 @@ class Ads extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\common\models\Locations::className(), ['id' => 'location_city']);
     }
+    public function getLocationraion()
+    {
+        return $this->hasOne(\common\models\LocationsRaion::className(), ['id' => 'location_raion']);
+    }
+    public function getLocationstreet()
+    {
+        return $this->hasOne(\common\models\LocationsStreet::className(), ['id' => 'location_street']);
+    }
+
+
     public function getHouseMaterial()
     {
         return $this->hasOne(\common\models\Housematerials::className(), ['id' => 'house_material']);
@@ -109,13 +121,22 @@ class Ads extends \yii\db\ActiveRecord
         return Arrayhelper::map(\common\models\Housematerials::find()->asArray()->all(), 'id', 'title');
     }
 
-    public function _getRltyActions() {
-        return [
-            '1' => Yii::t('app', 'rlty.action_type_1'), 
-            '2' => Yii::t('app', 'rlty.action_type_2'),
-            '3' => Yii::t('app', 'rlty.action_type_3'),
-            '4' => Yii::t('app', 'rlty.action_type_4'),
-        ];
+    public function _getRltyActions($param=0) {
+        if($param == 0) {
+            return [
+                '1' => Yii::t('app', 'rlty.action_type_1'), 
+                '2' => Yii::t('app', 'rlty.action_type_2'),
+                '3' => Yii::t('app', 'rlty.action_type_3'),
+                '4' => Yii::t('app', 'rlty.action_type_4'),
+            ];
+        }
+        if($param == 1) {
+            return [
+                '1' => Yii::t('app', 'rlty.action_type_1'), 
+                '2' => Yii::t('app', 'rlty.action_type_2'),
+            ];
+        }
+
     }
 
     public function _getAction() {
@@ -176,6 +197,8 @@ class Ads extends \yii\db\ActiveRecord
         $gallery = \common\models\Adsgallery::find()->where(['ads_id' => $this->id])->limit(1)->one();
         if($gallery) {
             return $gallery->image_name;
+        } else {
+            return 'no_image.png';
         }
     }
 
@@ -194,9 +217,20 @@ class Ads extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rlty_type', 'rlty_action', 'location_city', 'location_street', 'location_house', 'price', 'contacts_username', 'contacts_phone', 'title'], 'required'],
-            // [['slug', 'location_street', 'location_house', 'location_raion', 'area_total', 'area_for_living', 'area_kitchen', 'level', 'total_levels', 'loggias_count', 'balconies_count', 'year_of_construction', 'additional_info', 'contacts_username', 'contacts_phone', 'contacts_email'], 'string'],
-            [['price_conditions', 'gallery'], 'safe'],
+            [['rlty_type', 'rlty_action', 'location_city', 'location_house', 'price', 'contacts_username', 'contacts_phone', 'title'], 'required'],
+
+            [['location_street'], 'required', 'when' => function ($model) {
+                    return $model->new_location_street == '';
+                }, 'whenClient' => "function (attribute, value) {
+                    return $(\"#ads-new_location_street\").val() == '';
+                }"],
+            [['location_raion'], 'required', 'when' => function ($model) {
+                    return $model->new_location_raion == '';
+                }, 'whenClient' => "function (attribute, value) {
+                    return $(\"#ads-new_location_raion\").val() == '';
+                }"],
+
+            [['price_conditions', 'gallery', 'new_location_raion', 'new_location_street', 'area_for_living', 'area_total', 'area_kitchen', 'level', 'total_levels', 'loggias_count', 'balconies_count', 'year_of_construction', 'additional_info', 'build_type'], 'safe'],
             [['rlty_type', 'rlty_action', 'location_city', 'rooms_count', 'flat_type', 'flat_plan', 'flat_repairs', 'type_of_ownership', 'house_type', 'house_material', 'user_id', 'created_at', 'updated_at', 'build_type', 'is_hot'], 'integer'],
             [['price'], 'number'],
         ];
@@ -243,6 +277,8 @@ class Ads extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'build_type' => Yii::t('app', 'rlty.is_new_building'),
+            'new_location_raion' =>  Yii::t('app', 'rlty.new_location_raion'),
+            'new_location_street' =>  Yii::t('app', 'rlty.new_location_street'),
         ];
     }
 }

@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\imagine\Image;
 use Faker;
+use yii\helpers\Json;
 
 class RealtyController extends Controller
 {
@@ -41,6 +42,24 @@ class RealtyController extends Controller
     {
         $model = new Ads;
         if ($model->load(Yii::$app->request->post())) {
+
+            if(!empty($model->new_location_raion)) {
+                //create new raion
+                $location_raion = new \common\models\LocationsRaion;
+                $location_raion->raion = $model->new_location_raion;
+                $location_raion->location_id = $model->location_city;
+                $location_raion->save();
+                $model->location_raion = $location_raion->id;
+            }
+
+            if(!empty($model->new_location_street)) {
+                //create new street
+                $location_street = new \common\models\LocationsStreet;
+                $location_street->street = $model->new_location_street;
+                $location_street->location_id = $model->location_city;
+                $location_street->save();
+                $model->location_street = $location_street->id;
+            }
 
             if ($model->validate()) {
 
@@ -107,6 +126,24 @@ class RealtyController extends Controller
         $model->price_conditions = unserialize($model->price_conditions);
         
         if ($model->load(Yii::$app->request->post())) {
+
+            if(!empty($model->new_location_raion)) {
+                //create new raion
+                $location_raion = new \common\models\LocationsRaion;
+                $location_raion->raion = $model->new_location_raion;
+                $location_raion->location_id = $model->location_city;
+                $location_raion->save();
+                $model->location_raion = $location_raion->id;
+            }
+
+            if(!empty($model->new_location_street)) {
+                //create new street
+                $location_street = new \common\models\LocationsStreet;
+                $location_street->street = $model->new_location_street;
+                $location_street->location_id = $model->location_city;
+                $location_street->save();
+                $model->location_street = $location_street->id;
+            }
 
             if ($model->validate()) {
 
@@ -214,9 +251,9 @@ class RealtyController extends Controller
             $ad->title = $faker->sentence($nbWords = 5, $variableNbWords = true);
             $ad->rlty_action = rand(0,3);
             $ad->location_city = rand(1,5);
-            $ad->location_street = $faker->streetName;
+            $ad->location_raion = rand(1,2);
+            $ad->location_street = rand(2,4);
             $ad->location_house = rand(1, 100);
-            $ad->location_raion = $faker->sentence($nbWords = 2, $variableNbWords = true);
             $ad->rooms_count = rand(1,4);
             $ad->area_total = rand(50, 200);
             $ad->area_for_living = rand(50, $ad->area_total);
@@ -262,6 +299,44 @@ class RealtyController extends Controller
                 echo '<pre>';
                 print_r($ad->errors);
             }
+        }
+    }
+
+    public function actionGetraion() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $relty_city_id = $parents[0];
+                $out = \common\models\LocationsRaion::getList($relty_city_id); 
+                echo Json::encode(['output'=>$out, 'selected'=> isset($_GET['selected']) ? $selected = $_GET['selected'] : $selected = '']);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+    public function actionGetstreet() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $relty_city_id = $parents[0];
+                $out = \common\models\LocationsStreet::getList($relty_city_id); 
+                echo Json::encode(['output'=>$out, 'selected'=> isset($_GET['selected']) ? $selected = $_GET['selected'] : $selected = '']);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+    public function actionDeleteimage()
+    {
+        if ($post = Yii::$app->request->post()) {
+            $adsgallery_image = Adsgallery::findOne($post['key']);
+            $adsgallery_image->delete();
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return Json::encode([]);
         }
     }
 

@@ -3,6 +3,7 @@
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 	use kartik\file\FileInput;
+	use kartik\depdrop\DepDrop;
 	//$this->context->layout = 'empty';
 	$this->title = Yii::t('app', 'rlty.create_add');
 ?>
@@ -148,13 +149,61 @@
 			<hr class="create-separator">
 			<h3><?= Yii::t('app', 'rlty.affix_location') ?> <span><?= Yii::t('app', 'rlty.step_1_of_7') ?></span></h3>
 
-			<?= $form->field($model, 'location_city')->dropDownList($locations) ?>
+			<?= $form->field($model, 'location_city')->dropDownList($locations, ['id'=>'rlty_city_id', 'prompt' => Yii::t('app', 'rlty.select_city')]) ?>
 
-			<?= $form->field($model, 'location_street')->textInput() ?>
+			<?= $form->field($model, 'location_raion', ['template' => "{label}\n<div class=\"col-sm-6\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6 help-block-currency\">".Yii::t('app', 'rlty.if_not_in_the_list')." <a id='add_new_location_raion' href='#raion'>".Yii::t('app', 'rlty.add_new_raion')."</a></div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->widget(DepDrop::classname(), [
+				    'options'=>['id'=>'rlty_raion_id'],
+				    'pluginOptions'=>[
+				        'depends'=>['rlty_city_id'],
+				        'placeholder'=> Yii::t('app', 'rlty.select_raion'),
+				        'url'=>Url::to(['/realty/getraion', 'selected' => $model->location_raion]),
+				        'initialize' => true
+				    ]
+				]);
+				$script = '
+					$(document).ready(function() {
+						$("#add_new_location_raion").click(function() {
+							$("#block_new_location_raion").slideToggle();
+							return false;
+						});
+					});
+				';
+
+				$this->registerJs($script, yii\web\View::POS_READY);
+			?>
+
+			<div id="block_new_location_raion" <?php if(empty($model->new_location_raion)) { ?>style="display: none;"<?php } ?>>
+				<?= $form->field($model, 'new_location_raion')->textInput() ?>
+			</div>
+
+			<?= $form->field($model, 'location_street', ['template' => "{label}\n<div class=\"col-sm-6\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6 help-block-currency\">".Yii::t('app', 'rlty.if_not_in_the_list')." <a id='add_new_location_street' href='#street'>".Yii::t('app', 'rlty.add_new_street')."</a></div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->widget(DepDrop::classname(), [
+				    'options'=>['id'=>'rlty_street_id'],
+				    'pluginOptions'=>[
+				        'depends'=>['rlty_city_id'],
+				        'placeholder'=> Yii::t('app', 'rlty.select_street'),
+				        'url'=>Url::to(['/realty/getstreet', 'selected' => $model->location_street]),
+				        'initialize' => true
+				    ]
+				]);
+				$script = '
+					$(document).ready(function() {
+						$("#add_new_location_street").click(function() {
+							$("#block_new_location_street").slideToggle();
+							return false;
+						});
+					});
+				';
+
+				$this->registerJs($script, yii\web\View::POS_READY);
+			?>
+
+			<div id="block_new_location_street" <?php if(empty($model->new_location_street)) { ?>style="display: none;"<?php } ?>>
+				<?= $form->field($model, 'new_location_street')->textInput() ?>
+			</div>
 
 			<?= $form->field($model, 'location_house')->textInput() ?>
 
-			<?= $form->field($model, 'location_raion')->textInput() ?>
+			
 		</div>
 
 		<div id="affix_info_about_apartment">

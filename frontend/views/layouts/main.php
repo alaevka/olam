@@ -8,6 +8,7 @@ use frontend\assets\AppAsset;
 use frontend\components\LanguageWidget;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use yii\web\View;
 $currency_data = Yii::$app->CbRF->filter(['currency' => 'usd, eur'])->all();
 AppAsset::register($this);
 ?>
@@ -167,6 +168,17 @@ AppAsset::register($this);
 	] );
 	Modal::end ();
 ?>
+<?php if (Yii::$app->getSession()->hasFlash('flash_message')): ?>
+    <?=
+        $this->registerJs(
+            "
+            	toastr.info('".Yii::$app->getSession()->getFlash('flash_message')."');
+            ", 
+            View::POS_END, 
+            'flash_message'
+        );
+    ?>
+<?php endif; ?>  
 <?php $this->endBody() ?>
 </body>
 </html>

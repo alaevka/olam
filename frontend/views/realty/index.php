@@ -18,331 +18,22 @@ use yii\helpers\ArrayHelper;
         </ul>
         <div class="tab-content filter-content">
             <div role="tabpanel" class="tab-pane active" id="residential">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'filter-form-1',
-                ]); ?>
-                <div class="row">
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rlty_action')->dropDownList(\common\models\Ads::_getRltyActions()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'location_raion')->dropDownList(\common\models\Ads::_getRealtyLocationRaion()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rooms_count')->radioList(
-                            ['1' => '1', '2' => '2', '3' => '3', '4' => '3+'],
-                            [
-                                'item' => function($index, $label, $name, $checked, $value) {
-
-                                    $return = '<div class="radio radio-primary radio-inline">';
-                                    $return .= '<input id="rooms_count'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
-                                    $return .= '<label for="rooms_count'.$index.'">'. ucwords($label) .'</label>';
-                                    $return .= '</div>';
-
-                                    return $return;
-                                }
-                            ]
-
-                        ) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_from')->textInput()->label('Area') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_from')->textInput()->label('Price') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 search-button">
-                        <?= Html::submitButton(Yii::t('app', 'realty.search'), ['class' => 'btn btn-green']) ?>
-                    </div>
-                </div>
-                 <div class="row">
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'location_city')->dropDownList(Arrayhelper::map(\common\models\Locations::find()->asArray()->all(), 'id', 'location')) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'house_type')->dropDownList(Arrayhelper::map(\common\models\Housetypes::find()->asArray()->all(), 'id', 'title')) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'house_material')->dropDownList(Arrayhelper::map(\common\models\Housematerials::find()->asArray()->all(), 'id', 'title')) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'level_from')->textInput()->label('Level') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'level_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 checkbox-in-filter">
-                        <div class="checkbox checkbox-primary">
-                            <input id="checkbox2" class="styled" type="checkbox">
-                            <label for="checkbox2">
-                                <?= Yii::t('app', 'rlty.is_new_building') ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <?php ActiveForm::end(); ?>
+                <?= $this->render('_search_residential', ['search' => $search]); ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="rent">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'filter-form-1',
-                ]); ?>
-                <div class="row">
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rlty_action')->dropDownList(\common\models\Ads::_getRltyActions()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'location_raion')->dropDownList(\common\models\Ads::_getRealtyLocationRaion()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rooms_count')->radioList(
-                            ['1' => '1', '2' => '2', '3' => '3', '4' => '3+'],
-                            [
-                                'item' => function($index, $label, $name, $checked, $value) {
-
-                                    $return = '<div class="radio radio-primary radio-inline">';
-                                    $return .= '<input id="rooms_count'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
-                                    $return .= '<label for="rooms_count'.$index.'">'. ucwords($label) .'</label>';
-                                    $return .= '</div>';
-
-                                    return $return;
-                                }
-                            ]
-
-                        ) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_from')->textInput()->label('Area') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_from')->textInput()->label('Price') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 search-button">
-                        <?= Html::submitButton(Yii::t('app', 'realty.search'), ['class' => 'btn btn-green']) ?>
-                    </div>
-                </div>
-                <?php ActiveForm::end(); ?>
+                <?= $this->render('_search_residential', ['search' => $search]); ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="commercial">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'filter-form-1',
-                ]); ?>
-                <div class="row">
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rlty_action')->dropDownList(\common\models\Ads::_getRltyActions()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'location_raion')->dropDownList(\common\models\Ads::_getRealtyLocationRaion()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rooms_count')->radioList(
-                            ['1' => '1', '2' => '2', '3' => '3', '4' => '3+'],
-                            [
-                                'item' => function($index, $label, $name, $checked, $value) {
-
-                                    $return = '<div class="radio radio-primary radio-inline">';
-                                    $return .= '<input id="rooms_count'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
-                                    $return .= '<label for="rooms_count'.$index.'">'. ucwords($label) .'</label>';
-                                    $return .= '</div>';
-
-                                    return $return;
-                                }
-                            ]
-
-                        ) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_from')->textInput()->label('Area') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_from')->textInput()->label('Price') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 search-button">
-                        <?= Html::submitButton(Yii::t('app', 'realty.search'), ['class' => 'btn btn-green']) ?>
-                    </div>
-                </div>
-                <?php ActiveForm::end(); ?>
+                <?= $this->render('_search_residential', ['search' => $search]); ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="houses_cottages">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'filter-form-1',
-                ]); ?>
-                <div class="row">
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rlty_action')->dropDownList(\common\models\Ads::_getRltyActions()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'location_raion')->dropDownList(\common\models\Ads::_getRealtyLocationRaion()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rooms_count')->radioList(
-                            ['1' => '1', '2' => '2', '3' => '3', '4' => '3+'],
-                            [
-                                'item' => function($index, $label, $name, $checked, $value) {
-
-                                    $return = '<div class="radio radio-primary radio-inline">';
-                                    $return .= '<input id="rooms_count'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
-                                    $return .= '<label for="rooms_count'.$index.'">'. ucwords($label) .'</label>';
-                                    $return .= '</div>';
-
-                                    return $return;
-                                }
-                            ]
-
-                        ) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_from')->textInput()->label('Area') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_from')->textInput()->label('Price') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 search-button">
-                        <?= Html::submitButton(Yii::t('app', 'realty.search'), ['class' => 'btn btn-green']) ?>
-                    </div>
-                </div>
-                <?php ActiveForm::end(); ?>
+                <?= $this->render('_search_residential', ['search' => $search]); ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="garages">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'filter-form-1',
-                ]); ?>
-                <div class="row">
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rlty_action')->dropDownList(\common\models\Ads::_getRltyActions()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'location_raion')->dropDownList(\common\models\Ads::_getRealtyLocationRaion()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rooms_count')->radioList(
-                            ['1' => '1', '2' => '2', '3' => '3', '4' => '3+'],
-                            [
-                                'item' => function($index, $label, $name, $checked, $value) {
-
-                                    $return = '<div class="radio radio-primary radio-inline">';
-                                    $return .= '<input id="rooms_count'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
-                                    $return .= '<label for="rooms_count'.$index.'">'. ucwords($label) .'</label>';
-                                    $return .= '</div>';
-
-                                    return $return;
-                                }
-                            ]
-
-                        ) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_from')->textInput()->label('Area') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_from')->textInput()->label('Price') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 search-button">
-                        <?= Html::submitButton(Yii::t('app', 'realty.search'), ['class' => 'btn btn-green']) ?>
-                    </div>
-                </div>
-                <?php ActiveForm::end(); ?>
+                <?= $this->render('_search_residential', ['search' => $search]); ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="land">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'filter-form-1',
-                ]); ?>
-                <div class="row">
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rlty_action')->dropDownList(\common\models\Ads::_getRltyActions()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'location_raion')->dropDownList(\common\models\Ads::_getRealtyLocationRaion()) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <?= $form->field($search, 'rooms_count')->radioList(
-                            ['1' => '1', '2' => '2', '3' => '3', '4' => '3+'],
-                            [
-                                'item' => function($index, $label, $name, $checked, $value) {
-
-                                    $return = '<div class="radio radio-primary radio-inline">';
-                                    $return .= '<input id="rooms_count'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
-                                    $return .= '<label for="rooms_count'.$index.'">'. ucwords($label) .'</label>';
-                                    $return .= '</div>';
-
-                                    return $return;
-                                }
-                            ]
-
-                        ) ?>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_from')->textInput()->label('Area') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'area_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_from')->textInput()->label('Price') ?>
-                        </div>
-                        <div class="col-xs-6 small-padding">
-                            <?= $form->field($search, 'price_to')->textInput()->label('from/to') ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 search-button">
-                        <?= Html::submitButton(Yii::t('app', 'realty.search'), ['class' => 'btn btn-green']) ?>
-                    </div>
-                </div>
-                <?php ActiveForm::end(); ?>
+                <?= $this->render('_search_residential', ['search' => $search]); ?>
             </div>
         </div>
         
@@ -358,7 +49,7 @@ use yii\helpers\ArrayHelper;
                     <img class="img-responsive" src="/uploads/objects/<?= $object->_getImage() ?>">
                     <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
                     <div class="flat_type"><?= $object->_getFlatTypeObject() ?></div>
-                    <div class="flat_location"><?= $object->location->location.', '.$object->location_raion ?></div>
+                    <div class="flat_location"><?= $object->location->location.', '.$object->locationraion->raion ?></div>
                 </a>
             </div>
             <?php } ?>
@@ -382,7 +73,7 @@ use yii\helpers\ArrayHelper;
                                     <img class="img-responsive" src="/uploads/objects/<?= $object->_getImage() ?>">
                                     <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
                                     <div class="flat_type"><?= $object->_getFlatTypeObject() ?></div>
-                                    <div class="flat_location"><?= $object->location->location.', '.$object->location_raion ?></div>
+                                    <div class="flat_location"><?= $object->location->location.', '.$object->locationraion->raion ?></div>
                                 </a>
                             </div>
 

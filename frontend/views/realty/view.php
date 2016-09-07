@@ -8,13 +8,13 @@
 
 <div class="row">
     <div class="col-md-12 central-content object-model" id="central-content">
-    	<div class="object-breadcrumbs"><?= $model->location->location; ?> / <?= $model->_getType() ?><?= $model->_getAction() ?><?= $model->_getRoomsCount() ?><?= $model->location_raion; ?> / <?= $model->location_street; ?> / <?= $model->_getVariant() ?></div>
+    	<div class="object-breadcrumbs"><?= $model->location->location; ?> / <?= $model->_getType() ?><?= $model->_getAction() ?><?= $model->_getRoomsCount() ?><?= $model->locationraion->raion; ?> / <?= $model->locationstreet->street; ?> / <?= $model->_getVariant() ?></div>
         <h1><?= $model->title; ?></h1>
         <h3><?= $model->_getVariant() ?>, <?= Yii::t('app', 'rlty.date_updated') ?>: <?= date("d.m.Y", $model->updated_at) ?>, <?= Yii::t('app', 'rlty.date_created') ?>: <?= date("d.m.Y", $model->created_at) ?>, <?= Yii::t('app', 'rlty.views_count') ?>: 0</h3>
 		
 		<div class="row">
 			<div class="col-md-6">
-				<div><?= $model->location->location; ?>, <?= $model->location_raion; ?>, <?= $model->location_street; ?>, <?= $model->location_house; ?></div>
+				<div><?= $model->location->location; ?>, <?= $model->locationraion->raion; ?>, <?= $model->locationstreet->street; ?>, <?= $model->location_house; ?></div>
 		       	<div class="price"><?= number_format($model->price, 0, ',', ' ' ); ?> руб. <span><?= $model->_getPriceOneMeter() ?></span></div>
 			    <h4><?= Yii::t('app', 'rlty.area') ?></h4>
 			    <div><?= Yii::t('app', 'rlty.area_total') ?>: <?= $model->area_total; ?> м2</div>
@@ -68,6 +68,7 @@
 			                        <div class="carousel-inner" role="listbox">
 			                            <?php 
 			                            	$gallery = \common\models\Adsgallery::find()->where(['ads_id' => $model->id])->all();
+			                            	if($gallery) {
 				        					$i = 0;
 				        					foreach($gallery as $item) {
 				        				?>
@@ -75,6 +76,10 @@
 			                                <img src="/uploads/objects/<?= $item->image_name; ?>" class="img-responsive">
 			                            </div>
 			                            <?php $i++; ?>
+			                            <?php } } else { ?>
+			                            <div class="active item" data-slide-number="0">
+											<img src="/uploads/objects/no_image.png" class="img-responsive">
+										</div>
 			                            <?php } ?>
 			                        </div>
 			                        <a class="carousel-control left" href="#gallery-slides" data-slide="prev">‹</a>
@@ -88,6 +93,7 @@
 	        			<ul class="list-inline">
 	        				<?php 
 	        					$i = 0;
+	        					if($gallery) {
 	        					foreach($gallery as $item) {
 	        				?>
 		          			<li>
@@ -96,7 +102,13 @@
 		          				</a>
 		          			</li>
 		          			<?php $i++; ?>
-		          			<?php } ?>
+		          			<?php } } else { ?>
+                            <li>
+		          				<a id="carousel-selector-0" class="selected">
+		            				<img width="60" src="/uploads/objects/no_image.png" class="img-responsive">
+		          				</a>
+		          			</li>
+                            <?php } ?>
 			            </ul>
         			</div>
 				    <?php

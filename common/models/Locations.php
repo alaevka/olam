@@ -40,7 +40,7 @@ class Locations extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'location' => 'Населенный пункт',
-            'district' => 'Район (регион)',
+            'district' => 'Регион',
         ];
     }
 

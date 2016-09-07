@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/jquery.scrollTo.min.js',
         'js/colorpicker.js',
+        'js/toastr.js',
         'js/script.js',
     ];
     public $depends = [

@@ -4,8 +4,9 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 use yii\helpers\Url;
-$this->title = 'Изменение населенного пункта';
+$this->title = 'Изменение улицы';
 $this->params['breadcrumbs'][] = ['label' => 'Справочник "Населенные пункты"', 'url' => ['/locations/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Изменение населенного пункта', 'url' => ['/locations/update?id='.$model->location_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -16,13 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="panel-options">
 			<ul class="nav nav-tabs">
 				<li class="active">
-					<a href="#tab1" data-toggle="tab">Изменение категории</a>
+					<a href="#tab1" data-toggle="tab">Изменение улицы</a>
 				</li>
 				<li class="">
-					<a data-method="post" href="<?= Url::to(['/locations/delete/', 'id' => $model->id]) ?>"><i class="entypo-minus-squared"></i> Удалить пункт</a>
+					<a data-method="post" href="<?= Url::to(['/locations/deletestreet/', 'id' => $model->id]) ?>"><i class="entypo-minus-squared"></i> Удалить улицу</a>
 				</li>
 				<li class="">
-					<a href="<?= Url::to(['/locations/index']) ?>"><i class="entypo-menu"></i> Список населенных пунктов</a>
+					<a href="<?= Url::to(['/locations/update', 'id' => $model->location_id]) ?>"><i class="entypo-menu"></i> Список улиц</a>
 				</li>
 			</ul>
 		</div>
@@ -32,12 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="panel-body">
 		<div class="tab-content">
 			<div class="tab-pane active" id="tab1">
-				<?= $this->render('_form', [
+				<?= $this->render('_formstreet', [
 			        'model' => $model,
-			        'dataProviderRaion' => $dataProviderRaion,
-                    'searchModelRaion' => $searchModelRaion,
-                    'dataProviderStreet' => $dataProviderStreet,
-                	'searchModelStreet' => $searchModelStreet,
 			    ]) ?>							
 			</div>
 		</div>
