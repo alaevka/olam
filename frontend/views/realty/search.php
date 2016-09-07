@@ -37,67 +37,8 @@ use yii\helpers\ArrayHelper;
             </div>
         </div>
         
-        <div class="header-page">
-            <h1><?= Yii::t('app', 'top_mnu.realty') ?></h1>
-        </div>
-        <div class="row last_10_objects">
-            <?php
-                foreach($last_10_objects as $object) {
-            ?>
-            <div class="col-md-3 object-item">
-                <a href="<?= Url::to(['/realty/view/', 'id' => $object->id]) ?>">
-                    <img class="img-responsive" src="/uploads/objects/<?= $object->_getImage() ?>">
-                    <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
-                    <div class="flat_type"><?= $object->_getFlatTypeObject() ?></div>
-                    <div class="flat_location"><?= $object->location->location.', '.$object->locationraion->raion ?></div>
-                </a>
-            </div>
-            <?php } ?>
-            
-        </div>
-        <div class="hot-objects">
-            <h3><?= Yii::t('app', 'rlty.hot_objects') ?></h3>
-            <div id="myCarousel" class="carousel slide">
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    
-                    <div class="item active">
-                        <div class="row">
-                            <?php 
-                                $i = 1;
-                                foreach($hot_objects as $object) {
-
-                            ?>
-                            <div class="col-sm-3 object-item">
-                                <a href="<?= Url::to(['/realty/view/', 'id' => $object->id]) ?>">
-                                    <img class="img-responsive" src="/uploads/objects/<?= $object->_getImage() ?>">
-                                    <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
-                                    <div class="flat_type"><?= $object->_getFlatTypeObject() ?></div>
-                                    <div class="flat_location"><?= $object->location->location.', '.$object->locationraion->raion ?></div>
-                                </a>
-                            </div>
-
-                            <?php 
-                                if($i%4 == 0 && $i != 12) {
-                            ?>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="row">    
-                            <?php } $i++; } ?>
-                        </div>
-                        <!--/row-->
-                    </div>
-                    
-                </div>
-                <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-            </div>
-            <!--/myCarousel-->
-        </div>
         <div class="list-realty">
-            <h1><?= Yii::t('app', 'rlty.all_variants') ?></h1>
+            <h1><?= Yii::t('app', 'rlty.search_results') ?></h1>
             
             <ul class="nav nav-tabs filter-tabs">
               <li role="presentation" class="active"><a href="#table" role="tab" data-toggle="tab"><?= Yii::t('app', 'rlty.table_view') ?></a></li>

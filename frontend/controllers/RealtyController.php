@@ -174,4 +174,16 @@ class RealtyController extends Controller
         echo Json::encode(['output'=>'', 'selected'=>'']);
     }
     
+    public function actionSearch() {
+
+        $search = new SearchAds;
+        $dataProvider = $search->search(Yii::$app->request->post());
+        //print_r(Yii::$app->request->post()); die();
+
+        return $this->render('search', [
+            'search' => $search,
+            'listDataProvider' => $dataProvider,
+        ]);
+    }
+
 }
