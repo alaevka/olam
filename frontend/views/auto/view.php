@@ -1,0 +1,183 @@
+<?php
+	use yii\widgets\ActiveForm;
+	use yii\helpers\Html;
+	use yii\widgets\ListView;
+	use yii\helpers\Url;
+	$this->title = Yii::t('app', 'rlty.create_add');
+?>
+
+<div class="row">
+    <div class="col-md-12 central-content object-model" id="central-content">
+    	<div class="object-breadcrumbs"><?= $model->location->location; ?></div>
+        <h1>
+        	<?php if($model->auto_object_type == '1') {
+        		echo Yii::t('app', 'auto.selling').' '.$model->marka->name.' '.$model->modelauto->name.' '.Yii::t('app', 'auto.where').' '.$model->location->location;
+        	}
+        	?>
+        </h1>
+        <h3><?= Yii::t('app', 'auto.date_updated') ?>: <?= date("d.m.Y", $model->updated_at) ?>, <?= Yii::t('app', 'auto.date_created') ?>: <?= date("d.m.Y", $model->created_at) ?>, <?= Yii::t('app', 'auto.views_count') ?>: 0</h3>
+		
+		<div class="row">
+			<div class="col-md-6">
+		       	<div class="price"><?= number_format($model->price, 0, ',', ' ' ); ?> руб.</div>
+			    <h4><?= Yii::t('app', 'auto.details') ?></h4>
+			    <div>
+			    	<table class="table">
+						<tr>
+							<td><?= Yii::t('app', 'auto.engine') ?></td>
+							<td><?= $model->_getFuel() ?>, <?= $model->tech_value ?>, <?= $model->tech_horsepower ?> <?= Yii::t('app', 'auto.horsepower') ?></td>
+						</tr>
+						<tr>
+							<td><?= Yii::t('app', 'auto.transmission') ?></td>
+							<td><?= $model->_getTransmission() ?></td>
+						</tr>
+						<tr>
+							<td><?= Yii::t('app', 'auto.gear') ?></td>
+							<td><?= $model->_getGear() ?></td>
+						</tr>
+						<tr>
+							<td><?= Yii::t('app', 'auto.mileage') ?></td>
+							<td><?= $model->tech_mileage ?></td>
+						</tr>
+						<tr>
+							<td><?= Yii::t('app', 'auto.tech_helm') ?></td>
+							<td><?= $model->_getHelm() ?></td>
+						</tr>
+						<tr>
+							<td><?= Yii::t('app', 'auto.tech_vin') ?></td>
+							<td><?= $model->tech_vin ?></td>
+						</tr>
+			    	</table>
+			    </div>
+			    <h4><?= Yii::t('app', 'auto.additional_info') ?></h4>
+			    <div><?= $model->additional_info; ?></div>
+			    <h4><?= Yii::t('app', 'auto.contacts') ?></h4>
+			    <div class="contacts-block">
+			    	<div class="username"><?= $model->contacts_username ?></div>
+			    	<div class="phone"><?= $model->contacts_phone ?></div>
+			    	<div class="sendmail"><a href="mailto:<?= $model->contacts_email ?>"><?= Yii::t('app', 'auto.write_on_email') ?></a></div>
+			    </div>
+			</div>
+			<div class="col-md-6">
+				<div class="row">
+				    <div class="row">
+				        <div class="col-md-12" id="slider">
+			                <div class="col-md-12" id="carousel-bounding-box">
+			                    <div id="gallery-slides" class="carousel slide" data-ride="carousel">
+			                        <!-- main slider carousel items -->
+			                        <div class="carousel-inner" role="listbox">
+			                            <?php 
+			                            	$gallery = \common\models\Autogallery::find()->where(['auto_id' => $model->id])->all();
+			                            	if($gallery) {
+				        					$i = 0;
+				        					foreach($gallery as $item) {
+				        				?>
+			                            <div class="<?php if($i == 0) { ?>active<?php } ?> item" data-slide-number="<?= $i; ?>">
+			                                <img src="/uploads/auto/<?= $item->image_name; ?>" class="img-responsive">
+			                            </div>
+			                            <?php $i++; ?>
+			                            <?php } } else { ?>
+			                            <div class="active item" data-slide-number="0">
+											<img src="/uploads/auto/no_image.png" class="img-responsive">
+										</div>
+			                            <?php } ?>
+			                        </div>
+			                        <a class="carousel-control left" href="#gallery-slides" data-slide="prev">‹</a>
+			                        <a class="carousel-control right" href="#gallery-slides" data-slide="next">›</a>
+			                    </div>
+			                </div>
+				        </div>
+				    </div>
+				    <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
+	            		<!-- thumb navigation carousel items -->
+	        			<ul class="list-inline">
+	        				<?php 
+	        					$i = 0;
+	        					if($gallery) {
+	        					foreach($gallery as $item) {
+	        				?>
+		          			<li>
+		          				<a id="carousel-selector-<?= $i; ?>" class="selected">
+		            				<img width="60" src="/uploads/auto/cropped_<?= $item->image_name; ?>" class="img-responsive">
+		          				</a>
+		          			</li>
+		          			<?php $i++; ?>
+		          			<?php } } else { ?>
+                            <li>
+		          				<a id="carousel-selector-0" class="selected">
+		            				<img width="60" src="/uploads/auto/no_image.png" class="img-responsive">
+		          				</a>
+		          			</li>
+                            <?php } ?>
+			            </ul>
+        			</div>
+				    <?php
+				    	$script = '
+							$("#gallery-slides").carousel({
+							    interval: 4000
+							});
+							
+							$("[id^=carousel-selector-]").click( function(){
+							  var id_selector = $(this).attr("id");
+							  var id = id_selector.substr(id_selector.length -1);
+							  id = parseInt(id);
+							  $("#gallery-slides").carousel(id);
+							  $("[id^=carousel-selector-]").removeClass(\'selected\');
+							  $(this).addClass(\'selected\');
+							});
+
+							// when the carousel slides, auto update
+							$("#gallery-slides").on(\'slid\', function (e) {
+							  var id = $(".item.active").data("slide-number");
+							  id = parseInt(id);
+							  $("[id^=carousel-selector-]").removeClass(\'selected\');
+							  $("[id=carousel-selector-\'+id+\']").addClass(\'selected\');
+							});	
+
+				    	';
+				    	$this->registerJs($script, yii\web\View::POS_READY);
+				    ?>
+				</div>
+			</div>
+		</div>
+		<div class="similar">
+			<h4><?= Yii::t('app', 'auto.similar_offers') ?></h4>
+			<?php
+                $header = '
+                    <div class="col-md-12">
+                        <div class="row header-list">
+                            <div class="col-xs-1">'.Yii::t('app', 'rlty.date').'</div>
+                            <div class="col-xs-2">'.Yii::t('app', 'rlty.photo').'</div>
+                            <div class="col-xs-2">'.Yii::t('app', 'rlty.mark_model').'</div>
+                            <div class="col-xs-1">'.Yii::t('app', 'rlty.year').'</div>
+                            <div class="col-xs-2">'.Yii::t('app', 'rlty.engine').'</div>
+                            <div class="col-xs-2">'.Yii::t('app', 'rlty.mileage').'</div>
+                            <div class="col-xs-2">'.Yii::t('app', 'rlty.price_city').'</div>
+                        </div>
+                    </div>
+                ';
+            ?>
+            <?php \yii\widgets\Pjax::begin() ?>
+
+            <?= 
+                ListView::widget([
+                    'dataProvider' => $listDataProvider,
+                    'itemView' => '_object_item',
+                    'layout' => $header."{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
+                    'emptyText' => Yii::t('app', 'news.not_yet_been_added_to_this_category_news'),
+                    'emptyTextOptions' => ['class' => 'not_yet_been'],
+                    'pager' => [
+                        'options' => [
+                            'class' => 'pagination',
+                        ],
+                    ]
+                ]); 
+            ?>
+            <?php \yii\widgets\Pjax::end() ?>
+		</div>
+
+      	
+
+    </div>
+
+</div>

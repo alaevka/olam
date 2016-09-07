@@ -295,6 +295,28 @@ class Auto extends \yii\db\ActiveRecord
         }
     }
 
+    public function _getTransmission() {
+        switch($this->tech_transmission) {
+            case 1: return Yii::t('app', 'auto.transmission_auto'); break;
+            case 2: return Yii::t('app', 'auto.transmission_mechanic'); break;
+        }
+    }
+
+    public function _getHelm() {
+        switch($this->tech_helm) {
+            case 1: return Yii::t('app', 'auto.helm_left'); break;
+            case 2: return Yii::t('app', 'auto.helm_right'); break;
+        }
+    }
+
+    public function _getGear() {
+        switch($this->tech_gear) {
+            case 1: return Yii::t('app', 'auto.front_wheel_gear'); break;
+            case 2: return Yii::t('app', 'auto.back_wheel_gear'); break;
+            case 3: return Yii::t('app', 'auto.full_wheel_gear'); break;
+        }
+    }
+
     public function getWheelManufacturer() {
         return Arrayhelper::map(\common\models\WheelsManufacturer::find()->orderBy('title')->asArray()->all(), 'id', 'title');
     }
@@ -337,8 +359,10 @@ class Auto extends \yii\db\ActiveRecord
 
     public function _getImage() {
         $gallery = \common\models\Autogallery::find()->where(['auto_id' => $this->id])->limit(1)->one();
-        if($gallery) {
+        if($gallery && file_exists(Yii::getAlias('@frontend'). '/web/uploads/auto/'.$gallery->image_name)) {
             return $gallery->image_name;
+        } else {
+            return 'no_image.png';
         }
     }
 

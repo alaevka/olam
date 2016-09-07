@@ -9,6 +9,15 @@ use common\models\Auto;
 
 class SearchAuto extends Auto
 {
+    public $year_from;
+    public $year_to;
+    public $price_from;
+    public $price_to;
+    public $mileage_from;
+    public $mileage_to;
+    public $horsepower_from;
+    public $horsepower_to;
+
     public function rules()
     {
         return [

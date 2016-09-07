@@ -1062,7 +1062,7 @@ h3.comments {
 .realty-item {
   padding: 5px 0;
 }
-.list-realty {
+.list-realty, .list-auto {
   margin-top: 20px;
 }
 .realty-item {
@@ -1082,16 +1082,16 @@ h3.comments {
   color: #285d93;
   font-weight: 700;
 }
-#filter-form-1 select, #filter-form-1 input {
+#filter-form-1 select, #filter-form-1 input, #filter-form-2 select, #filter-form-2 input {
   border-radius: 0px;
   font-size: 12px;
 }
-#filter-form-1 label {
+#filter-form-1 label, #filter-form-2 label {
   font-size: 11px;
   font-weight: 400;
   color: #676161;
 }
-#filter-form-1 .radio label {
+#filter-form-1 .radio label, #filter-form-2 .radio label {
     padding-left: 0px;
 }
 #searchads-rooms_count {
@@ -1190,4 +1190,11 @@ h3.comments {
 }
 .flat_location_auto {
   font-size: 11px;
+}
+.reset-filter {
+  padding: 25px 0 0 20px;
+  text-align: left;
+}
+.for_tires_block {
+  display: none;
 }

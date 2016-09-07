@@ -132,6 +132,7 @@ return [
                 'news/<category>/<slug>' => 'news/view',
                 'realty' => 'realty/index',
                 'realty/search/<params>' => 'realty/search',
+                'auto/search/<params>' => 'auto/search',
                 'auto' => 'auto/index',
 
             ],

@@ -9,7 +9,8 @@ use frontend\components\LanguageWidget;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use yii\web\View;
-$currency_data = Yii::$app->CbRF->filter(['currency' => 'usd, eur'])->all();
+//$currency_data = Yii::$app->CbRF->filter(['currency' => 'usd, eur'])->all();
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -82,7 +83,7 @@ AppAsset::register($this);
 					<?php } ?>
 		        </div>
 		        <div class="pull-right currency-block">
-		        	<span class="symbol-dollar">$</span><a href="#"><?= $currency_data['USD']['value'] ?> <span class="caret"></span></a><span class="symbol-euro">&euro;</span><a href="#"><?= $currency_data['EUR']['value'] ?> <span class="caret"></span></a>
+		        	<span class="symbol-dollar">$</span><a href="#">64.3804<?php //echo $currency_data['USD']['value'] ?> <span class="caret"></span></a><span class="symbol-euro">&euro;</span><a href="#">72.4022<?php //echo $currency_data['EUR']['value'] ?> <span class="caret"></span></a>
 		        </div>
 		        <div class="pull-right social-block">
 		        	<a href=""><img src="/img/social_fb.png"></a>

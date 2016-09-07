@@ -11,6 +11,7 @@ use yii\helpers\Json;
 use common\models\Autogallery;
 use yii\filters\AccessControl;
 use common\models\Auto;
+use yii\data\ActiveDataProvider;
 
 class AutoController extends Controller
 {
@@ -37,17 +38,46 @@ class AutoController extends Controller
     {
         $last_10_objects = Auto::find()->where(['auto_object_type' => 1])->orderBy('created_at')->limit(8)->all();
 
-        // $dataProvider = new ActiveDataProvider([
-        //     'query' => Ads::find()->where(['auto_object_type' => 1])->orderBy('created_at DESC'),
-        //     'pagination' => [
-        //         'pageSize' => 10,
-        //     ],
-        // ]);
+        $search = new \common\models\SearchAuto;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Auto::find()->orderBy('created_at DESC'),
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
 
         return $this->render('index', [
             'last_10_objects' => $last_10_objects,
-            //'listDataProvider' => $dataProvider,
+            'listDataProvider' => $dataProvider,
+            'search' => $search
         ]);
+    }
+
+    public function actionView($id) {
+
+        $model = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider([
+            'query' => \common\models\Auto::find()->orderBy('created_at DESC')->limit(7),
+            'totalCount' => 7,
+            'pagination' => [
+                'pageSize' => 7,
+            ],
+        ]);
+
+        return $this->render('view', [
+            'model' => $model,
+            'listDataProvider' => $dataProvider,
+        ]);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = \common\models\Auto::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
     public function actionCreate()
@@ -171,6 +201,17 @@ class AutoController extends Controller
             }
         }
         echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+    public function actionSearch() {
+
+        $search = new \common\models\SearchAuto;
+        $dataProvider = $search->search(Yii::$app->request->post());
+
+        return $this->render('search', [
+            'search' => $search,
+            'listDataProvider' => $dataProvider,
+        ]);
     }
 
 }

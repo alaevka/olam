@@ -24,26 +24,8 @@ use yii\helpers\ArrayHelper;
                 <?= $this->render('_search_other', ['search' => $search]); ?>
             </div>
         </div>
-        <div class="header-page">
-            <h1><?= Yii::t('app', 'top_mnu.last_added_auto') ?></h1>
-        </div>
-        <div class="row last_10_objects">
-            <?php
-                foreach($last_10_objects as $object) {
-            ?>
-            <div class="col-md-3 object-item">
-                <a href="<?= Url::to(['/auto/view/', 'id' => $object->id]) ?>">
-                    <img class="img-responsive" src="/uploads/auto/<?= $object->_getImage() ?>">
-                    <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
-                    <div class="flat_type"><?=  $object->marka->name.'-'.$object->modelauto->name ?></div>
-                    <div class="flat_location"><?= $object->tech_construction_year ?>, <?= $object->_getFuel() ?>, <?= number_format($object->tech_mileage, 0, ',', ' ' ); ?> <?= Yii::t('app', 'auto.mileage_val') ?>, <?= $object->location->location ?></div>
-                </a>
-            </div>
-            <?php } ?>
-            
-        </div>
         <div class="list-auto">
-            <h1><?= Yii::t('app', 'auto.all_variants') ?></h1>
+            <h1><?= Yii::t('app', 'auto.search_results') ?></h1>
             <?php
                 $header = '
                     <div class="col-md-12">
