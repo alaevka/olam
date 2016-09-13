@@ -24,10 +24,18 @@ class SecurityController extends BaseSecurityController
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
             return $this->goBack();
         }
+       
 
-        return $this->renderAjax('login', [
-            'model'  => $model,
-            'module' => $this->module,
-        ]);
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('login', [
+                'model'  => $model,
+                'module' => $this->module,
+            ]);
+        } else {
+            return $this->render('login', [
+                'model'  => $model,
+                'module' => $this->module,
+            ]);
+        }
     }
 }

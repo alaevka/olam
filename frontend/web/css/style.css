@@ -932,13 +932,42 @@ h3.comments {
 .filter-content .tab-pane .row {
   padding: 10px 10px 0 10px;
 }
+.filter-content-work {
+  border-bottom: 10px solid #285d93;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #285d93;
+}
+.filter-content-work .tab-pane .row {
+  padding: 10px 10px 0 10px;
+}
 
+.nav-tabs.filter-tabs-work {
+    border-bottom: 1px solid #fff;
+}
 .nav-tabs.filter-tabs > .active > a, .nav-tabs.filter-tabs > .active > a:hover, .nav-tabs.filter-tabs > .active > a:focus {
     border-bottom: 5px solid #ebeaea;
     background-color: #ebeaea;
     color: #285d93;
     /*border-right: 5px solid #1f476f;*/
 }
+.nav-tabs.filter-tabs-work > .active > a, .nav-tabs.filter-tabs-work > .active > a:hover, .nav-tabs.filter-tabs-work > .active > a:focus {
+    border-bottom: 5px solid #285d93;
+    background-color: #285d93;
+    color: #ffffff;
+    /*border-right: 5px solid #1f476f;*/
+}
+.nav-tabs.filter-tabs-work > li > a {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+  text-transform: uppercase;
+  border-bottom: 5px solid #eee;
+  border-radius: 10px 10px 0 0;
+  background-color: #eee;
+}
+
 .nav-tabs.filter-tabs > li > a {
   font-size: 13px;
   font-weight: 700;
@@ -951,7 +980,7 @@ h3.comments {
 .nav-tabs.filter-tabs > li {
   background-color: #3e6d9c;
 }
-.nav-tabs.filter-tabs > li:first-child {
+.nav-tabs.filter-tabs > li:first-child, .nav-tabs.filter-tabs-work > li:first-child {
   border-top-left-radius: 11px;
 }
 .nav-tabs.filter-tabs > li:last-child {
@@ -961,6 +990,10 @@ h3.comments {
     background-color: #b0dd27;
     border: 1px solid #b0dd27;
     border-bottom: 5px solid #ffffff;
+}
+.nav-tabs.filter-tabs-work > li > a:hover {
+    background-color: #b0dd27;
+    border-bottom: 5px solid #b0dd27;
 }
 .add-position-button {
   padding: 10px;
@@ -982,7 +1015,7 @@ h3.comments {
 .create-separator {
   border-top: 2px solid #b0dd27;
 }
-#create-ads-form h3, #create-auto-form h3 {
+#create-ads-form h3, #create-auto-form h3, #create-resume-form h3 {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 40px;
@@ -992,11 +1025,11 @@ h3.comments {
   font-weight: 400;
   color: #bfbfbf;
 }
-#create-ads-form label, #create-auto-form label {
+#create-ads-form label, #create-auto-form label, #create-resume-form label {
   text-align: left;
   font-weight: 400;
 }
-#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select {
+#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select {
   border-radius: 0px;
 }
 .of_levels {
@@ -1197,4 +1230,33 @@ h3.comments {
 }
 .for_tires_block {
   display: none;
+}
+.works-header h3 {
+  padding: 0px;
+  margin: 0px;
+}
+.works-header h3 span, .works-header-block span {
+  font-size: 11px;
+  color: #bfbfbf;
+}
+.works-header-block a {
+  font-size: 12px;
+}
+.works-header-block-for-button {
+  padding: 5px 0;
+}
+.works-header {
+  border-bottom: 3px solid #285d93;
+  min-height: 80px;
+}
+.region-block a.dropdown-toggle {
+  border-bottom: 1px dashed #000000;
+  color: #000;
+  font-size: 24px;
+  cursor: pointer;
+}
+.region-block a.dropdown-toggle:hover {
+  border-bottom: 1px dashed #717574;
+  color: #717574;
+  text-decoration: none;
 }

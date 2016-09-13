@@ -134,6 +134,7 @@ return [
                 'realty/search/<params>' => 'realty/search',
                 'auto/search/<params>' => 'auto/search',
                 'auto' => 'auto/index',
+                '/work/create/resume' => 'work/createresume',
 
             ],
         ],

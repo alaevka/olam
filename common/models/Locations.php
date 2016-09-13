@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "locations".
@@ -42,6 +43,16 @@ class Locations extends \yii\db\ActiveRecord
             'location' => 'Населенный пункт',
             'district' => 'Регион',
         ];
+    }
+
+    public static function _getLocationsList() {
+        
+        $locations = self::find()->orderBy("location")->all();
+        $list = '';
+        foreach($locations as $id => $p) {
+           $list .= '<li><a href="'.Url::to(['/work/location/', 'id' => $p->id]).'">'.$p->location.'</a></li>';
+        }
+        return $list;
     }
 
     public static function _getLocations() {
