@@ -143,33 +143,61 @@ $active_url_str = Yii::$app->controller->id;
 						<span class="title">Авто</span>
 					</a>
 					<ul>
-						<li <?php if($active_url_str == 'auto') { ?>class="active"<?php } ?>>
+						<li>
 							<a href="<?= Url::to(['/auto/index']) ?>">
 								<span class="title">Список объектов</span>
 							</a>
 						</li>
-						<li <?php if($active_url_str == 'autodirectory') { ?>class="active"<?php } ?>>
+						<li>
 							<a href="<?= Url::to(['/autodirectory/wheelsmanufacturer']) ?>">
 								<span class="title">Справочник "Производители дисков"</span>
 							</a>
 						</li>
-						<li <?php if($active_url_str == 'autodirectory') { ?>class="active"<?php } ?>>
+						<li>
 							<a href="<?= Url::to(['/autodirectory/tiresmanufacturer']) ?>">
 								<span class="title">Справочник "Производители шин"</span>
 							</a>
 						</li>
-						<li <?php if($active_url_str == 'autodirectory') { ?>class="active"<?php } ?>>
+						<li>
 							<a href="<?= Url::to(['/autodirectory/autoothercategory']) ?>">
 								<span class="title">Справочник "Категории прочих"</span>
 							</a>
 						</li>
 					</ul>
 				</li>
-				<li>
+				<li <?php if($active_url_str == 'work' || $active_url_str == 'workdirectory') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-vcard"></i>
 						<span class="title">Работа</span>
 					</a>
+					<ul>
+						<li>
+							<a href="<?= Url::to(['/work/resume']) ?>">
+								<span class="title">Список резюме</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?= Url::to(['/work/vacancy']) ?>">
+								<span class="title">Список вакансий</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?= Url::to(['/workdirectory/workspheres']) ?>">
+								<span class="title">Сферы деятельности</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?= Url::to(['/workdirectory/workschedule']) ?>">
+								<span class="title">Графики работы</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?= Url::to(['/workdirectory/workemployment']) ?>">
+								<span class="title">Типы занятости</span>
+							</a>
+						</li>
+
+					</ul>
 				</li>
 				<li>
 					<a href="#">

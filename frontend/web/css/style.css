@@ -1029,7 +1029,7 @@ h3.comments {
   text-align: left;
   font-weight: 400;
 }
-#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select {
+#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select, #create-resume-form textarea {
   border-radius: 0px;
 }
 .of_levels {
@@ -1259,4 +1259,20 @@ h3.comments {
   border-bottom: 1px dashed #717574;
   color: #717574;
   text-decoration: none;
+}
+
+.filter-tabs-work > li > a, .filter-tabs-work > li.active > a, .filter-tabs-work > li.active > a:hover, .filter-tabs-work > li.active > a:focus {
+    
+    border: 1px solid transparent;
+   
+}
+.works-input-text {
+  padding: 5px 0 0 15px;
+  font-size: 12px;
+}
+.select2-container--krajee .select2-selection { 
+      border-radius: 0px;
+}
+.select2-selection__choice__remove {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

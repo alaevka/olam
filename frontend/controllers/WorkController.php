@@ -56,9 +56,11 @@ class WorkController extends Controller
     {
 
         $model = new \common\models\Resume;
+        $modelEducation = [new \common\models\ResumeEducation];
 
         return $this->render('createresume', [
-            'model' => $model
+            'model' => $model,
+            'modelEducation' => (empty($modelEducation)) ? [new \common\models\ResumeEducation] : $modelEducation
         ]);
     }
 }
