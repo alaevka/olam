@@ -63,13 +63,13 @@ $this->params['breadcrumbs'][] = $this->title;
 			                'template' => '{update} {delete}',
 			                'buttons' => [
 			                    'update' => function ($url, $model) {
-			                        return Html::a('<i class="glyphicon glyphicon-wrench"></i>', $url, [
+			                        return Html::a('<i class="glyphicon glyphicon-wrench"></i>', Url::to(['/work/updateresume/', 'id' => $model->id]), [
 			                            'class' => 'btn btn-xs btn-primary',
 			                            'title' => Yii::t('yii', 'Update'),
 			                        ]);
 			                    },
 			                    'delete' => function ($url, $model) {
-			                        return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url, [
+			                        return Html::a('<i class="glyphicon glyphicon-trash"></i>', Url::to(['/work/deleteresume/', 'id' => $model->id]), [
 			                            'class' => 'btn btn-xs btn-danger',
 			                            'data-method' => 'post',
 			                            'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?',

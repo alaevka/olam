@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 use yii\helpers\Url;
-$this->title = 'Изменение объекта';
-$this->params['breadcrumbs'][] = ['label' => 'Авто', 'url' => ['/auto/index']];
+$this->title = 'Изменение резюме';
+$this->params['breadcrumbs'][] = ['label' => 'Резюме', 'url' => ['/work/resume']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -19,10 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
 					<a href="#tab1" data-toggle="tab">Изменение объекта</a>
 				</li>
 				<li class="">
-					<a data-method="post" href="<?= Url::to(['/auto/delete/', 'id' => $model->id]) ?>"><i class="entypo-minus-squared"></i> Удалить объект</a>
+					<a data-method="post" href="<?= Url::to(['/work/deleteresume/', 'id' => $model->id]) ?>"><i class="entypo-minus-squared"></i> Удалить резюме</a>
 				</li>
 				<li class="">
-					<a href="<?= Url::to(['/auto/index']) ?>"><i class="entypo-menu"></i> Список автотранспортных стредств</a>
+					<a href="<?= Url::to(['/work/resume']) ?>"><i class="entypo-menu"></i> Список резюме</a>
 				</li>
 			</ul>
 		</div>
@@ -32,12 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="panel-body">
 		<div class="tab-content">
 			<div class="tab-pane active" id="tab1">
-				<?= $this->render('_form', [
+				<?= $this->render('_formresume', [
 			        'model' => $model,
-			        'locations' => $locations,
-	                'construction_years' => $construction_years,
-                    'colors_list' => $colors_list,
-                    'colors_data_attribute_list' => $colors_data_attribute_list,
+			        'modelEducation' => $modelEducation,
 			    ]) ?>							
 			</div>
 		</div>

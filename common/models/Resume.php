@@ -129,4 +129,12 @@ class Resume extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\common\models\Locations::className(), ['id' => 'personal_location_city']);
     }
+
+    public function _getExperienceTags() {
+        $tags_array = [];
+        foreach(\common\models\Resume::find(['experience_tags'])->all() as $tags_group) {
+            $tags_array = array_merge(unserialize($tags_group->experience_tags), $tags_array);
+        }
+        return $tags_array;
+    }
 }
