@@ -30,7 +30,8 @@ class ResumeEducation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['education_stage', 'education_stage_from', 'education_stage_to', 'education_stage_city', 'education_stage_form'], 'string'],
+            [['resume_id'], 'integer'],
+            [['education_stage', 'education_title', 'education_stage_from', 'education_stage_to', 'education_stage_city', 'education_stage_form'], 'string'],
         ];
     }
 
@@ -41,11 +42,12 @@ class ResumeEducation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'education_stage' => 'Education Stage',
-            'education_stage_from' => 'Education Stage From',
-            'education_stage_to' => 'Education Stage To',
-            'education_stage_city' => 'Education Stage City',
-            'education_stage_form' => 'Education Stage Form',
+            'education_stage' => Yii::t('app', 'works.education_stage'),
+            'education_stage_from' => Yii::t('app', 'works.education_stage_from'),
+            'education_stage_to' => Yii::t('app', 'works.education_stage_to'),
+            'education_stage_city' => Yii::t('app', 'works.education_stage_city'),
+            'education_stage_form' => Yii::t('app', 'works.education_stage_form'),
+            'education_title' => Yii::t('app', 'works.education_title'),
         ];
     }
 }

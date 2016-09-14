@@ -1276,3 +1276,12 @@ h3.comments {
 .select2-selection__choice__remove {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.add-inline-item-block {
+  text-align: center;
+}
+.inline_item_panel {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0px;
+}

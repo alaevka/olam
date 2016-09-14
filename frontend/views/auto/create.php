@@ -384,7 +384,9 @@
 
 		</div>
 
-
+		<div>
+			<?= Yii::t('app', 'auto.you_must_agree_with_terms') ?> <a href=""><?= Yii::t('app', 'user.terms_of_use_link_text') ?></a>
+		</div>
 
 		<div class="submit-button">
 			<?= Html::submitButton(Yii::t('app', 'auto.add_button'), ['class' => 'btn btn-blue']) ?>

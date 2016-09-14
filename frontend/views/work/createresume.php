@@ -196,7 +196,7 @@
 			<?= $form->field($model, 'experience_information')->textArea(['rows' => 7]) ?>
 
 			<?= $form->field($model, 'experience_tags', ['template' => "{label}\n<div class=\"col-sm-6\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>\n<div class=\"col-sm-offset-3 col-sm-6 help-block-currency\">".Yii::t('app', 'works.you_can_add_new_tags_by_pressing_enter_key')."</div>"])->widget(Select2::classname(), [
-			    'data' => $data,
+			    'data' => $model->experience_tags,
 			    'maintainOrder' => true,
 			    'options' => ['placeholder' => Yii::t('app', 'works.select_or_add_your_main_tags'), 'multiple' => true],
 			    'pluginOptions' => [
@@ -211,63 +211,150 @@
 			<hr class="create-separator">
 			<h3><?= Yii::t('app', 'works.affix_education') ?></h3>
 			
-			<?php DynamicFormWidget::begin([
-                'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
-                'widgetBody' => '.container-items', // required: css class selector
-                'widgetItem' => '.item', // required: css class
-                'limit' => 4, // the maximum times, an element can be cloned (default 999)
-                'min' => 1, // 0 or 1 (default 1)
-                'insertButton' => '.add-item', // css class
-                'deleteButton' => '.remove-item', // css class
-                'model' => $modelEducation[0],
-                'formId' => 'create-resume-form',
-                'formFields' => [
-                    'education_stage',
-                    'education_stage_from',
-                    'education_stage_to',
-                    'education_stage_city',
-                    'education_stage_form',
-                ],
-            ]); ?>
+				<?php DynamicFormWidget::begin([
+	                'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
+	                'widgetBody' => '.container-items', // required: css class selector
+	                'widgetItem' => '.item', // required: css class
+	                'limit' => 4, // the maximum times, an element can be cloned (default 999)
+	                'min' => 1, // 0 or 1 (default 1)
+	                'insertButton' => '.add-item', // css class
+	                'deleteButton' => '.remove-item', // css class
+	                'model' => $modelEducation[0],
+	                'formId' => 'create-resume-form',
+	                'formFields' => [
+	                    'education_stage',
+	                    'education_stage_from',
+	                    'education_stage_to',
+	                    'education_stage_city',
+	                    'education_stage_form',
+	                ],
+	            ]); ?>
 			
-		            <div class="container-items"><!-- widgetBody -->
-		            <?php foreach ($modelEducation as $i => $model_edu): ?>
-		                <div class="item panel panel-default"><!-- widgetItem -->
-		                    <div class="panel-heading">
-		                        <h3 class="panel-title pull-left">Address</h3>
-		                        <div class="pull-right">
-		                            <button type="button" class="remove-item btn btn-danger btn-xs"><i class="glyphicon glyphicon-minus"></i></button>
-		                        </div>
-		                        <div class="clearfix"></div>
-		                    </div>
-		                    <div class="panel-body">
-		                        <?php
-		                            // necessary for update action.
-		                            if (! $model_edu->isNewRecord) {
-		                                echo Html::activeHiddenInput($model_edu, "[{$i}]id");
-		                            }
-		                        ?>
-		                        <?= $form->field($model_edu, "[{$i}]education_stage")->textInput(['maxlength' => true]) ?>
-		                       
-		                    </div>
-		                </div>
-		            <?php endforeach; ?>
-		            </div>
-		        
-			<button type="button" class="add-item btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i> Add</button>
+	            <div class="container-items"><!-- widgetBody -->
+	            <?php foreach ($modelEducation as $i => $model_edu): ?>
+	                <div class="item panel inline_item_panel"><!-- widgetItem -->
+	                    <div class="panel-heading">
+	                        <h3 class="panel-title pull-left"><?= Yii::t('app', 'works.education_place') ?></h3>
+	                        <div class="pull-right">
+	                            <a href="#" class="remove-item"><i class="fa fa-remove"></i></i></a>
+	                        </div>
+	                        <div class="clearfix"></div>
+	                    </div>
+	                    <div class="panel-body">
+	                        <?php
+	                            // necessary for update action.
+	                            if (! $model_edu->isNewRecord) {
+	                                echo Html::activeHiddenInput($model_edu, "[{$i}]id");
+	                            }
+	                        ?>
+	                        
+	                        <?= $form->field($model_edu, "[{$i}]education_title")->textInput() ?>
 
-			<?php DynamicFormWidget::end(); ?>
+	                        <?= $form->field($model_edu, "[{$i}]education_stage")->textInput() ?>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?= Yii::t('app', 'works.period_of_study') ?></label>
+								<div class="col-sm-8">
+									<div class="row">
+									<?= $form->field($model_edu, "[{$i}]education_stage_from", ['template' => '{label}{input}', 'labelOptions' => ['class' => 'area_label'], 'options' => ['class' => 'left-form-group col-xs-4']])->textInput(['placeholder' => Yii::t('app', 'works.education_stage_from'), 'class' => 'form-control col-lg-3']) ?>
+									<?= $form->field($model_edu, "[{$i}]education_stage_to", ['template' => '{label}{input}', 'labelOptions' => ['class' => 'area_label'], 'options' => ['class' => 'left-form-group col-xs-4']])->textInput(['placeholder' => Yii::t('app', 'works.education_stage_to'), 'class' => 'form-control col-lg-3']) ?>
+									</div>
+								</div>
+							</div>
+
+							<?= $form->field($model_edu, "[{$i}]education_stage_city")->textInput() ?>
+
+							<?= $form->field($model_edu, "[{$i}]education_stage_form")->textInput() ?>
+							
+	                    </div>
+	                </div>
+	            <?php endforeach; ?>
+	            </div>
+	        
+				<div class="add-inline-item-block"><a href="#" class="add-item"><i class="fa fa-plus"></i> <?= Yii::t('app', 'works.add_another_place_of_learning') ?></a></div>
+
+				<?php DynamicFormWidget::end(); ?>
 		</div>
 
 		<div id="affix_suggestions_city">
 			<hr class="create-separator">
 			<h3><?= Yii::t('app', 'works.affix_suggestions_city') ?></h3>
 
+			<?= $form->field($model, 'suggestions_city')->textInput() ?>	
+
 		</div>
 
 		<div id="affix_additional_information">
 			<hr class="create-separator">
 			<h3><?= Yii::t('app', 'works.affix_additional_information') ?></h3>
+			
+			<?= $form->field($model, 'business_trip', ['template' => '{label}<div class="col-sm-9">{input}</div>'])->radioList(
+				['1' => Yii::t('app', 'works.business_trip_yes'), '2' => Yii::t('app', 'works.business_trip_no')],
+				[
+                    'item' => function($index, $label, $name, $checked, $value) {
+
+                        $return = '<div class="radio radio-primary radio-inline">';
+                        if($checked) {
+                        	$return .= '<input checked id="business_trip'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        } else {
+                        	$return .= '<input id="business_trip'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        }
+                        $return .= '<label for="business_trip'.$index.'">'. ucwords($label) .'</label>';
+                        $return .= '</div>';
+
+                        return $return;
+                    }
+                ]
+
+			) ?>
+
+			<?= $form->field($model, 'languages', ['template' => "{label}\n<div class=\"col-sm-6\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>\n<div class=\"col-sm-offset-3 col-sm-6 help-block-currency\">".Yii::t('app', 'works.you_can_add_more_languages_by_pressing_enter_key')."</div>"])->widget(Select2::classname(), [
+			    'data' => $data,
+			    'maintainOrder' => true,
+			    'options' => ['placeholder' => Yii::t('app', 'works.select_or_add_your_language'), 'multiple' => true],
+			    'pluginOptions' => [
+			        'tags' => true,
+			        'maximumInputLength' => 100
+			    ],
+			]); ?>
+
+			<?= $form->field($model, 'drivers_license')->checkboxList(
+				['1' => Yii::t('app', 'A'), '2' => Yii::t('app', 'B'), '3' => Yii::t('app', 'C'), '4' => Yii::t('app', 'D'), '5' => Yii::t('app', 'E')],
+				[
+                    'item' => function($index, $label, $name, $checked, $value) {
+
+                        $return = '<div class="checkbox checkbox-primary checkbox-inline">';
+                        $return .= '<input id="special_notes'.$index.'" type="checkbox" class="styled" name="' . $name . '" value="' . $value . '">';
+                        $return .= '<label for="special_notes'.$index.'">'. ucwords($label) .'</label>';
+                        $return .= '</div>';
+
+                        return $return;
+                    }
+                ]
+
+			) ?>
+
+			<?= $form->field($model, 'smoking', ['template' => '{label}<div class="col-sm-9">{input}</div>'])->radioList(
+				['1' => Yii::t('app', 'works.smoking_yes'), '2' => Yii::t('app', 'works.smoking_no')],
+				[
+                    'item' => function($index, $label, $name, $checked, $value) {
+
+                        $return = '<div class="radio radio-primary radio-inline">';
+                        if($checked) {
+                        	$return .= '<input checked id="smoking'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        } else {
+                        	$return .= '<input id="smoking'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        }
+                        $return .= '<label for="smoking'.$index.'">'. ucwords($label) .'</label>';
+                        $return .= '</div>';
+
+                        return $return;
+                    }
+                ]
+
+			) ?>
+
+			<?= $form->field($model, 'personal_qualities')->textArea(['rows' => 7]) ?>
 
 		</div>
 
@@ -279,6 +366,10 @@
 
 			<?= $form->field($model, 'contacts_email')->textInput() ?>
 
+		</div>
+
+		<div>
+			<?= Yii::t('app', 'works.you_must_agree_with_terms') ?> <a href=""><?= Yii::t('app', 'user.terms_of_use_link_text') ?></a>
 		</div>
 
 		<div class="submit-button">

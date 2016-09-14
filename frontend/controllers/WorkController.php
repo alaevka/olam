@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\helpers\Json;
 use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
+use yii\web\UploadedFile;
 
 class WorkController extends Controller
 {
@@ -57,6 +58,76 @@ class WorkController extends Controller
 
         $model = new \common\models\Resume;
         $modelEducation = [new \common\models\ResumeEducation];
+
+        if(!Yii::$app->user->isGuest) {
+            $model->contacts_email = Yii::$app->user->identity->email;
+            $model->user_id = Yii::$app->user->identity->id;
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $image = UploadedFile::getInstance($model, 'user_photo');
+            if(!empty($image->name)) {
+                $model->user_photo = $image->name;
+                $ext = end((explode(".", $image->name)));
+                $model->user_photo = Yii::$app->security->generateRandomString().'.'.$ext;
+            }
+
+            $modelEducation = \common\models\Model::createMultiple(\common\models\ResumeEducation::classname());
+            \common\models\Model::loadMultiple($modelEducation, Yii::$app->request->post());
+
+            //$validate = Model::validateMultiple($modelEducation) && $model->validate();
+
+
+
+            if($model->is_view_birthday[0] == 1) {
+                $model->is_view_birthday = 1;
+            }
+
+
+            if(!empty($model->experience_tags)) {
+                $model->experience_tags = serialize($model->experience_tags);
+            }
+            if(!empty($model->languages)) {
+                $model->languages = serialize($model->languages);
+            }
+            if(!empty($model->drivers_license)) {
+                $model->drivers_license = serialize($model->drivers_license);
+            }
+
+            if(!empty($model->new_location_raion)) {
+                //create new raion
+                $location_raion = new \common\models\LocationsRaion;
+                $location_raion->raion = $model->new_location_raion;
+                $location_raion->location_id = $model->personal_location_city;
+                $location_raion->save();
+                $model->personal_location_raion = $location_raion->id;
+            }
+
+
+
+
+            if($model->validate() && \common\models\Model::validateMultiple($modelEducation)) {
+
+                if($model->save()) {
+                    
+                    if(!empty($modelEducation[0]['education_title'])) {
+                        foreach ($modelEducation as $model_edu) {
+                            $model_edu->resume_id = $model->id;
+                            $model_edu->save(false);
+                        }
+                    }
+
+                    if(!empty($model->user_photo)) {
+                        $image->saveAs('uploads/works/' . $model->user_photo);
+                    }
+
+                    \Yii::$app->getSession()->setFlash('flash_message', Yii::t('app', 'works.your_resume_was_added'));
+                    return $this->redirect(['index']);
+
+                }
+            }
+        }
 
         return $this->render('createresume', [
             'model' => $model,
