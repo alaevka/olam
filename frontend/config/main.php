@@ -135,6 +135,12 @@ return [
                 'auto/search/<params>' => 'auto/search',
                 'auto' => 'auto/index',
                 '/work/create/resume' => 'work/createresume',
+                '/work/search/resume' => 'work/searchresume',
+                '/work/view/resume/<id:\d+>' => 'work/viewresume',
+                '/work/create/vacancy' => 'work/createvacancy',
+                '/work/view/companies' => 'work/companies',
+                '/work/create/company' => 'work/createcompany',
+                '/work/delete/company/<id:\d+>' => 'work/deletecompany',
 
             ],
         ],

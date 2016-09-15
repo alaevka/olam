@@ -176,9 +176,15 @@ $active_url_str = Yii::$app->controller->id;
 								<span class="title">Список резюме</span>
 							</a>
 						</li>
+
 						<li>
 							<a href="<?= Url::to(['/work/vacancy']) ?>">
 								<span class="title">Список вакансий</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?= Url::to(['/work/companies']) ?>">
+								<span class="title">Список компаний</span>
 							</a>
 						</li>
 						<li>

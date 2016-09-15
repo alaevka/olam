@@ -1015,7 +1015,7 @@ h3.comments {
 .create-separator {
   border-top: 2px solid #b0dd27;
 }
-#create-ads-form h3, #create-auto-form h3, #create-resume-form h3 {
+#create-ads-form h3, #create-auto-form h3, #create-resume-form h3, #create-company-form h3, #create-vacancy-form h3 {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 40px;
@@ -1025,11 +1025,11 @@ h3.comments {
   font-weight: 400;
   color: #bfbfbf;
 }
-#create-ads-form label, #create-auto-form label, #create-resume-form label {
+#create-ads-form label, #create-auto-form label, #create-resume-form label, #create-company-form label, #create-vacancy-form label {
   text-align: left;
   font-weight: 400;
 }
-#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select, #create-resume-form textarea {
+#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select, #create-resume-form textarea, #create-company-form input, #create-company-form select, #create-company-form textarea, #create-vacancy-form input, #create-vacancy-form select, #create-vacancy-form textarea {
   border-radius: 0px;
 }
 .of_levels {
@@ -1106,6 +1106,12 @@ h3.comments {
   background-color: #d4dfe9;
 }
 .realty-item:hover {
+  background-color: #daeec2;
+}
+.list-resume .odd {
+  background-color: #d4dfe9;
+}
+.resume-item:hover {
   background-color: #daeec2;
 }
 .header-list {
@@ -1246,8 +1252,7 @@ h3.comments {
   padding: 5px 0;
 }
 .works-header {
-  border-bottom: 3px solid #285d93;
-  min-height: 80px;
+  min-height: 100px;
 }
 .region-block a.dropdown-toggle {
   border-bottom: 1px dashed #000000;
@@ -1284,4 +1289,80 @@ h3.comments {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   border-radius: 0px;
+}
+.left-corner-filter {
+  border-top-left-radius: 10px;
+}
+#filter-form-resume input, #filter-form-resume select {
+  border-radius: 0px;
+}
+#filter-form-resume .tab-pane {
+  padding: 20px 20px 10px 30px;
+}
+.detailed-search {
+  margin-top: 20px;
+}
+#filter-form-resume label {
+  font-weight: normal;
+  text-align: left;
+}
+.work-search-button-block {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.resume-date-created {
+  font-size: 11px;
+  color: #818181;
+  padding-top: 7px;
+}
+.resume-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+.resume-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333333;
+}
+.resume-item {
+  padding: 20px;
+}
+.experience_information {
+  margin-top: 20px;
+}
+.resume-detail-sphere {
+  font-size: 24px;
+  font-weight: 500;
+}
+.resume-detail-years {
+  margin-top: 15px;
+  font-size: 18px;
+}
+.resume-detail-location {
+  font-size: 18px;
+}
+.resume-detail-contacts-info {
+  margin-top: 15px;
+}
+.resume-detail-price {
+  margin-top: 15px;
+  color: #333333;
+  font-size: 20px;
+  font-weight: 500;
+}
+.resume-detail-info {
+  margin-top: 20px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+.company_item {
+  position: relative;
+}
+.delete-company {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+.auth-link {
+  float: left;
 }

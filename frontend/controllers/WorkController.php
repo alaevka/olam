@@ -20,11 +20,11 @@ class WorkController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['createresume'],
+                'only' => ['createresume', 'createvacancy', 'createcompany'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['createresume'],
+                        'actions' => ['createresume', 'createvacancy', 'createcompany'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -134,4 +134,143 @@ class WorkController extends Controller
             'modelEducation' => (empty($modelEducation)) ? [new \common\models\ResumeEducation] : $modelEducation
         ]);
     }
+
+
+
+    public function actionSearchresume() {
+
+        $search = new \common\models\SearchResume;
+        $dataProvider = $search->search(Yii::$app->request->post());
+
+        return $this->render('searchresume', [
+            'search' => $search,
+            'listDataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionViewresume($id) {
+        $model = $this->findModelResume($id);
+
+        return $this->render('viewresume', [
+            'model' => $model,
+        ]);
+    }
+
+    protected function findModelResume($id)
+    {
+        if (($model = \common\models\Resume::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionCreatevacancy()
+    {
+        $user_companies = \common\models\Companies::find()->where(['user_id' => Yii::$app->user->id])->all();
+        if($user_companies) {
+            $model = new \common\models\Vacancy;
+
+            if ($model->load(Yii::$app->request->post())) {
+
+                if(!empty($model->suggestion_employment)) {
+                    $model->suggestion_employment = serialize($model->suggestion_employment);
+                }
+
+                if($model->validate()) {
+
+                    if($model->save()) {
+                        
+                        \Yii::$app->getSession()->setFlash('flash_message', Yii::t('app', 'works.your_vacancy_was_added'));
+                        return $this->redirect(['index']);
+
+                    }
+                }
+            }
+
+            return $this->render('createvacancy', [
+                'model' => $model,
+            ]);
+        } else {
+            \Yii::$app->getSession()->setFlash('flash_message', Yii::t('app', 'works.your_must_add_company_before_post_vacancy'));
+            return $this->redirect(['createcompany']);
+        }
+
+    }
+
+    public function actionCreatecompany() {
+        $model = new \common\models\Companies;
+
+        if(!Yii::$app->user->isGuest) {
+            $model->user_id = Yii::$app->user->identity->id;
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $image = UploadedFile::getInstance($model, 'company_logo');
+            if(!empty($image->name)) {
+                $model->company_logo = $image->name;
+                $ext = end((explode(".", $image->name)));
+                $model->company_logo = Yii::$app->security->generateRandomString().'.'.$ext;
+            }
+
+            if(!empty($model->company_spheres)) {
+                $model->company_spheres = serialize($model->company_spheres);
+            }
+
+            if($model->validate()) {
+
+                if($model->save()) {
+                    
+                    if(!empty($model->company_logo)) {
+                        $image->saveAs('uploads/companies/' . $model->company_logo);
+                    }
+
+                    \Yii::$app->getSession()->setFlash('flash_message', Yii::t('app', 'works.your_company_was_added'));
+                    return $this->redirect(['companies']);
+                }
+            
+            }
+
+
+
+        }
+
+
+        return $this->render('createcompany', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionCompanies()
+    {
+        $search = new \common\models\SearchCompanies;
+        $dataProvider = $search->search(Yii::$app->request->post());
+
+        return $this->render('companies', [
+            'user_companies' => $user_companies,
+            'listDataProvider' => $dataProvider,
+        ]);
+
+    }
+
+    public function actionDeletecompany($id)
+    {
+        $model = $this->findModelCompany($id);    
+        $model->delete();
+        \Yii::$app->getSession()->setFlash('flash_message', Yii::t('app', 'works.your_company_removed'));
+        return $this->redirect(['companies']);
+    }
+
+
+    protected function findModelCompany($id)
+    {
+        if (($model = \common\models\Companies::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+   
 }

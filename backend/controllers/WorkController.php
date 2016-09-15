@@ -37,6 +37,61 @@ class WorkController extends Controller
         ]);
     }
 
+    public function actionCompanies()
+    {
+        $searchModel = new \common\models\SearchCompanies;
+        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+        return $this->render('companies', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
+    }
+
+    public function actionCreatecompany() {
+        $model = new \common\models\Companies;
+
+        if(!Yii::$app->user->isGuest) {
+            $model->user_id = Yii::$app->user->identity->id;
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $image = UploadedFile::getInstance($model, 'company_logo');
+            if(!empty($image->name)) {
+                $model->company_logo = $image->name;
+                $ext = end((explode(".", $image->name)));
+                $model->company_logo = Yii::$app->security->generateRandomString().'.'.$ext;
+            }
+
+            if(!empty($model->company_spheres)) {
+                $model->company_spheres = serialize($model->company_spheres);
+            }
+
+            if($model->validate()) {
+
+                if($model->save()) {
+                    
+                    if(!empty($model->company_logo)) {
+                        $image->saveAs(Yii::getAlias('@frontend'). '/web/uploads/companies/' . $model->company_logo);
+                    }
+
+                    \Yii::$app->getSession()->setFlash('admin_flash_message', Yii::t('app', 'works.your_company_was_added'));
+                    return $this->redirect(['companies']);
+                }
+            
+            }
+
+
+
+        }
+
+
+        return $this->render('createcompany', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionCreateresume()
     {
 
@@ -106,7 +161,7 @@ class WorkController extends Controller
                         $image->saveAs(Yii::getAlias('@frontend'). '/web/uploads/works/' . $model->user_photo);
                     }
 
-                    \Yii::$app->getSession()->setFlash('flash_message', Yii::t('app', 'works.your_resume_was_added'));
+                    \Yii::$app->getSession()->setFlash('admin_flash_message', Yii::t('app', 'works.your_resume_was_added'));
                     return $this->redirect(['resume']);
 
                 }
@@ -195,7 +250,7 @@ class WorkController extends Controller
                         $image->saveAs(Yii::getAlias('@frontend'). '/web/uploads/works/' . $model->user_photo);
                     }
 
-                    \Yii::$app->getSession()->setFlash('flash_message', Yii::t('app', 'works.your_resume_was_added'));
+                    \Yii::$app->getSession()->setFlash('admin_flash_message', 'Позиция добавлена');
                     return $this->redirect(['resume']);
 
                 }
@@ -205,6 +260,48 @@ class WorkController extends Controller
         return $this->render('updateresume', [
             'model' => $model,
             'modelEducation' => (empty($modelEducation)) ? [new \common\models\ResumeEducation] : $modelEducation
+        ]);
+
+    }
+
+    public function actionUpdatecompany($id)
+    {
+        $model = $this->findModelCompany($id);
+        $model->company_spheres != '' ? $model->company_spheres = unserialize($model->company_spheres) : $model->company_spheres = [];
+        $company_logo_old = $model->company_logo;
+        if ($model->load(Yii::$app->request->post())) {
+
+            $image = UploadedFile::getInstance($model, 'company_logo');
+            if(!empty($image->name)) {
+                $model->company_logo = $image->name;
+                $ext = end((explode(".", $image->name)));
+                $model->company_logo = Yii::$app->security->generateRandomString().'.'.$ext;
+            } else {
+                $model->company_logo = $company_logo_old;
+            }
+
+            if(!empty($model->company_spheres)) {
+                $model->company_spheres = serialize($model->company_spheres);
+            }
+
+
+            if($model->validate()) {
+
+                if($model->save()) {
+
+                    if($image) {
+                        $image->saveAs(Yii::getAlias('@frontend'). '/web/uploads/companies/' . $model->company_logo);
+                    }
+
+                    \Yii::$app->getSession()->setFlash('admin_flash_message', 'Позиция изменена');
+                    return $this->redirect(['companies']);
+
+                }
+            }
+        }
+
+        return $this->render('updatecompany', [
+            'model' => $model,
         ]);
 
     }
@@ -227,6 +324,24 @@ class WorkController extends Controller
         }
     }
 
+    public function actionDeletecompany($id)
+    {
+        $model = $this->findModelCompany($id);    
+        $model->delete();
+        \Yii::$app->getSession()->setFlash('admin_flash_message', 'Позиция удалена');
+        return $this->redirect(['companies']);
+    }
+
+
+    protected function findModelCompany($id)
+    {
+        if (($model = \common\models\Companies::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function actionDeleteimageresume()
     {
         if ($post = Yii::$app->request->post()) {
@@ -238,41 +353,97 @@ class WorkController extends Controller
         }
     }
 
+    public function actionDeleteimagecompany()
+    {
+        if ($post = Yii::$app->request->post()) {
+            $resume = \common\models\Companies::findOne($post['key']);
+            $resume->company_logo = '';
+            $resume->save();
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return Json::encode([]);
+        }
+    }
+
     public function actionFakerresume() {
         $faker = Faker\Factory::create();
         $object = 1;
         for ($i=0; $i < 100; $i++) { 
             $r = new \common\models\Resume;
-            $r->suggestion_position = '';
-            $r->suggestion_sphere = '';
-            $r->suggestion_pay = '';
-            $r->suggestion_schedule = '';
-            $r->suggestion_employment = '';
+            $r->suggestion_position = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $r->suggestion_sphere = rand(1,8);
+            $r->suggestion_pay = $faker->numberBetween($min = 10000, $max = 100000) ;
+            $r->suggestion_schedule = rand(2,3);
+            $r->suggestion_employment = rand(2,4);
             $r->user_photo = 'tETeHlscEtKQ-OPfmiL0wVsk5aKEx5pu.jpg';
-            $r->personal_last_name = '';
-            $r->personal_first_name = '';
-            $r->personal_sur_name = '';
-            $r->personal_birth_day = '';
-            $r->personal_birth_month = '';
-            $r->personal_birth_year = '';
-            $r->is_view_birthday = '';
-            $r->personal_gender = '';
-            $r->personal_marital_status = '';
-            $r->personal_minors = '';
-            $r->personal_location_city = '';
-            $r->personal_location_raion = '';
-            $r->experience_years = '';
-            $r->experience_information = '';
-            $r->experience_tags = '';
-            $r->contacts_email = '';
-            $r->contacts_phone = '';
-            $r->user_id = '';
-            $r->suggestions_city = '';
-            $r->business_trip = '';
-            $r->languages = '';
-            $r->drivers_license = '';
-            $r->smoking = '';
-            $r->personal_qualities = '';
+            $r->personal_last_name = $faker->lastName;
+            $r->personal_first_name = $faker->firstName;
+            $r->personal_sur_name = $faker->firstName;
+            $r->personal_birth_day = $faker->dayOfMonth();
+            $r->personal_birth_month = $faker->month();
+            $r->personal_birth_year = $faker->year();
+            $r->is_view_birthday = rand(0,1);
+            $r->personal_gender = rand(1,2);
+            $r->personal_marital_status = rand(1,2);
+            $r->personal_minors = rand(1,2);
+            $r->personal_location_city = rand(1,5);
+            $r->personal_location_raion = 1;
+            $r->experience_years = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $r->experience_information = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $r->experience_tags = serialize([$faker->word,$faker->word,$faker->word,$faker->word]);
+            $r->contacts_email = $faker->email;
+            $r->contacts_phone = $faker->e164PhoneNumber;
+            $r->user_id = 2;
+            $r->suggestions_city = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $r->business_trip = rand(1,2);
+            $r->languages = serialize([$faker->word,$faker->word,$faker->word,$faker->word]);
+            $r->drivers_license = serialize([1,3,5]);
+            $r->smoking = rand(1,2);
+            $r->personal_qualities = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            if($r->save()) {
+                $b = new \common\models\ResumeEducation;
+                $b->education_title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+                $b->education_stage = $faker->sentence($nbWords = 6, $variableNbWords = true);
+                $b->education_stage_from = $faker->year;
+                $b->education_stage_to = $faker->year;
+                $b->education_stage_city = $faker->city;
+                $b->education_stage_form = $faker->word;
+                $b->resume_id = $r->id;
+                $b->save();
+            } else {
+                print_r($r->errors);
+            }
+        }
+    }
+
+
+    public function actionFakercompany() {
+        $faker = Faker\Factory::create();
+        $object = 1;
+        for ($i=0; $i < 20; $i++) { 
+            $r = new \common\models\Companies;
+            $r->company_type = rand(1,2);
+            $r->user_fio = $faker->name;
+            $r->user_position = $faker->jobTitle;
+            $r->phones = $faker->e164PhoneNumber.', '.$faker->e164PhoneNumber;
+            $r->company_name = $faker->company;
+            $r->company_legal_name = $faker->catchPhrase;
+            $r->company_description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $r->company_spheres = serialize([1,3,5]);
+            $r->company_size = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $r->company_site = $faker->domainName;
+            $r->company_email = $faker->email;
+            $r->company_logo = 'Rva1SSu7xDTlwwju523MEmgZKd_J97lJ.jpg';
+            $r->contact_city = $faker->city;
+            $r->contact_address_street = $faker->streetName;
+            $r->contact_address_house = $faker->buildingNumber;
+            $r->contact_address_additional = $faker->secondaryAddress;
+            $r->contact_phones = $faker->e164PhoneNumber.', '.$faker->e164PhoneNumber;;
+            $r->user_id = 2;
+            if($r->save()) {
+
+            } else {
+                print_r($r->errors);
+            }
         }
     }
 

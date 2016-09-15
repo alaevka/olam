@@ -16,7 +16,7 @@ class m160914_081444_create_resume_table extends Migration
             'id' => Schema::TYPE_PK,
             'suggestion_position' => Schema::TYPE_TEXT,
             'suggestion_sphere' => Schema::TYPE_INTEGER,
-            'suggestion_pay' => Schema::TYPE_STRING,
+            'suggestion_pay' => Schema::TYPE_FLOAT,
             'suggestion_schedule' => Schema::TYPE_INTEGER,
             'suggestion_employment' => Schema::TYPE_INTEGER,
             'user_photo' => Schema::TYPE_STRING,

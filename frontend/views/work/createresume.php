@@ -13,6 +13,7 @@
 
 <div class="row">
     <div class="col-md-12 central-content" id="central-content">
+    	<?= $this->render('/work/_works_header'); ?>
         <h1><?= Yii::t('app', 'works.create_resume') ?></h1>
     </div>
 	
