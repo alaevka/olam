@@ -36,8 +36,28 @@ class WorkController extends Controller
     public function actionIndex()
     {
 
+        $search_vacancy = new \common\models\SearchVacancy;
+        $search_resume = new \common\models\SearchResume;
+
+        $listDataProviderVacancy = new ActiveDataProvider([
+            'query' => \common\models\Vacancy::find()->orderBy('created_at DESC'),
+            'pagination' => [
+                'pageSize' => 9,
+            ],
+        ]);
+
+        $listDataProviderResume = new ActiveDataProvider([
+            'query' => \common\models\Resume::find()->orderBy('created_at DESC'),
+            'pagination' => [
+                'pageSize' => 3,
+            ],
+        ]);
+
         return $this->render('index', [
-            
+            'search_vacancy' => $search_vacancy,
+            'search_resume' => $search_resume,
+            'listDataProviderVacancy' => $listDataProviderVacancy,
+            'listDataProviderResume' => $listDataProviderResume
         ]);
     }
 
@@ -150,7 +170,14 @@ class WorkController extends Controller
 
     public function actionSearchvacancy() {
 
+
+
         $search = new \common\models\SearchVacancy;
+
+        if(Yii::$app->request->get('suggestion_sphere')) {
+            $search->suggestion_sphere = Yii::$app->request->get('suggestion_sphere');
+        }
+
         $dataProvider = $search->search(Yii::$app->request->post());
 
         return $this->render('searchvacancy', [

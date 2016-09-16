@@ -1372,3 +1372,42 @@ h3.comments {
 .vacancy_contacts {
   margin-bottom: 40px;
 }
+.with-padding {
+  padding: 20px 20px 0px 30px;
+}
+.suggestion_spheres_list {
+  margin-top: 20px;
+}
+.suggestion_spheres_list ul {
+  list-style: none;
+}
+.suggestion_spheres_list ul li {
+  padding: 10px 0;
+}
+.suggestion_spheres_list ul li a span {
+  color: #bfbfbf;
+}
+.vacancy_index {
+  padding: 10px;
+ 
+}
+.vacancy_index_inner {
+  border: 1px solid #bfbfbf;
+  min-height: 100px;
+  position: relative;
+  padding: 5px;
+}
+.vacancy_index_inner_company {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: #bfbfbf;
+}
+.vacancy_index_inner_title {
+  font-weight: 700;
+}
+.vacancy_index_inner_price {
+  color: #b0dd27;
+  font-weight: 700;
+  font-size: 16px;
+}

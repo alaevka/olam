@@ -40,4 +40,8 @@ class WorkSpheres extends \yii\db\ActiveRecord
             'name' => 'Название сферы деятельности',
         ];
     }
+
+    public function _getCountVacancy() {
+        return \common\models\Companies::find()->where(['like', 'company_spheres', $this->id])->count();
+    }
 }
