@@ -33,7 +33,7 @@
 		<div id="affix_company_information">
 			<hr class="create-separator">
 			<h3><?= Yii::t('app', 'works.affix_company_information') ?></h3>
-			<?= $form->field($model, 'company_id')->dropDownList(Arrayhelper::map(\common\models\Companies::find()->orderBy('company_name')->asArray()->all(), 'id', 'company_name'), ['id'=>'company_id', 'prompt' => Yii::t('app', 'works.select_company')]); ?>
+			<?= $form->field($model, 'company_id')->dropDownList(Arrayhelper::map(\common\models\Companies::find()->where(['user_id' => Yii::$app->user->id])->orderBy('company_name')->asArray()->all(), 'id', 'company_name'), ['id'=>'company_id', 'prompt' => Yii::t('app', 'works.select_company')]); ?>
 		</div>
 
 		<div id="affix_info_about_vacancy">

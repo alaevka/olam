@@ -37,6 +37,17 @@ class WorkController extends Controller
         ]);
     }
 
+    public function actionVacancy()
+    {
+        $searchModel = new \common\models\SearchVacancy;
+        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+        return $this->render('vacancy', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
+    }
+
     public function actionCompanies()
     {
         $searchModel = new \common\models\SearchCompanies;
@@ -306,6 +317,69 @@ class WorkController extends Controller
 
     }
 
+    public function actionUpdatevacancy($id)
+    {
+        $model = $this->findModelVacancy($id);
+        $model->suggestion_employment != '' ? $model->suggestion_employment = unserialize($model->suggestion_employment) : $model->suggestion_employment = [];
+        $model->experience_tags != '' ? $model->experience_tags = unserialize($model->experience_tags) : $model->experience_tags = [];
+       
+        if ($model->load(Yii::$app->request->post())) {
+
+            if(!empty($model->suggestion_employment)) {
+                $model->suggestion_employment = serialize($model->suggestion_employment);
+            }
+            if(!empty($model->experience_tags)) {
+                $model->experience_tags = serialize($model->experience_tags);
+            }
+
+
+            if($model->validate()) {
+
+                if($model->save()) {
+
+                    \Yii::$app->getSession()->setFlash('admin_flash_message', 'Позиция изменена');
+                    return $this->redirect(['vacancy']);
+
+                }
+            }
+        }
+
+        return $this->render('updatevacancy', [
+            'model' => $model,
+        ]);
+
+    }
+
+    public function actionCreatevacancy()
+    {
+        $model = new \common\models\Vacancy;
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if(!empty($model->suggestion_employment)) {
+                $model->suggestion_employment = serialize($model->suggestion_employment);
+            }
+            if(!empty($model->experience_tags)) {
+                $model->experience_tags = serialize($model->experience_tags);
+            }
+
+            if($model->validate()) {
+
+                if($model->save()) {
+                    
+                    \Yii::$app->getSession()->setFlash('admin_flash_message', Yii::t('app', 'works.your_vacancy_was_added'));
+                    return $this->redirect(['vacancy']);
+
+                }
+            }
+        }
+
+        return $this->render('createvacancy', [
+            'model' => $model,
+        ]);
+    }
+
+
     public function actionDeleteresume($id)
     {
         $model = $this->findModelResume($id);    
@@ -318,6 +392,24 @@ class WorkController extends Controller
     protected function findModelResume($id)
     {
         if (($model = \common\models\Resume::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionDeletevacancy($id)
+    {
+        $model = $this->findModelVacancy($id);    
+        $model->delete();
+        \Yii::$app->getSession()->setFlash('admin_flash_message', 'Позиция удалена');
+        return $this->redirect(['vacancy']);
+    }
+
+
+    protected function findModelVacancy($id)
+    {
+        if (($model = \common\models\Vacancy::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -445,6 +537,31 @@ class WorkController extends Controller
                 print_r($r->errors);
             }
         }
+    }
+
+    public function actionFakervacancy() {
+        $faker = Faker\Factory::create();
+        $object = 1;
+        for ($i=0; $i < 100; $i++) { 
+            $r = new \common\models\Vacancy;
+            $r->company_id = rand(7,25);
+            $r->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $r->vacancy_description = $faker->paragraph($nbSentences = 3, $variableNbSentences = true).$faker->paragraph($nbSentences = 3, $variableNbSentences = true).$faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $r->duties = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $r->requirements = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $r->conditions = $faker->paragraph($nbSentences = 3, $variableNbSentences = true);
+            $r->wage_level = $faker->numberBetween($min = 10000, $max = 100000);
+            $r->experience_years = rand(0,5).' years';
+            $r->experience_tags = serialize([$faker->word,$faker->word,$faker->word,$faker->word]);
+            $r->suggestion_employment = serialize([rand(2,4), rand(2,4)]);
+            $r->user_id = 2;
+            if($r->save()) {
+
+            } else {
+                print_r($r->errors);
+            }
+        }
+
     }
 
 

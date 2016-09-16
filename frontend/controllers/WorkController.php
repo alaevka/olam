@@ -148,6 +148,17 @@ class WorkController extends Controller
         ]);
     }
 
+    public function actionSearchvacancy() {
+
+        $search = new \common\models\SearchVacancy;
+        $dataProvider = $search->search(Yii::$app->request->post());
+
+        return $this->render('searchvacancy', [
+            'search' => $search,
+            'listDataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionViewresume($id) {
         $model = $this->findModelResume($id);
 
@@ -156,9 +167,26 @@ class WorkController extends Controller
         ]);
     }
 
+    public function actionViewvacancy($id) {
+        $model = $this->findModelVacancy($id);
+
+        return $this->render('viewvacancy', [
+            'model' => $model,
+        ]);
+    }
+
     protected function findModelResume($id)
     {
         if (($model = \common\models\Resume::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findModelVacancy($id)
+    {
+        if (($model = \common\models\Vacancy::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -175,6 +203,9 @@ class WorkController extends Controller
 
                 if(!empty($model->suggestion_employment)) {
                     $model->suggestion_employment = serialize($model->suggestion_employment);
+                }
+                if(!empty($model->experience_tags)) {
+                    $model->experience_tags = serialize($model->experience_tags);
                 }
 
                 if($model->validate()) {

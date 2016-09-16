@@ -52,8 +52,8 @@ class Vacancy extends \yii\db\ActiveRecord
         return [
             [['company_id', 'wage_level', 'title', 'vacancy_description'], 'required'],
             [['company_id', 'wage_level', 'user_id', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'vacancy_description', 'duties', 'requirements', 'conditions', 'experience_years', 'suggestion_employment'], 'string'],
-            [['experience_tags'], 'safe']
+            [['title', 'vacancy_description', 'duties', 'requirements', 'conditions', 'experience_years'], 'string'],
+            [['experience_tags', 'suggestion_employment'], 'safe']
         ];
     }
 
@@ -80,7 +80,35 @@ class Vacancy extends \yii\db\ActiveRecord
         ];
     }
 
+
+
     public static function _getCount() {
         return self::find()->count();
+    }
+
+    public function getCompany()
+    {
+        return $this->hasOne(\common\models\Companies::className(), ['id' => 'company_id']);
+    }
+
+    public function _getExpTags() {
+        $string = '';
+        if(!empty($this->experience_tags)) {
+            foreach (unserialize($this->experience_tags) as $key => $value) {
+                $string .= '<span class="label label-info">'.$value.'</span> ';
+            }
+        }
+        return $string;
+    }
+
+    public function _getSuggestionEmployment() {
+        $string = '';
+        if(!empty($this->suggestion_employment)) {
+            foreach (unserialize($this->suggestion_employment) as $key => $value) {
+                $suggestion_employment = \common\models\WorkEmployment::findOne($value);
+                $string .= $suggestion_employment->name.'<br>';
+            }
+        }
+        return $string;
     }
 }

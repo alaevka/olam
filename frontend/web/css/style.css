@@ -1293,16 +1293,16 @@ h3.comments {
 .left-corner-filter {
   border-top-left-radius: 10px;
 }
-#filter-form-resume input, #filter-form-resume select {
+#filter-form-resume input, #filter-form-resume select, #filter-form-vacancy input, #filter-form-vacancy select {
   border-radius: 0px;
 }
-#filter-form-resume .tab-pane {
+#filter-form-resume .tab-pane, #filter-form-vacancy .tab-pane {
   padding: 20px 20px 10px 30px;
 }
 .detailed-search {
   margin-top: 20px;
 }
-#filter-form-resume label {
+#filter-form-resume label, #filter-form-vacancy label {
   font-weight: normal;
   text-align: left;
 }
@@ -1324,7 +1324,7 @@ h3.comments {
   font-weight: 700;
   color: #333333;
 }
-.resume-item {
+.resume-item, .vacancy-item {
   padding: 20px;
 }
 .experience_information {
@@ -1365,4 +1365,10 @@ h3.comments {
 }
 .auth-link {
   float: left;
+}
+.vacancy_desc {
+  margin-top: 20px;
+}
+.vacancy_contacts {
+  margin-bottom: 40px;
 }

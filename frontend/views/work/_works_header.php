@@ -22,7 +22,7 @@
         <h3><?= Yii::t('app', 'works.vacancies') ?> <span><?= \common\models\Vacancy::_getCount(); ?></span></h3>
         <a href="<?= Url::to(['/work/view/companies']) ?>"><?= Yii::t('app', 'works.your_companies') ?></a><br>
         <a href="<?= Url::to(['/work/create/vacancy']) ?>"><?= Yii::t('app', 'works.add_vacancy') ?></a><br>
-        <a href=""><?= Yii::t('app', 'works.search_vacancy') ?></a>
+        <a href="<?= Url::to(['/work/search/vacancy']) ?>"><?= Yii::t('app', 'works.search_vacancy') ?></a>
 
     </div>
     <div class="col-md-3 works-header-block">
