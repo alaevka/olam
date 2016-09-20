@@ -10,6 +10,10 @@ use yii\helpers\ArrayHelper;
     <div class="col-md-12 central-content" id="central-content">
         <?= $this->render('/work/_works_header'); ?>
         <div>
+            <?php
+                $session = Yii::$app->session;
+                $current_location = isset($session['work_location_name']) ? $session['work_location_name'] : Yii::t('app', 'works.region');
+            ?>
             <h1><?= Yii::t('app', 'work.work_in') ?> <?= $current_location; ?></h1>
             <ul class="nav nav-tabs filter-tabs-work">
               <li role="presentation" class="active"><a href="#vacancies" role="tab" data-toggle="tab"><?= Yii::t('app', 'works.vacancies') ?></a></li>
@@ -97,7 +101,7 @@ use yii\helpers\ArrayHelper;
                     ListView::widget([
                         'dataProvider' => $listDataProviderVacancy,
                         'itemView' => '_vacancy_item_for_index',
-                        'layout' => $header."{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
+                        'layout' => "{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
                         'emptyText' => Yii::t('app', 'news.not_yet_been_added_to_this_category_news'),
                         'emptyTextOptions' => ['class' => 'not_yet_been'],
                         'pager' => [
@@ -116,7 +120,7 @@ use yii\helpers\ArrayHelper;
                     ListView::widget([
                         'dataProvider' => $listDataProviderResume,
                         'itemView' => '_resume_item',
-                        'layout' => $header."{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
+                        'layout' => "{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
                         'emptyText' => Yii::t('app', 'news.not_yet_been_added_to_this_category_news'),
                         'emptyTextOptions' => ['class' => 'not_yet_been'],
                         'pager' => [

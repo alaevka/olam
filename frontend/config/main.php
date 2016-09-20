@@ -35,6 +35,10 @@ return [
                 'Comment' => 'common\models\CommentModel',
                 'CommentCreateForm' => 'common\models\CommentCreateFormModel',
             ]
+        ],
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+            // other module settings, refer detailed documentation
         ]
     ],
     'components' => [

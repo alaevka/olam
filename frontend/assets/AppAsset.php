@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/jquery.scrollTo.min.js',
+        //'https://maps.googleapis.com/maps/api/js?key=AIzaSyBKfua7OF-x1nGhOpsRjqBTddS44FSLWJE',
         'js/colorpicker.js',
         'js/toastr.js',
         'js/script.js',

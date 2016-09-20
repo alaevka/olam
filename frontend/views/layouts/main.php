@@ -37,7 +37,7 @@ AppAsset::register($this);
 			                <li><a class="top_mnu_realty" href="<?= Url::to(['/realty']) ?>"><?= Yii::t('app', 'top_mnu.realty') ?></a></li>
 			                <li><a class="top_mnu_auto" href="<?= Url::to(['/auto']) ?>"><?= Yii::t('app', 'top_mnu.auto') ?></a></li>
 			                <li><a class="top_mnu_work" href="<?= Url::to(['/work']) ?>"><?= Yii::t('app', 'top_mnu.work') ?></a></li>
-			                <li><a class="top_mnu_ads" href="#"><?= Yii::t('app', 'top_mnu.ads') ?></a></li>
+			                <li><a class="top_mnu_ads" href="<?= Url::to(['/ads']) ?>"><?= Yii::t('app', 'top_mnu.ads') ?></a></li>
 			                <li><a class="top_mnu_poster" href="#"><?= Yii::t('app', 'top_mnu.poster') ?></a></li>
 			                <li><a class="top_mnu_tv" href="#"><?= Yii::t('app', 'top_mnu.tv') ?></a></li>
 			                <li>
@@ -78,6 +78,9 @@ AppAsset::register($this);
 						<?php } ?>
 						<?php if(Yii::$app->controller->id == 'auto') { ?>
 							<a class="add-position-button" href="<?= Url::to(['/auto/create']); ?>"><?= Yii::t('app', 'user.add_position_auto') ?></a>
+						<?php } ?>
+						<?php if(Yii::$app->controller->id == 'ads') { ?>
+							<a class="add-position-button" href="<?= Url::to(['/ads/create']); ?>"><?= Yii::t('app', 'user.add_position_ads') ?></a>
 						<?php } ?>
 						
 

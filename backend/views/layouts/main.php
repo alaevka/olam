@@ -205,11 +205,18 @@ $active_url_str = Yii::$app->controller->id;
 
 					</ul>
 				</li>
-				<li>
+				<li <?php if($active_url_str == 'otherads') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-sound"></i>
 						<span class="title">Объявления</span>
 					</a>
+					<ul>
+						<li>
+							<a href="<?= Url::to(['/otherads/categories']) ?>">
+								<span class="title">Список категорий</span>
+							</a>
+						</li>
+					</ul>
 				</li>
 				<li>
 					<a href="#">

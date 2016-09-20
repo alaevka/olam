@@ -202,7 +202,7 @@
 			</div>
 
 			<?= $form->field($model, 'location_house')->textInput() ?>
-
+			
 			
 		</div>
 

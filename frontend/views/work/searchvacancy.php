@@ -72,7 +72,7 @@
                     ListView::widget([
                         'dataProvider' => $listDataProvider,
                         'itemView' => '_vacancy_item',
-                        'layout' => $header."{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
+                        'layout' => "{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
                         'emptyText' => Yii::t('app', 'news.not_yet_been_added_to_this_category_news'),
                         'emptyTextOptions' => ['class' => 'not_yet_been'],
                         'pager' => [

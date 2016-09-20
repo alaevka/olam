@@ -19,7 +19,12 @@ return [
             'class' => 'dektrium\user\Module',
             'admins' => ['alaevka']
         ],
-        'i18n' => Zelenin\yii\modules\I18n\Module::className()
+        'i18n' => Zelenin\yii\modules\I18n\Module::className(),
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+            // other module settings, refer detailed documentation
+        ]
+
     ],
     'components' => [
         'request' => [

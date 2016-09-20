@@ -943,6 +943,15 @@ h3.comments {
   padding: 10px 10px 0 10px;
 }
 
+.filter-content-ads {
+  border-bottom: 10px solid #285d93;
+  border-radius: 10px;
+  background-color: #285d93;
+}
+.filter-content-ads .tab-pane .row {
+  padding: 10px 10px 0 10px;
+}
+
 .nav-tabs.filter-tabs-work {
     border-bottom: 1px solid #fff;
 }
@@ -1015,7 +1024,7 @@ h3.comments {
 .create-separator {
   border-top: 2px solid #b0dd27;
 }
-#create-ads-form h3, #create-auto-form h3, #create-resume-form h3, #create-company-form h3, #create-vacancy-form h3 {
+#create-ads-form h3, #create-auto-form h3, #create-resume-form h3, #create-company-form h3, #create-vacancy-form h3, #create-ad-form h3 {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 40px;
@@ -1025,11 +1034,11 @@ h3.comments {
   font-weight: 400;
   color: #bfbfbf;
 }
-#create-ads-form label, #create-auto-form label, #create-resume-form label, #create-company-form label, #create-vacancy-form label {
+#create-ads-form label, #create-auto-form label, #create-resume-form label, #create-company-form label, #create-vacancy-form label, #create-ad-form label {
   text-align: left;
   font-weight: 400;
 }
-#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select, #create-resume-form textarea, #create-company-form input, #create-company-form select, #create-company-form textarea, #create-vacancy-form input, #create-vacancy-form select, #create-vacancy-form textarea {
+#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select, #create-resume-form textarea, #create-company-form input, #create-company-form select, #create-company-form textarea, #create-vacancy-form input, #create-vacancy-form select, #create-vacancy-form textarea, #create-ad-form input, #create-ad-form select, #create-ad-form textarea {
   border-radius: 0px;
 }
 .of_levels {
@@ -1278,7 +1287,7 @@ h3.comments {
 .select2-container--krajee .select2-selection { 
       border-radius: 0px;
 }
-.select2-selection__choice__remove {
+.select2-selection__choice__remove, .kv-search-clear {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -1293,11 +1302,14 @@ h3.comments {
 .left-corner-filter {
   border-top-left-radius: 10px;
 }
-#filter-form-resume input, #filter-form-resume select, #filter-form-vacancy input, #filter-form-vacancy select {
+#filter-form-resume input, #filter-form-resume select, #filter-form-vacancy input, #filter-form-vacancy select, #filter-form-ads input {
   border-radius: 0px;
 }
 #filter-form-resume .tab-pane, #filter-form-vacancy .tab-pane {
   padding: 20px 20px 10px 30px;
+}
+#filter-form-ads .btn {
+  width: 100%;
 }
 .detailed-search {
   margin-top: 20px;
@@ -1410,4 +1422,13 @@ h3.comments {
   color: #b0dd27;
   font-weight: 700;
   font-size: 16px;
+}
+#map {
+  height: 300px;
+}
+.list_categories .item {
+  padding: 10px 0 0 0;
+}
+.list_categories {
+  margin-top: 20px;
 }

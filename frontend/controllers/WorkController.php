@@ -20,11 +20,11 @@ class WorkController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['createresume', 'createvacancy', 'createcompany'],
+                'only' => ['createresume', 'createvacancy', 'createcompany', 'companies'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['createresume', 'createvacancy', 'createcompany'],
+                        'actions' => ['createresume', 'createvacancy', 'createcompany', 'companies'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -302,11 +302,11 @@ class WorkController extends Controller
 
     public function actionCompanies()
     {
+
         $search = new \common\models\SearchCompanies;
         $dataProvider = $search->search(Yii::$app->request->post());
 
         return $this->render('companies', [
-            'user_companies' => $user_companies,
             'listDataProvider' => $dataProvider,
         ]);
 
