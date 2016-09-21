@@ -104,12 +104,34 @@
 		<div id="affix_ad_contacts_information">
 			<hr class="create-separator">
 			<h3><?= Yii::t('app', 'ads.affix_ad_contacts_information') ?></h3>
+
+			<?= $form->field($model, 'location_city')->dropDownList(\common\models\Locations::_getLocations(), ['id'=>'rlty_city_id', 'prompt' => Yii::t('app', 'rlty.select_city')]) ?>
 			
 			<?= $form->field($model, 'contacts_username')->textInput() ?>
 
 			<?= $form->field($model, 'contacts_phone')->textInput() ?>
 
 			<?= $form->field($model, 'contacts_email')->textInput() ?>
+
+			<?= $form->field($model, 'period', ['template' => "{label}\n<div class=\"col-sm-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->radioList(
+				['1' => Yii::t('app', 'ads.30_days'), '2' => Yii::t('app', 'ads.60_days'), '3' => Yii::t('app', 'ads.90_days')],
+				[
+                    'item' => function($index, $label, $name, $checked, $value) {
+
+                        $return = '<div class="radio radio-primary col-sm-3">';
+                        if($checked) {
+                        	$return .= '<input checked id="period'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        } else {
+                        	$return .= '<input id="period'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        }
+                        $return .= '<label for="period'.$index.'">'. ucwords($label) .'</label>';
+                        $return .= '</div>';
+
+                        return $return;
+                    }
+                ]
+
+		) ?>
 
 		</div>
 

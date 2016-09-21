@@ -212,6 +212,11 @@ $active_url_str = Yii::$app->controller->id;
 					</a>
 					<ul>
 						<li>
+							<a href="<?= Url::to(['/otherads/index']) ?>">
+								<span class="title">Список объявлений</span>
+							</a>
+						</li>
+						<li>
 							<a href="<?= Url::to(['/otherads/categories']) ?>">
 								<span class="title">Список категорий</span>
 							</a>

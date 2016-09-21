@@ -1,0 +1,163 @@
+<?php
+	use yii\helpers\Html;
+	use yii\helpers\Url;
+	use kartik\file\FileInput;
+	use yii\widgets\ActiveForm;
+    use kartik\tree\TreeViewInput;
+    use common\models\AdsCategories;
+?>
+
+	<?php $form = ActiveForm::begin([
+        'id' => 'realty-form',
+        'errorSummaryCssClass' => 'error-summary alert alert-danger',
+        'options' => ['class' => 'form-horizontal form-groups-bordered', 'enctype' => 'multipart/form-data'],
+        'fieldConfig' => [
+        'template' => "{label}\n<div class=\"col-sm-5\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-5\">{error}\n{hint}</div>",
+        'labelOptions' => ['class' => 'col-sm-3 control-label'],
+        ],
+    ]); ?>
+
+    <?php echo $form->errorSummary($model); ?>
+
+    <?= $form->field($model, 'type', ['template' => '<div class="col-sm-12">{input}</div>'])->radioList(
+                ['1' => Yii::t('app', 'ads.selling'), '2' => Yii::t('app', 'ads.buy')],
+                [
+                    'item' => function($index, $label, $name, $checked, $value) {
+
+                        $return = '<div class="radio radio-primary col-sm-3">';
+                        if($checked) {
+                            $return .= '<input checked id="build_type'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        } else {
+                            $return .= '<input id="build_type'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        }
+                        $return .= '<label for="build_type'.$index.'">'. ucwords($label) .'</label>';
+                        $return .= '</div>';
+
+                        return $return;
+                    }
+                ]
+
+        )->label(false) ?>
+
+        <div id="affix_ad_information">
+            <hr class="create-separator">
+            <h3><?= Yii::t('app', 'ads.affix_ad_information') ?></h3>
+            <?= $form->field($model, 'category_id')->widget(TreeViewInput::classname(),[
+                    // single query fetch to render the tree
+                    // use the Product model you have in the previous step
+                    'query' => AdsCategories::find()->addOrderBy('root, lft'), 
+                    'headingOptions'=>['label'=>''],
+                    'name' => 'kv-product', // input name
+                    'value' => '',     // values selected (comma separated for multiple select)
+                    'asDropdown' => true,   // will render the tree input widget as a dropdown.
+                    'multiple' => false,     // set to false if you do not need multiple selection
+                    'fontAwesome' => true,  // render font awesome icons
+                    'rootOptions' => [
+                        'label'=>'<i class="fa fa-tree"></i>',  // custom root label
+                        'class'=>'text-success'
+                    ], 
+                    //'options'=>['disabled' => true],
+                ]);
+            ?>
+
+            <?= $form->field($model, 'title')->textInput() ?>
+
+            <?= $form->field($model, 'description', ['template' => "{label}\n<div class=\"col-sm-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->widget(\dosamigos\tinymce\TinyMce::className(), [
+                'options' => ['rows' => 6],
+                'language' => 'ru',
+
+                'clientOptions' => [
+                    'toolbar' => "undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link",
+                    'menubar' => false,
+                    'statusbar' => false,
+                ]
+            ]);?>
+
+            <?= $form->field($model, 'price')->textInput() ?>
+
+        </div>
+        
+        <div id="affix_photo_and_video">
+            <hr class="create-separator">
+            <h3><?= Yii::t('app', 'ads.affix_photo_and_video') ?></h3>
+            <div class="upload-photo-text">
+                <?= Yii::t('app', 'ads.you_can_upload_not_more') ?>
+            </div>
+            <?php
+            if($model->isNewRecord) {
+                echo $form->field($model, 'gallery[]', ['template' => "{label}\n<div class=\"col-sm-9 col-sm-offset-3\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->widget(FileInput::classname(), [
+                    'language' => 'ru',
+                    'options' => ['multiple' => true, 'accept' => 'image/*'],
+                    'pluginOptions' => ['previewFileType' => 'image', 'uploadUrl' => "http://localhost/file-upload-single/1", 'uploadAsync' => false, 'showUpload' => false]
+                    
+                ])->label(false);
+            } else {
+                $gallery = \common\models\Adsothergallery::find()->where(['ads_id' => $model->id])->all();
+                $initial_preview_array = [];
+                $initialPreviewConfig = [];
+                if($gallery) {
+                    foreach ($gallery as $key => $value) {
+                        $initial_preview_array[] = Yii::$app->params['frontend_url']."/uploads/other/".$value->image_name;
+                        $initialPreviewConfig[] = ['caption' => $value->image_name, 'url' => "/otherads/deleteimage", 'key' => $value->id];
+                    }
+                }
+                echo $form->field($model, 'gallery[]', ['template' => "{label}\n<div class=\"col-sm-9 col-sm-offset-3\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->widget(FileInput::classname(), [
+                    'language' => 'ru',
+                    'options' => ['multiple' => true, 'accept' => 'image/*'],
+                    'pluginOptions' => [
+                        'previewFileType' => 'image', 
+                        'uploadUrl' => "/file-upload", 
+                        'uploadAsync' => false, 
+                        'showUpload' => false,
+                        'initialPreview'=>$initial_preview_array,
+                        'initialPreviewAsData'=>true,
+                        'initialPreviewConfig' => $initialPreviewConfig,
+                        'overwriteInitial'=>false,
+                    ]
+                ])->label(false);
+            }
+        ?>
+        </div>
+
+        <div id="affix_ad_contacts_information">
+            <hr class="create-separator">
+            <h3><?= Yii::t('app', 'ads.affix_ad_contacts_information') ?></h3>
+
+            <?= $form->field($model, 'location_city')->dropDownList(\common\models\Locations::_getLocations(), ['id'=>'rlty_city_id', 'prompt' => Yii::t('app', 'rlty.select_city')]) ?>
+            
+            <?= $form->field($model, 'contacts_username')->textInput() ?>
+
+            <?= $form->field($model, 'contacts_phone')->textInput() ?>
+
+            <?= $form->field($model, 'contacts_email')->textInput() ?>
+
+            <?= $form->field($model, 'period', ['template' => "{label}\n<div class=\"col-sm-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-sm-6\">{error}\n{hint}</div>"])->radioList(
+                ['1' => Yii::t('app', 'ads.30_days'), '2' => Yii::t('app', 'ads.60_days'), '3' => Yii::t('app', 'ads.90_days')],
+                [
+                    'item' => function($index, $label, $name, $checked, $value) {
+
+                        $return = '<div class="radio radio-primary col-sm-3">';
+                        if($checked) {
+                            $return .= '<input checked id="period'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        } else {
+                            $return .= '<input id="period'.$index.'" type="radio" name="' . $name . '" value="' . $value . '">';
+                        }
+                        $return .= '<label for="period'.$index.'">'. ucwords($label) .'</label>';
+                        $return .= '</div>';
+
+                        return $return;
+                    }
+                ]
+
+        ) ?>
+
+        </div>
+
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <?= \yii\helpers\Html::submitButton($model->isNewRecord ? 'Добавить' : 'Изменить', ['class' => 'btn btn-success']) ?><br>
+        </div>
+    </div>  
+
+    <?php ActiveForm::end(); ?>

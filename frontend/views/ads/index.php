@@ -33,7 +33,7 @@ use yii\helpers\ArrayHelper;
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>
-            <div class="list_categories">
+            <div class="list_categories row">
                 
                 <?php
                     if($list_categories) {
@@ -44,6 +44,21 @@ use yii\helpers\ArrayHelper;
                         }
                     }
                 ?>
+            </div>
+            <div class="row last_10_objects_ads">
+                <?php
+                    foreach($last_10_objects as $object) {
+                ?>
+                <div class="col-xs-3 object-item">
+                    <a href="<?= Url::to(['/ads/view/', 'id' => $object->id]) ?>">
+                        <img class="img-responsive" src="/uploads/other/<?= $object->_getImage() ?>">
+                        <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
+                        <div class="flat_type"><?= $object->title; ?></div>
+                        <div class="flat_location"><?= $object->location->location ?></div>
+                    </a>
+                </div>
+                <?php } ?>
+                
             </div>
         </div>
     </div>

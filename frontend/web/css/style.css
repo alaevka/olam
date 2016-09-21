@@ -1123,6 +1123,18 @@ h3.comments {
 .resume-item:hover {
   background-color: #daeec2;
 }
+
+.list-ads-pjs .odd {
+  background-color: #d4dfe9;
+}
+.adjs-item:hover {
+  background-color: #daeec2;
+}
+.adjs-item {
+  padding: 10px;
+}
+
+
 .header-list {
   font-size: 12px;
   background-color: #e6e6e6;
@@ -1427,8 +1439,25 @@ h3.comments {
   height: 300px;
 }
 .list_categories .item {
-  padding: 10px 0 0 0;
+  padding: 10px 0 0 20px;
 }
 .list_categories {
   margin-top: 20px;
+  padding-bottom: 40px;
+}
+.list-ads {
+  margin-top: 20px;
+}
+.adjs-item .title {
+  color: #23527c;
+  font-size: 18px;
+  font-weight: 700;
+}
+.adjs-item .price {
+  margin-top: 10px;
+  color: #6dc500;
+  font-size: 18px;
+}
+.last_10_objects_ads {
+  clear: left;
 }

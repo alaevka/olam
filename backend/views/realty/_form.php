@@ -333,4 +333,3 @@
 
     <?php ActiveForm::end(); ?>
 
-</div>
