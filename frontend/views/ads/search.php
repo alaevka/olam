@@ -34,6 +34,18 @@
                 </div>
             </div>
             <?php ActiveForm::end(); ?>
+            <div class="list_categories row">
+                
+                <?php
+                    if($list_categories) {
+                        foreach ($list_categories as $category) {
+                ?>
+                    <div class="col-xs-4 item"><a href="<?= Url::to(['/ads/search', 'category_id' => $category->id]) ?>"><?= $category->name; ?></a></div>
+                <?php
+                        }
+                    }
+                ?>
+            </div>
             <div class="list-ads-pjs" style="margin-top: 20px;">
                 <?php \yii\widgets\Pjax::begin() ?>
                 <?= 

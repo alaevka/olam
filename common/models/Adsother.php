@@ -65,6 +65,11 @@ class Adsother extends \yii\db\ActiveRecord
         return $this->hasOne(\common\models\Locations::className(), ['id' => 'location_city']);
     }
 
+    public function getCategory()
+    {
+        return $this->hasOne(\common\models\AdsCategories::className(), ['id' => 'category_id']);
+    }
+
     public function _getImage() {
         $gallery = \common\models\Adsothergallery::find()->where(['ads_id' => $this->id])->limit(1)->one();
         if($gallery) {

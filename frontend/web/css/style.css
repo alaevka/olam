@@ -1187,6 +1187,14 @@ h3.comments {
   font-weight: 700;
   padding: 20px 0;
 }
+.object-model-ads .price {
+  color: #6dc500;
+  font-size: 26px;
+  font-weight: 700;
+}
+.object-model-ads .pics {
+  margin-top: 20px;
+}
 .object-model .price span {
   color: #000000;
   font-size: 14px;

@@ -39,7 +39,7 @@ use yii\helpers\ArrayHelper;
                     if($list_categories) {
                         foreach ($list_categories as $category) {
                 ?>
-                    <div class="col-xs-4 item"><a href=""><?= $category->name; ?></a></div>
+                    <div class="col-xs-4 item"><a href="<?= Url::to(['/ads/search', 'category_id' => $category->id]) ?>"><?= $category->name; ?></a></div>
                 <?php
                         }
                     }
@@ -50,7 +50,7 @@ use yii\helpers\ArrayHelper;
                     foreach($last_10_objects as $object) {
                 ?>
                 <div class="col-xs-3 object-item">
-                    <a href="<?= Url::to(['/ads/view/', 'id' => $object->id]) ?>">
+                    <a href="<?= Url::to(['/ads/view/'.$object->id]) ?>">
                         <img class="img-responsive" src="/uploads/other/<?= $object->_getImage() ?>">
                         <div class="price"><?= number_format($object->price, 0, ',', ' ' ); ?> руб.</div>
                         <div class="flat_type"><?= $object->title; ?></div>

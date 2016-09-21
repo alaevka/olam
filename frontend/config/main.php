@@ -147,6 +147,7 @@ return [
                 '/work/delete/company/<id:\d+>' => 'work/deletecompany',
                 '/work/search/vacancy' => 'work/searchvacancy',
                 '/work/view/vacancy/<id:\d+>' => 'work/viewvacancy',
+                '/ads/view/<id:\d+>' => 'ads/view',
 
             ],
         ],

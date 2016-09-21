@@ -15,7 +15,7 @@ class SearchAdsother extends Adsother
     {
         return [
             [['id'], 'integer'],
-            [['title', 'text_query'], 'safe'],
+            [['title', 'text_query', 'category_id'], 'safe'],
         ];
     }
 
@@ -28,15 +28,17 @@ class SearchAdsother extends Adsother
     {
         $query = Adsother::find();
 
+
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
-            return $dataProvider;
-        }
+       
+
 
         $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere(['category_id' => $this->category_id]);
         $query->orFilterWhere(['like', 'title', $this->text_query])->orFilterWhere(['like', 'description', $this->text_query]);
 
         return $dataProvider;
