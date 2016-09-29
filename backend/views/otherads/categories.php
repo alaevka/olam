@@ -37,7 +37,7 @@
 					        'enableCache' => true   // defaults to true
 					    ],
 					    'iconEditSettings'=> [
-        					'show' => none,
+        					'show' => 'none',
         				]
 					]);
 				?>	

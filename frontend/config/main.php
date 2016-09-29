@@ -148,6 +148,13 @@ return [
                 '/work/search/vacancy' => 'work/searchvacancy',
                 '/work/view/vacancy/<id:\d+>' => 'work/viewvacancy',
                 '/ads/view/<id:\d+>' => 'ads/view',
+                '/user/profile' => 'user/settings/account',
+                '/user/social' => 'user/settings/networks',
+                '/user/objects/realty' => 'site/objectsrealty',
+                '/user/objects/auto' => 'site/objectsauto',
+                '/user/objects/vacancy' => 'site/objectsvacancy',
+                '/user/objects/resume' => 'site/objectsresume',
+                '/user/objects/ads' => 'site/objectsads',
 
             ],
         ],

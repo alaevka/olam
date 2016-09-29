@@ -71,7 +71,7 @@ AppAsset::register($this);
 			        	<a class="login-link" id="login-link"  data-toggle="modal" data-target="#login-modal" href="<?= Url::to(['/user/login']) ?>"><?= Yii::t('app', 'user.login') ?></a><a class="register-link" id="register-link" href="<?= Url::to(['/user/registration/register']) ?>" data-toggle="modal" data-target="#registration-modal"><?= Yii::t('app', 'user.register') ?></a>
 
 					<?php } else { ?>
-						<a class="profile-link" href="<?= Url::to(['/profile']); ?>"><?= Yii::t('app', 'user.profile') ?></a>
+						<a class="profile-link" href="<?= Url::to(['/user/profile']); ?>"><?= Yii::t('app', 'user.profile') ?></a>
 						<a class="register-link" data-method="post" href="<?= Url::to(['/user/security/logout']); ?>"><?= Yii::t('app', 'user.logout') ?></a>
 						<?php if(Yii::$app->controller->id == 'realty') { ?>
 							<a class="add-position-button" href="<?= Url::to(['/realty/create']); ?>"><?= Yii::t('app', 'user.add_position_rlty') ?></a>

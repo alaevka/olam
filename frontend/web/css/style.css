@@ -1034,11 +1034,11 @@ h3.comments {
   font-weight: 400;
   color: #bfbfbf;
 }
-#create-ads-form label, #create-auto-form label, #create-resume-form label, #create-company-form label, #create-vacancy-form label, #create-ad-form label {
+#create-ads-form label, #create-auto-form label, #create-resume-form label, #create-company-form label, #create-vacancy-form label, #create-ad-form label, #account-form label {
   text-align: left;
   font-weight: 400;
 }
-#create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select, #create-resume-form textarea, #create-company-form input, #create-company-form select, #create-company-form textarea, #create-vacancy-form input, #create-vacancy-form select, #create-vacancy-form textarea, #create-ad-form input, #create-ad-form select, #create-ad-form textarea {
+#account-form input, #account-form select, #account-form textarea, #create-ads-form input, #create-ads-form select, #create-auto-form input, #create-auto-form select, #create-resume-form input, #create-resume-form select, #create-resume-form textarea, #create-company-form input, #create-company-form select, #create-company-form textarea, #create-vacancy-form input, #create-vacancy-form select, #create-vacancy-form textarea, #create-ad-form input, #create-ad-form select, #create-ad-form textarea {
   border-radius: 0px;
 }
 .of_levels {
@@ -1110,6 +1110,12 @@ h3.comments {
 .realty-item {
   font-size: 12px;
   cursor: pointer;
+}
+.profile-item {
+  padding: 10px;
+}
+.odd {
+  background-color: #d4dfe9;
 }
 .list-realty .odd {
   background-color: #d4dfe9;
@@ -1468,4 +1474,10 @@ h3.comments {
 }
 .last_10_objects_ads {
   clear: left;
+}
+.profile-side li.active {
+  border-left: 2px solid #285d93; 
+}
+.user-email-login {
+  color: #6dc500;
 }
