@@ -155,6 +155,8 @@ return [
                 '/user/objects/vacancy' => 'site/objectsvacancy',
                 '/user/objects/resume' => 'site/objectsresume',
                 '/user/objects/ads' => 'site/objectsads',
+                'afisha/<slug>' => 'afisha/view',
+                '/afisha/category/<category:\d+>' => 'afisha/index',
 
             ],
         ],

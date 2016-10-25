@@ -38,8 +38,8 @@ AppAsset::register($this);
 			                <li><a class="top_mnu_auto" href="<?= Url::to(['/auto']) ?>"><?= Yii::t('app', 'top_mnu.auto') ?></a></li>
 			                <li><a class="top_mnu_work" href="<?= Url::to(['/work']) ?>"><?= Yii::t('app', 'top_mnu.work') ?></a></li>
 			                <li><a class="top_mnu_ads" href="<?= Url::to(['/ads']) ?>"><?= Yii::t('app', 'top_mnu.ads') ?></a></li>
-			                <li><a class="top_mnu_poster" href="#"><?= Yii::t('app', 'top_mnu.poster') ?></a></li>
-			                <li><a class="top_mnu_tv" href="#"><?= Yii::t('app', 'top_mnu.tv') ?></a></li>
+			                <li><a class="top_mnu_poster" href="<?= Url::to(['/afisha']) ?>"><?= Yii::t('app', 'top_mnu.poster') ?></a></li>
+			                <li><a class="top_mnu_tv" href="<?= Url::to(['/tv']) ?>"><?= Yii::t('app', 'top_mnu.tv') ?></a></li>
 			                <li>
 			                	<div class="container-search pull-right">
 			                		<form class="searchbox">

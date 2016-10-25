@@ -798,6 +798,15 @@ ul.persons-feed span {
   border-bottom: 1px solid #d7d7d7;
 }
 
+.central-content-afisha h1 {
+  border-top: 3px solid #ff7a1b;
+  margin: 20px 0 20px 0;
+  color: #000000;
+  font-size: 26px;
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid #d7d7d7;
+}
+
 .news-big-new h2 {
   color: #000000;
   font-family: 'Exo 2', sans-serif;
@@ -821,7 +830,7 @@ ul.persons-feed span {
   padding: 10px 0 0 0;
 }
 .new-block-height {
-  min-height: 400px;
+  min-height: 460px;
 }
 .news-list hr {
   margin-left: 15px;
@@ -1480,4 +1489,22 @@ h3.comments {
 }
 .user-email-login {
   color: #6dc500;
+}
+.afisha-nav {
+  background-color: #ff7a1b;
+  margin-left: -25px;
+  margin-right: -25px;
+}
+.afisha-nav > li.active > a, .afisha-nav > li.active > a:hover, .afisha-nav > li.active > a:focus {
+    color: #fff;
+    background-color: #818181;
+}
+.afisha-nav > li > a {
+    border-radius: 0px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ffffff;
+}
+.afisha-category-link {
+  color: #ff7a1b;
 }

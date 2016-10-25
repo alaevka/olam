@@ -223,8 +223,8 @@ $active_url_str = Yii::$app->controller->id;
 						</li>
 					</ul>
 				</li>
-				<li>
-					<a href="#">
+				<li <?php if($active_url_str == 'afisha') { ?>class="opened active"<?php } ?>>
+					<a href="<?= Url::to(['/afisha/index']) ?>">
 						<i class="entypo-picture"></i>
 						<span class="title">Афиша</span>
 					</a>
