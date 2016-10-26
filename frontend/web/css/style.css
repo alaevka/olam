@@ -1508,3 +1508,50 @@ h3.comments {
 .afisha-category-link {
   color: #ff7a1b;
 }
+ul.days {
+  list-style: none;
+  margin: 0px;
+  padding: 0;
+}
+ul.days li {
+  float: left;
+  padding: 10px 0;
+}
+ul.days li a {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+.days_and_time_block {
+  background-color: #f1f1f1;
+  margin: 0px;
+  padding: 10px 0;
+}
+ul.days li a:hover {
+  background-color: #dfdcdc;
+}
+ul.days li a.active {
+  background-color: #b0dd27;
+  color: #fff;
+}
+.now-date-for-tv {
+  color: #376ca2;
+  font-weight: 500;
+}
+#filter-form-tv .form-group {
+  margin-bottom: 0px;
+}
+#filter-form-tv {
+  padding-top: 3px;
+}
+#filter-form-tv .form-control {
+  border-radius: 0px;
+}
+.programms-list {
+  padding: 20px 20px 20px 0;
+}
+.programms-list .time {
+  font-weight: 700;
+  color: #23527c;
+}

@@ -230,9 +230,9 @@ $active_url_str = Yii::$app->controller->id;
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="<?= Url::to(['/tv/index']) ?>">
 						<i class="entypo-monitor"></i>
-						<span class="title">ТВ</span>
+						<span class="title">ТВ (обновление)</span>
 					</a>
 				</li>
 			</ul>

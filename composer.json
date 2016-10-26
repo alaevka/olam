@@ -33,7 +33,9 @@
         "yiisoft/yii2-imagine": "^2.0",
         "kartik-v/yii2-widget-depdrop": "@dev",
         "wbraganca/yii2-dynamicform": "*",
-        "kartik-v/yii2-tree-manager": "@dev"
+        "kartik-v/yii2-tree-manager": "@dev",
+        "guzzlehttp/guzzle": "~6.0",
+        "electrolinux/phpquery": "^0.9.6"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
