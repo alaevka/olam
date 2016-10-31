@@ -22,116 +22,65 @@ $this->title = 'olam development';
 		</div>
 	</div>
 	<div class="col-md-9">
-		
+			<?php
+				$last_big_new = \common\models\News::find()->where(['main_big_new' => 1])->limit(1)->one();
+			?>
 			<div class="col-md-8 top-new">
-				<a href="#"><img src="/img/temp/top_new.jpg" class="img-responsive"></a>
-				<a href="#"><div class="top-new-category"><?= Yii::t('app', 'new.category') ?></div></a>
-				<a href="#"><h1>Как и зачем художница Катрин Ненашева гуляет по городу, привязанная к кровати</h1></a>
-				<a href="#"><div class="top-new-subtitle">Вчера стало известно о петербургском студенте, поймавшем всех покемонов, которых можно получить в игре Pokémon GO. Чтобы побить предыдущий рекорд по ловле покемонов, 19-летнему Георгию Тимофееву (в игре — Gosha443) пришлось потратить две недели, пройти 60 километров..</div></a>
+				<a href="/news/<?= $last_big_new->category->slug ?>/<?= $last_big_new->slug ?>"><img src="<?= Yii::$app->params['uploadsLink'] ?>/<?= $last_big_new->image_name ?>" class="img-responsive"></a>
+				<a href="/news/<?= $last_big_new->category->slug ?>"><div class="top-new-category"><?= $last_big_new->category->title; ?></div></a>
+				<a href="/news/<?= $last_big_new->category->slug ?>/<?= $last_big_new->slug ?>"><h1><?= $last_big_new->title ?></h1></a>
+				<a href="/news/<?= $last_big_new->category->slug ?>/<?= $last_big_new->slug ?>"><div class="top-new-subtitle">
+					<?= $last_big_new->getShortText(350) ?>
+				</div></a>
 			</div>
 			<div class="col-md-4 top-other-news">
 				<h3><?= Yii::t('app', 'new.news_feed') ?></h3>
 				<ul class="news-feed">
+					<?php
+						$right_news = \common\models\News::find()->where(['right_new' => 1])->limit(5)->all();
+						foreach($right_news as $new) {
+					?>
 					<li>
-						<a href="">
-							<div class="new-date"><?= Yii::t('app', 'new.date') ?></div>
-							<h4>Петербуржец — о том, как именно он поймал рекордное количество покемонов</h4>
+						<a href="/news/<?= $new->category->slug ?>/<?= $new->slug ?>">
+							<div class="new-date"><?= Yii::$app->formatter->asDate($new->created_at); ?></div>
+							<h4><?= $new->title ?></h4>
 						</a>
 					</li>
-					<li>
-						<a href="">
-							<div class="new-date"><?= Yii::t('app', 'new.date') ?></div>
-							<h4>Директору Библиотеки украинской литературы продлили домашний арест</h4>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div class="new-date"><?= Yii::t('app', 'new.date') ?></div>
-							<h4>Владимир Путин — о целенаправленной кампании против российских спортсменов</h4>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div class="new-date"><?= Yii::t('app', 'new.date') ?></div>
-							<h4>На руководителя приюта для животных «Эко Вешняки» завели уголовное дело</h4>
-						</a>
-					</li>
+					<?php } ?>
 				</ul>
-				<div class="all-news-link"><a href=""><?= Yii::t('app', 'new.all_news') ?></a></div>
+				<div class="all-news-link"><a href="/news"><?= Yii::t('app', 'new.all_news') ?></a></div>
 			</div>
 		
 		<div class="row">
 			<div class="col-md-12 big-new">
+				<?php
+					$second_big_new = \common\models\News::find()->where(['second_big_new' => 1])->limit(1)->one();
+				?>
 				<a href="">
-					<img src="/img/temp/big_new.jpg" class="img-responsive">
+					<img src="<?= Yii::$app->params['uploadsLink'] ?>/<?= $second_big_new->image_name ?>" class="img-responsive">
 					<div class="caption post-content">
-		                <div class="big-new-category"><?= Yii::t('app', 'new.category') ?></div>
-        		        <h1>«Конь БоДжек» и ещё 6 хороших мультсериалов для взрослых</h1>
+		                <div class="big-new-category"><?= $second_big_new->category->title; ?></div>
+        		        <h1><?= $second_big_new->title ?></h1>
 		            </div>
 	            </a>
 			</div>
 		</div>
 		<div class="row other-news">
+			<?php
+				$main_page_news = \common\models\News::find()->where(['main_page_new' => 1])->limit(6)->all();
+				foreach($main_page_news as $new) {
+			?>	
 			<div class="col-md-4 other-new">
-				<a href=""><img class="img-responsive" src="/img/temp/new1.jpg"></a>
-				<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
-				<a href="">
+				<a href="/news/<?= $new->category->slug ?>/<?= $new->slug ?>"><img class="img-responsive" src="<?= Yii::$app->params['uploadsLink'] ?>/<?= $new->image_name ?>"></a>
+				<a href="/news/<?= $new->category->slug ?>/<?= $new->slug ?>"><h3><?= $new->title ?></h3></a>
+				<a href="/news/<?= $new->category->slug ?>/<?= $new->slug ?>">
 					<div class="other-new-subtitle">
-						Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
+						<?= \yii\helpers\StringHelper::truncate($new->content, 150, '...') ?>
 					</div>
 				</a>
-				<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
+				<div class="other-new-date"><?= Yii::$app->formatter->asDate($new->created_at); ?> <a href="/news/<?= $last_big_new->category->slug ?>"><?= $new->category->title; ?></a></div>
 			</div>
-			<div class="col-md-4 other-new">
-				<a href=""><img class="img-responsive" src="/img/temp/new2.jpg"></a>
-				<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
-				<a href="">
-					<div class="other-new-subtitle">
-						Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
-					</div>
-				</a>
-				<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
-			</div>
-			<div class="col-md-4 other-new">
-				<a href=""><img class="img-responsive" src="/img/temp/new3.jpg"></a>
-				<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
-				<a href="">
-					<div class="other-new-subtitle">
-						Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
-					</div>
-				</a>
-				<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
-			</div>
-			<div class="col-md-4 other-new">
-				<a href=""><img class="img-responsive" src="/img/temp/new4.jpg"></a>
-				<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
-				<a href="">
-					<div class="other-new-subtitle">
-						Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
-					</div>
-				</a>
-				<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
-			</div>
-			<div class="col-md-4 other-new">
-				<a href=""><img class="img-responsive" src="/img/temp/new5.jpg"></a>
-				<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
-				<a href="">
-					<div class="other-new-subtitle">
-						Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
-					</div>
-				</a>
-				<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
-			</div>
-			<div class="col-md-4 other-new">
-				<a href=""><img class="img-responsive" src="/img/temp/new6.jpg"></a>
-				<a href=""><h3>Небольшая квартира для молодой пары в городе</h3></a>
-				<a href="">
-					<div class="other-new-subtitle">
-						Две комнаты, светлый интерьер и стеклянная перегородка между спальней и гостиной
-					</div>
-				</a>
-				<div class="other-new-date"><?= Yii::t('app', 'new.date') ?> <a href=""><?= Yii::t('app', 'new.category') ?></a></div>
-			</div>
+			<?php } ?>
 		</div>
 	</div>
 </div>
@@ -141,36 +90,37 @@ $this->title = 'olam development';
 	</div>
 </div>
 <div class="row persons-block">
+	<?php
+		$last_person = \common\models\Persons::find()->orderBy('id DESC')->one();
+	?>
 	<div class="col-md-8 bottom-new">
-		<img src="/img/temp/bottom_new.jpg" class="img-responsive">
+		<img src="/uploads/persons/<?= $last_person->image_name; ?>" class="img-responsive">
 		<div class="caption bottom-new-post-content">
-            <div class="bottom-new-post-content-category"><?= Yii::t('app', 'new.category') ?></div>
-            <div class="bottom-new-post-content-title">"Интерактивная игра, в которой нужно угадать" ответы предыдущего читателя</div>
-            <div class="bottom-new-post-content-subtitle">Петербуржец — о том, как именно он поймал рекордное количество покемонов ответы предыдущего читателя</div>
+            <div class="bottom-new-post-content-category"><?= $last_person->tags ?></div>
+            <div class="bottom-new-post-content-title"><?= $last_person->title ?></div>
+            <div class="bottom-new-post-content-subtitle"><?= $last_person->subtitle ?></div>
             <div class="bottom-new-post-content-link">
-            	<a href=""><?= Yii::t('app', 'new.read_interview') ?></a>
+            	<a href="/persons/<?= $last_person->slug ?>"><?= Yii::t('app', 'new.read_interview') ?></a>
             </div>
         </div>
 	</div>
 	<div class="col-md-4 persons">
 		<h3><?= Yii::t('app', 'new.persons_feed') ?></h3>
 		<ul class="persons-feed">
+			<?php
+				$another_last_persons = \common\models\Persons::find()->orderBy('id DESC')->limit(2)->all();
+				foreach($another_last_persons as $person) {
+			?>
 			<li>
-				<a href="">
-					<h4>Петербуржец — о том, как именно он поймал рекордное количество покемонов</h4>
+				<a href="/persons/<?= $person->slug ?>">
+					<h4><?= $person->title ?></h4>
 				</a>
-				<img src="/img/temp/person.jpg" class="img-responsive" align="left"><span>Интерактивная игра, в которой нужно угадать ответы предыдущего читателя</span>
+				<img width="60" src="/uploads/persons/<?= $last_person->image_name; ?>" class="img-responsive" align="left"><span><?= $person->subtitle ?></span>
 				<div class="clear"></div>
 			</li>
-			<li>
-				<a href="">
-					<h4>Петербуржец — о том, как именно он поймал рекордное количество покемонов</h4>
-				</a>
-				<img src="/img/temp/person.jpg" class="img-responsive" align="left"><span>Интерактивная игра, в которой нужно угадать ответы предыдущего читателя</span>
-				<div class="clear"></div>
-			</li>
+			<?php } ?>
 		</ul>
-		<div class="all-news-link"><a href=""><?= Yii::t('app', 'new.read_more') ?></a></div>
+		<!-- <div class="all-news-link"><a href="/persons"><?php // Yii::t('app', 'new.read_more') ?></a></div> -->
 	</div>
 </div>
 <div class="row works-top-ads">
@@ -179,31 +129,21 @@ $this->title = 'olam development';
 	</div>
 	<div style="margin-left: 50px; float: left; width: 87%;" class="col-md-12">
 		<div class="row">
+			<?php
+				$last_vacancy = \common\models\Vacancy::find()->orderBy('id DESC')->limit(4)->all();
+				foreach($last_vacancy as $vacancy) {
+			?>
 			<div class="col-md-3 work-top-ads-item">
-				<div class="works-top-ads-title"><a href="">Менеджер по продажам</a></div>
-				<div class="works-top-ads-price">до 45 000 руб.</div>
-				<div class="works-top-ads-company">ООО НПП "Сенсор"</div>
+				<div class="works-top-ads-title"><a href="/work/view/vacancy/<?= $vacancy->id ?>"><?= $vacancy->title ?></a></div>
+				<div class="works-top-ads-price"><?= number_format($vacancy->wage_level, 0, ',', ' ' ) ?> <?= Yii::t('app', 'works.valute') ?></div>
+				<div class="works-top-ads-company"><?= $vacancy->company->company_name ?></div>
 			</div>
-			<div class="col-md-3 work-top-ads-item">
-				<div class="works-top-ads-title"><a href="">Менеджер по продажам</a></div>
-				<div class="works-top-ads-price">до 45 000 руб.</div>
-				<div class="works-top-ads-company">ООО НПП "Сенсор"</div>
-			</div>
-			<div class="col-md-3 work-top-ads-item">
-				<div class="works-top-ads-title"><a href="">Менеджер по продажам</a></div>
-				<div class="works-top-ads-price">до 45 000 руб.</div>
-				<div class="works-top-ads-company">ООО НПП "Сенсор"</div>
-			</div>
-			<div class="col-md-3 work-top-ads-item">
-				<div class="works-top-ads-title"><a href="">Менеджер по продажам</a></div>
-				<div class="works-top-ads-price">до 45 000 руб.</div>
-				<div class="works-top-ads-company">ООО НПП "Сенсор"</div>
-			</div>
+			<?php } ?>
 		</div>
 		
 	</div>
-	<div class="col-md-1 works-top-ads-right-panel">
+	<!-- <div class="col-md-1 works-top-ads-right-panel">
 		<a href=""><img src="/img/refresh.png"></a>
-	</div>
+	</div> -->
 	<div class="clear"></div>
 </div>

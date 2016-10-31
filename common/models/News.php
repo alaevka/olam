@@ -73,7 +73,7 @@ class News extends \yii\db\ActiveRecord
             [['category_id', 'created_at', 'updated_at'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['image_name'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
-            [['seoTitle', 'seoKeywords', 'seoDescription'], 'safe'],
+            [['seoTitle', 'seoKeywords', 'seoDescription', 'main_big_new', 'right_new', 'second_big_new', 'main_page_new'], 'safe'],
             [['seoTitle'], 'checkSeoTitleIsGlobalUnique'], 
         ];
     }
@@ -95,7 +95,30 @@ class News extends \yii\db\ActiveRecord
             'seoTitle' => 'Seo тег title',
             'seoKeywords' => 'Seo тег keywords',
             'seoDescription' => 'Seo тег description',
+            'main_big_new' => 'Основная новость на главной', 
+            'right_new' => 'В столбец справа на главной', 
+            'second_big_new' => 'Вторая основная новость на главной', 
+            'main_page_new' => 'В список новостей главной (одна из 6)'
         ];
+    }
+
+    public function getShortText($length) {
+        $text = str_replace("</p>", " </p>", $this->content);
+        $text = str_replace("<p>", " <p>", $text);
+        $text = str_replace("<P>", " <P>", $text);
+        $text = str_replace("<br>", " <br>", $text);
+        $text = str_replace("</P>", " </P>", $text);
+        $text = str_replace("<br/>", " <br/>", $text);
+        $text = str_replace("<BR/>", " <BR/>", $text);
+        $text = str_replace("<BR>", " <BR>", $text);
+        $text = strip_tags($text, "<br>");
+        if(strlen($text) <= $length) {
+        return $text;
+        }
+        $text = substr($text, 0, $length);
+        $toks = explode(" ", $text);
+        unset($toks[count($toks)-1]);
+        return implode(" ", $toks).'..';
     }
 
 }

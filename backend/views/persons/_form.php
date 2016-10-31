@@ -3,11 +3,10 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\tinymce\TinyMce;
 use yii\helpers\ArrayHelper;
-use common\models\NewsCategory;
 ?>
 
 	<?php $form = ActiveForm::begin([
-        'id' => 'newscategory-form',
+        'id' => 'persons-form',
         'errorSummaryCssClass' => 'error-summary alert alert-danger',
         'options' => ['class' => 'form-horizontal form-groups-bordered', 'enctype' => 'multipart/form-data'],
         'fieldConfig' => [
@@ -18,13 +17,20 @@ use common\models\NewsCategory;
 
     <?php echo $form->errorSummary($model); ?>
 
-    <?= $form->field($model, 'category_id', [
-        'inputOptions'=>['class'=>'form-control input-sm']
-    ])->dropDownList(Arrayhelper::map(NewsCategory::find()->orderBy('order')->asArray()->all(), 'id', 'title'), ['prompt' => 'Укажите ...']) ?>
+    
 
     <?= $form->field($model, 'title', [
         'inputOptions'=>['class'=>'form-control input-sm']
     ])->textInput() ?>
+
+    <?= $form->field($model, 'subtitle', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->textInput() ?>
+
+    <?= $form->field($model, 'tags', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->textInput() ?>
+
 
     <?= $form->field($model, 'content')->widget(TinyMce::className(), [
         'options' => ['rows' => 15],
@@ -52,35 +58,16 @@ use common\models\NewsCategory;
     ])->fileInput() ?>
 
 
-    <?php if(!empty($model->image_name) && file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/'.$model->image_name)) { ?>
+    <?php if(!empty($model->image_name) && file_exists(Yii::getAlias('@frontend/web/uploads/persons/').$model->image_name)) { ?>
     <div class="form-group">
         <label class="col-sm-3 control-label" for="questions-question_text">Текущее изображение</label>
         <div class="col-sm-5">
             <a href="#" class="thumbnail" style="width: 210px;">
-                <img src="/uploads/<? echo $model->image_name; ?>" />
+                <img src="<?= Yii::$app->params['frontend_url'] ?>/uploads/persons/<? echo $model->image_name; ?>" />
             </a>    
         </div>
     </div>
     <?php } ?>
-
-    <div class="col-sm-offset-3 col-sm-5" style="padding-top: 20px;">
-    <?= $form->field($model, 'main_big_new', [
-        'inputOptions'=>['class'=>'form-control input-sm']
-    ])->checkbox() ?>
-
-    <?= $form->field($model, 'right_new', [
-        'inputOptions'=>['class'=>'form-control input-sm']
-    ])->checkbox() ?>
-
-    <?= $form->field($model, 'second_big_new', [
-        'inputOptions'=>['class'=>'form-control input-sm']
-    ])->checkbox() ?>
-
-    <?= $form->field($model, 'main_page_new', [
-        'inputOptions'=>['class'=>'form-control input-sm']
-    ])->checkbox() ?>
-    </div>
-    <div class="clearfix"></div>
 
 
     <?= $form->field($model, 'seoTitle', [
@@ -95,7 +82,6 @@ use common\models\NewsCategory;
         'inputOptions'=>['class'=>'form-control input-sm']
     ])->textArea() ?>
 
-    
 
     
     

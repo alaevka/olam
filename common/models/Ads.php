@@ -57,11 +57,14 @@ class Ads extends \yii\db\ActiveRecord
 
     public function behaviors() {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new Expression('NOW()'),
+                'attributes' => [
+                    \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value' => function () { return strtotime(date('Y-m-d H:i:s')); },
+
             ],
         ];
     }

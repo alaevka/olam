@@ -66,7 +66,7 @@ $active_url_str = Yii::$app->controller->id;
 						<span class="title">Языковые настройки</span>
 					</a>
 				</li>
-				<li <?php if($active_url_str == 'newscategory' || $active_url_str == 'news') { ?>class="opened active"<?php } ?>>
+				<li <?php if($active_url_str == 'newscategory' || $active_url_str == 'news' || $active_url_str == 'persons') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-list"></i>
 						<span class="title">Новости</span>
@@ -80,6 +80,11 @@ $active_url_str = Yii::$app->controller->id;
 						<li <?php if($active_url_str == 'news') { ?>class="active"<?php } ?>>
 							<a href="<?= Url::to(['/news/index']) ?>">
 								<span class="title">Список новостей</span>
+							</a>
+						</li>
+						<li <?php if($active_url_str == 'persons') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/persons/index']) ?>">
+								<span class="title">Персоны</span>
 							</a>
 						</li>
 					</ul>
@@ -233,6 +238,12 @@ $active_url_str = Yii::$app->controller->id;
 					<a href="<?= Url::to(['/tv/index']) ?>">
 						<i class="entypo-monitor"></i>
 						<span class="title">ТВ (обновление)</span>
+					</a>
+				</li>
+				<li>
+					<a href="<?= Url::to(['/banners/index']) ?>">
+						<i class="entypo-clipboard"></i>
+						<span class="title">Управление баннерами</span>
 					</a>
 				</li>
 			</ul>

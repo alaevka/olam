@@ -133,6 +133,7 @@ return [
                 //'realty/view/' => 'news/archive',
                 'news/archive' => 'news/archive',
                 'news/<slug>' => 'news/index',
+                'persons/<slug>' => 'persons/view',
                 'news/<category>/<slug>' => 'news/view',
                 'realty' => 'realty/index',
                 'realty/search/<params>' => 'realty/search',
