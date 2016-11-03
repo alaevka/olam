@@ -14,17 +14,25 @@ class NewsController extends Controller
 {
     public function actionIndex()
     {
+
         $news_category = $this->findModelNewsCategory(Yii::$app->request->get('slug'));
-        $dataProvider = new ActiveDataProvider([
-            'query' => News::find()->where(['category_id' => $news_category->id])->orderBy('created_at DESC'),
-            'pagination' => [
-                'pageSize' => 15,
-            ],
-        ]);
+        // $dataProvider = new ActiveDataProvider([
+        //     'query' => News::find()->where(['category_id' => $news_category->id])->orderBy('created_at DESC'),
+        //     'pagination' => [
+        //         'pageSize' => 15,
+        //     ],
+        //     'sort' => [
+        //         'attributes' => ['type'],
+        //     ],
+        // ]);
+        $model_filter = new \common\models\SearchNews;
+        $dataProvider = $model_filter->searchext(Yii::$app->request->getQueryParams(), $news_category->id);
+        
 
         return $this->render('index', [
             'news_category' => $news_category,
-            'listDataProvider' => $dataProvider
+            'listDataProvider' => $dataProvider,
+            'model_filter' => $model_filter
         ]);
     }
 

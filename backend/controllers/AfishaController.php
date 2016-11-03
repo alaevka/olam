@@ -143,10 +143,20 @@ class AfishaController extends Controller
             $new->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
             $new->image_name = 'photo_2016-07-20_15-58-47.jpg';
             $new->content = $faker->text($maxNbChars = 500);
-            $new->category_id = rand(1,7);
+            $cat = rand(1,7);
+            $new->category_id = $cat;
             $new->seoTitle = $faker->sentence($nbWords = 6, $variableNbWords = true);
             $new->seoKeywords = $faker->sentence($nbWords = 6, $variableNbWords = true);
             $new->seoDescription = $faker->sentence($nbWords = 6, $variableNbWords = true);
+
+            if($cat == 2 || $cat == 3 || $cat == 5 || $cat ==6) {
+                $new->address = $faker->streetAddress;
+                $new->work_time = '9.00-22.00';
+                $new->phone = $faker->tollFreePhoneNumber;
+                $new->pay_type = 'Наличные, Пластиковые карты, Кредит';
+                $new->tags = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            }
+
             $new->save();
         }
 

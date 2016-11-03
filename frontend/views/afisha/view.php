@@ -35,6 +35,17 @@ SeoContentHelper::registerAll($model);
 	    		<?= $model->content; ?>
 	    	</div>
 	    </div>
+        <?php if($model->category_id == 2 || $model->category_id == 3 || $model->category_id == 5 || $model->category_id == 6) { ?>
+        <hr>
+        <div class="row">
+            <div class="col-md-12" style="font-weight: bold; color: #9c9999;">
+                <div>Адрес: <?= $model->address ?></div>
+                <div>Телефон(ы): <?= $model->phone ?></div>
+                <div>Время работы: <?= $model->work_time ?></div>
+                <div>Варианты оплаты: <?= $model->pay_type ?></div>
+            </div>
+        </div>
+        <?php } ?>
 	    <hr>
 	    
         <?php

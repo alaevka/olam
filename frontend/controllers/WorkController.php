@@ -86,6 +86,8 @@ class WorkController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
+            $model->is_active = 0;
+
             $image = UploadedFile::getInstance($model, 'user_photo');
             if(!empty($image->name)) {
                 $model->user_photo = $image->name;
@@ -227,6 +229,8 @@ class WorkController extends Controller
             $model = new \common\models\Vacancy;
 
             if ($model->load(Yii::$app->request->post())) {
+
+                $model->is_active = 0;
 
                 if(!empty($model->suggestion_employment)) {
                     $model->suggestion_employment = serialize($model->suggestion_employment);

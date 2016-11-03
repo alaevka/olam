@@ -4,6 +4,7 @@ use yii\widgets\ActiveForm;
 use dosamigos\tinymce\TinyMce;
 use yii\helpers\ArrayHelper;
 use common\models\NewsCategory;
+use common\models\NewsMaterial;
 ?>
 
 	<?php $form = ActiveForm::begin([
@@ -17,6 +18,10 @@ use common\models\NewsCategory;
     ]); ?>
 
     <?php echo $form->errorSummary($model); ?>
+    
+    <?= $form->field($model, 'type', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->dropDownList(Arrayhelper::map(NewsMaterial::find()->asArray()->all(), 'id', 'title'), ['prompt' => 'Укажите ...']) ?>
 
     <?= $form->field($model, 'category_id', [
         'inputOptions'=>['class'=>'form-control input-sm']
@@ -96,7 +101,6 @@ use common\models\NewsCategory;
     ])->textArea() ?>
 
     
-
     
     
 

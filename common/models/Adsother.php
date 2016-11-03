@@ -58,7 +58,7 @@ class Adsother extends \yii\db\ActiveRecord
         return [
             [['title', 'description', 'contacts_username', 'contacts_phone', 'period', 'category_id', 'type'], 'required'],
             [['contacts_email'], 'string'],
-            [['category_id', 'period', 'location_city', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['category_id', 'period', 'location_city', 'user_id', 'created_at', 'updated_at', 'is_active'], 'integer'],
             [['price'], 'number'],
         ];
     }
@@ -102,6 +102,7 @@ class Adsother extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'ads.title'),
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'is_active' => 'Отображать на сайте',
         ];
     }
 }

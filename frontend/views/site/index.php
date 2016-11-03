@@ -27,7 +27,7 @@ $this->title = 'olam development';
 			?>
 			<div class="col-md-8 top-new">
 				<a href="/news/<?= $last_big_new->category->slug ?>/<?= $last_big_new->slug ?>"><img src="<?= Yii::$app->params['uploadsLink'] ?>/<?= $last_big_new->image_name ?>" class="img-responsive"></a>
-				<a href="/news/<?= $last_big_new->category->slug ?>"><div class="top-new-category"><?= $last_big_new->category->title; ?></div></a>
+				<a href="/news/<?= $last_big_new->category->slug ?>"><div class="top-new-category"><?= $last_big_new->category->title; ?>, <?= $last_big_new->typematerial->title; ?></div></a>
 				<a href="/news/<?= $last_big_new->category->slug ?>/<?= $last_big_new->slug ?>"><h1><?= $last_big_new->title ?></h1></a>
 				<a href="/news/<?= $last_big_new->category->slug ?>/<?= $last_big_new->slug ?>"><div class="top-new-subtitle">
 					<?= $last_big_new->getShortText(350) ?>
@@ -59,7 +59,7 @@ $this->title = 'olam development';
 				<a href="">
 					<img src="<?= Yii::$app->params['uploadsLink'] ?>/<?= $second_big_new->image_name ?>" class="img-responsive">
 					<div class="caption post-content">
-		                <div class="big-new-category"><?= $second_big_new->category->title; ?></div>
+		                <div class="big-new-category"><?= $second_big_new->category->title; ?>, <?= $second_big_new->typematerial->title; ?></div>
         		        <h1><?= $second_big_new->title ?></h1>
 		            </div>
 	            </a>
@@ -78,7 +78,7 @@ $this->title = 'olam development';
 						<?= \yii\helpers\StringHelper::truncate($new->content, 150, '...') ?>
 					</div>
 				</a>
-				<div class="other-new-date"><?= Yii::$app->formatter->asDate($new->created_at); ?> <a href="/news/<?= $last_big_new->category->slug ?>"><?= $new->category->title; ?></a></div>
+				<div class="other-new-date"><?= Yii::$app->formatter->asDate($new->created_at); ?> <a href="/news/<?= $last_big_new->category->slug ?>"><?= $new->category->title; ?>, <?= $new->typematerial->title; ?></a></div>
 			</div>
 			<?php } ?>
 		</div>
@@ -91,16 +91,16 @@ $this->title = 'olam development';
 </div>
 <div class="row persons-block">
 	<?php
-		$last_person = \common\models\Persons::find()->orderBy('id DESC')->one();
+		$last_person = \common\models\News::find()->where(['type' => 4])->orderBy('id DESC')->one();
 	?>
 	<div class="col-md-8 bottom-new">
-		<img src="/uploads/persons/<?= $last_person->image_name; ?>" class="img-responsive">
+		<img src="<?= Yii::$app->params['uploadsLink'] ?>/<?= $last_person->image_name; ?>" class="img-responsive">
 		<div class="caption bottom-new-post-content">
-            <div class="bottom-new-post-content-category"><?= $last_person->tags ?></div>
+            <div class="bottom-new-post-content-category"><?= $last_person->typematerial->title ?></div>
             <div class="bottom-new-post-content-title"><?= $last_person->title ?></div>
-            <div class="bottom-new-post-content-subtitle"><?= $last_person->subtitle ?></div>
+            <div class="bottom-new-post-content-subtitle"><?= \yii\helpers\StringHelper::truncate($last_person->content, 150, '...') ?></div>
             <div class="bottom-new-post-content-link">
-            	<a href="/persons/<?= $last_person->slug ?>"><?= Yii::t('app', 'new.read_interview') ?></a>
+            	<a href="/news/<?= $last_person->category->slug ?>/<?= $last_person->slug ?>"><?= Yii::t('app', 'new.read_interview') ?></a>
             </div>
         </div>
 	</div>
@@ -108,14 +108,14 @@ $this->title = 'olam development';
 		<h3><?= Yii::t('app', 'new.persons_feed') ?></h3>
 		<ul class="persons-feed">
 			<?php
-				$another_last_persons = \common\models\Persons::find()->orderBy('id DESC')->limit(2)->all();
+				$another_last_persons = \common\models\News::find()->where(['type' => 4])->orderBy('id DESC')->limit(2)->all();
 				foreach($another_last_persons as $person) {
 			?>
 			<li>
-				<a href="/persons/<?= $person->slug ?>">
+				<a href="/news/<?= $person->category->slug ?>/<?= $person->slug ?>">
 					<h4><?= $person->title ?></h4>
 				</a>
-				<img width="60" src="/uploads/persons/<?= $last_person->image_name; ?>" class="img-responsive" align="left"><span><?= $person->subtitle ?></span>
+				<img width="60" src="<?= Yii::$app->params['uploadsLink'] ?>/<?= $last_person->image_name; ?>" class="img-responsive" align="left"><span style="line-height: 1.3;"><?= \yii\helpers\StringHelper::truncate($person->content, 120, '...') ?></span>
 				<div class="clear"></div>
 			</li>
 			<?php } ?>

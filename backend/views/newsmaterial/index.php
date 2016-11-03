@@ -4,11 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
-use common\models\NewsCategory;
-use common\models\NewsMaterial;
-
-$this->title = 'Список новостей';
+$this->title = 'Типы материалов новостей';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -19,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="panel-options">
 			<ul class="nav nav-tabs">
 				<li class="active">
-					<a href="#tab1" data-toggle="tab">Список новостей</a>
+					<a href="#tab1" data-toggle="tab">Список типов материалов</a>
 				</li>
 				
 				<li class="">
-					<a href="<?= Url::to(['/news/create']) ?>"><i class="entypo-plus-squared"></i> Добавить новость</a>
+					<a href="<?= Url::to(['/newsmaterial/create']) ?>"><i class="entypo-plus-squared"></i> Добавить тип материала</a>
 				</li>
 			</ul>
 		</div>
@@ -36,28 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
 				<?= GridView::widget([
 				    'dataProvider' => $dataProvider,
 				    'filterModel' => $searchModel,
+				    'rowOptions' => function ($model, $key, $index, $grid) {
+				        return ['data-sortable-id' => $model->id];
+				    },
 				    'tableOptions' => ['class'=>'table table-striped table-bordered table-hover dataTables-example'],
 				    'layout' => "<div class=\"pull-right\">{summary}</div>\n{items}\n{pager}",
 				    'columns' => [
+				       
 				        [
 				            'attribute' => 'title',
 				        ],
 				        [
 				            'attribute' => 'slug',
-				        ],
-				        [
-				            'attribute' => 'category_id',
-				            'filter' => Arrayhelper::map(NewsCategory::find()->orderBy('order')->asArray()->all(), 'id', 'title'),
-				            'value' => function ($model, $index, $widget) {
-			                    return $model->category->title;
-			                },
-				        ],
-				        [
-				            'attribute' => 'type',
-				            'filter' => Arrayhelper::map(NewsMaterial::find()->asArray()->all(), 'id', 'title'),
-				            'value' => function ($model, $index, $widget) {
-			                    return $model->typematerial->title;
-			                },
 				        ],
 			            [
 			                'class' => 'yii\grid\ActionColumn',

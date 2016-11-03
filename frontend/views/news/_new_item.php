@@ -13,7 +13,7 @@
            <?= \yii\helpers\StringHelper::truncate($model->content, 150, '...') ?>
         </div>
     </a>
-    <div class="other-new-date"><?= Yii::$app->formatter->asDate($model->created_at); ?> <a data-pjax="0" href="/news/<?= $model->category->slug ?>"><?= $model->category->title; ?></a></div>
+    <div class="other-new-date"><?= Yii::$app->formatter->asDate($model->created_at); ?> <a data-pjax="0" href="/news/<?= $model->category->slug ?>"><?= $model->category->title; ?>, <?= $model->typematerial->title; ?></a></div>
 </div>
 <?php
 	if($index == 1 || $index == 11 || $index == 14) echo '<div style="clear: left;"></div>';

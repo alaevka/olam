@@ -76,6 +76,8 @@ class RealtyController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
+            $model->is_active = 0;
+
             if(!empty($model->new_location_raion)) {
                 //create new raion
                 $location_raion = new \common\models\LocationsRaion;

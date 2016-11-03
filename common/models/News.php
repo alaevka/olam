@@ -62,6 +62,11 @@ class News extends \yii\db\ActiveRecord
         return $this->hasOne(\common\models\NewsCategory::className(), ['id' => 'category_id']);
     }
 
+    public function getTypematerial()
+    {
+        return $this->hasOne(\common\models\NewsMaterial::className(), ['id' => 'type']);
+    }
+
     /**
      * @inheritdoc
      */
@@ -69,11 +74,11 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             [['slug', 'content'], 'string'],
-            [['title', 'category_id', 'content'], 'required'],
-            [['category_id', 'created_at', 'updated_at'], 'integer'],
+            [['title', 'category_id', 'content', 'type'], 'required'],
+            [['category_id', 'created_at', 'updated_at', 'type'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['image_name'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
-            [['seoTitle', 'seoKeywords', 'seoDescription', 'main_big_new', 'right_new', 'second_big_new', 'main_page_new'], 'safe'],
+            [['seoTitle', 'seoKeywords', 'seoDescription', 'main_big_new', 'right_new', 'second_big_new', 'main_page_new', 'youtube_link'], 'safe'],
             [['seoTitle'], 'checkSeoTitleIsGlobalUnique'], 
         ];
     }
@@ -98,7 +103,8 @@ class News extends \yii\db\ActiveRecord
             'main_big_new' => 'Основная новость на главной', 
             'right_new' => 'В столбец справа на главной', 
             'second_big_new' => 'Вторая основная новость на главной', 
-            'main_page_new' => 'В список новостей главной (одна из 6)'
+            'main_page_new' => 'В список новостей главной (одна из 6)',
+            'type' => 'Тип материала',
         ];
     }
 

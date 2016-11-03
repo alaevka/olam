@@ -53,7 +53,7 @@ class Vacancy extends \yii\db\ActiveRecord
             [['company_id', 'wage_level', 'title', 'vacancy_description'], 'required'],
             [['company_id', 'wage_level', 'user_id', 'created_at', 'updated_at'], 'integer'],
             [['title', 'vacancy_description', 'duties', 'requirements', 'conditions', 'experience_years'], 'string'],
-            [['experience_tags', 'suggestion_employment'], 'safe']
+            [['experience_tags', 'suggestion_employment', 'is_active'], 'safe']
         ];
     }
 
@@ -77,6 +77,7 @@ class Vacancy extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'is_active' => 'Отображать на сайте',
         ];
     }
 

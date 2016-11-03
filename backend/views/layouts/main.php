@@ -66,12 +66,17 @@ $active_url_str = Yii::$app->controller->id;
 						<span class="title">Языковые настройки</span>
 					</a>
 				</li>
-				<li <?php if($active_url_str == 'newscategory' || $active_url_str == 'news' || $active_url_str == 'persons') { ?>class="opened active"<?php } ?>>
+				<li <?php if($active_url_str == 'newscategory' || $active_url_str == 'news' || $active_url_str == 'newsmaterial') { ?>class="opened active"<?php } ?>>
 					<a href="#">
 						<i class="entypo-list"></i>
 						<span class="title">Новости</span>
 					</a>
 					<ul>
+						<li <?php if($active_url_str == 'newsmaterial') { ?>class="active"<?php } ?>>
+							<a href="<?= Url::to(['/newsmaterial/index']) ?>">
+								<span class="title">Типы материалов</span>
+							</a>
+						</li>
 						<li <?php if($active_url_str == 'newscategory') { ?>class="active"<?php } ?>>
 							<a href="<?= Url::to(['/newscategory/index']) ?>">
 								<span class="title">Категории новостей</span>
@@ -82,11 +87,11 @@ $active_url_str = Yii::$app->controller->id;
 								<span class="title">Список новостей</span>
 							</a>
 						</li>
-						<li <?php if($active_url_str == 'persons') { ?>class="active"<?php } ?>>
+						<!-- <li <?php if($active_url_str == 'persons') { ?>class="active"<?php } ?>>
 							<a href="<?= Url::to(['/persons/index']) ?>">
 								<span class="title">Персоны</span>
 							</a>
-						</li>
+						</li> -->
 					</ul>
 				</li>
 				<li <?php if($active_url_str == 'realty' || $active_url_str == 'directory' || $active_url_str == 'locations') { ?>class="opened active"<?php } ?>>
@@ -244,6 +249,12 @@ $active_url_str = Yii::$app->controller->id;
 					<a href="<?= Url::to(['/banners/index']) ?>">
 						<i class="entypo-clipboard"></i>
 						<span class="title">Управление баннерами</span>
+					</a>
+				</li>
+				<li>
+					<a href="<?= Url::to(['/onmoderate/index']) ?>">
+						<i class="entypo-help-circled"></i>
+						<span class="title" style="color: #ff0000;">Контент на модерации</span>
 					</a>
 				</li>
 			</ul>

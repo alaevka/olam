@@ -31,6 +31,7 @@
                 'layout' => "{items}<hr><div class=\"col-md-12 pagination-container\">{pager}</div>",
                 'emptyText' => Yii::t('app', 'news.not_yet_been_added_to_this_category_news'),
                 'emptyTextOptions' => ['class' => 'not_yet_been'],
+                'viewParams' => ['category' => $category],
                 'pager' => [
                     'options' => [
                         

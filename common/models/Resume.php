@@ -75,7 +75,7 @@ class Resume extends \yii\db\ActiveRecord
             [['suggestion_position', 'personal_last_name', 'personal_first_name', 'personal_sur_name', 'experience_years', 'experience_information', 'suggestions_city', 'personal_qualities'], 'string'],
             [['suggestion_sphere', 'suggestion_schedule', 'suggestion_employment', 'personal_gender', 'personal_marital_status', 'personal_minors', 'personal_location_city', 'personal_location_raion', 'user_id', 'created_at', 'updated_at', 'business_trip', 'smoking'], 'integer'],
             [['user_photo', 'personal_birth_day', 'personal_birth_month', 'personal_birth_year', 'contacts_email', 'contacts_phone'], 'string', 'max' => 255],
-            [['languages', 'experience_tags', 'is_view_birthday', 'drivers_license', 'new_location_raion', 'suggestion_pay'], 'safe']
+            [['languages', 'experience_tags', 'is_view_birthday', 'drivers_license', 'new_location_raion', 'suggestion_pay', 'is_active'], 'safe']
         ];
     }
 
@@ -118,6 +118,7 @@ class Resume extends \yii\db\ActiveRecord
             'drivers_license' => Yii::t('app', 'works.drivers_license'),
             'smoking' => Yii::t('app', 'works.smoking'),
             'personal_qualities' => Yii::t('app', 'works.personal_qualities'),
+            'is_active' => 'Отображать на сайте',
         ];
     }
 

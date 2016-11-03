@@ -67,7 +67,7 @@ class Afisha extends \yii\db\ActiveRecord
             [['category_id', 'created_at', 'updated_at'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['image_name'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
-            [['seoTitle', 'seoKeywords', 'seoDescription'], 'safe'],
+            [['seoTitle', 'seoKeywords', 'seoDescription', 'address', 'work_time', 'phone', 'pay_type', 'tags'], 'safe'],
             [['seoTitle'], 'checkSeoTitleIsGlobalUnique'], 
         ];
     }
@@ -80,7 +80,7 @@ class Afisha extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'slug' => 'Ссылка',
-            'title' => 'Заголовок события',
+            'title' => 'Заголовок события, название заведения',
             'image_name' => 'Изображение',
             'content' => 'Описание события',
             'category_id' => 'Категория',
@@ -89,6 +89,12 @@ class Afisha extends \yii\db\ActiveRecord
             'seoTitle' => 'Seo тег title',
             'seoKeywords' => 'Seo тег keywords',
             'seoDescription' => 'Seo тег description',
+            'address' => 'Адрес', 
+            'work_time' => 'Время работы', 
+            'phone' => 'Телефон(ы)', 
+            'pay_type' => 'Варианты оплаты', 
+            'tags' => 'Тэги (через запятую)'
+
         ];
     }
 

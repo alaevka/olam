@@ -62,7 +62,7 @@ class Auto extends \yii\db\ActiveRecord
                     return $(\"#auto_wheel_tire_category:checked\").val() == '2';
                 }"],
 
-            [['auto_object_type', 'tech_category', 'tech_marka', 'tech_model', 'tech_helm', 'tech_transmission', 'tech_fuel', 'tech_gear', 'status', 'location_city', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['auto_object_type', 'tech_category', 'tech_marka', 'tech_model', 'tech_helm', 'tech_transmission', 'tech_fuel', 'tech_gear', 'status', 'location_city', 'user_id', 'created_at', 'updated_at', 'is_active'], 'integer'],
             [['additional_info', 'contacts_username'], 'string'],
             [['price'], 'number'],
             [['exchange', 'is_hot', 'special_notes', 'wheel_tyre_radius', 'wheel_width', 'tire_speed_index', 'wheel_dia', 'wheel_et', 'wheel_type'], 'safe'],
@@ -418,6 +418,7 @@ class Auto extends \yii\db\ActiveRecord
             'tire_height' => Yii::t('app', 'auto.tire_height'),
             'title' => Yii::t('app', 'auto.what_you_sell'),
             'other_category' => Yii::t('app', 'auto.other_category_title'),
+            'is_active' => 'Отображать на сайте',
 
 
         ];

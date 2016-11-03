@@ -114,6 +114,7 @@ class AutoController extends Controller
                 $model->exchange = serialize($model->exchange);
             }
 
+            $model->is_active = 0;
 
 
             if ($model->validate()) {

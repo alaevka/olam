@@ -38,6 +38,7 @@ class AdsController extends Controller
         $model->period = 1;
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->is_active = 0;
 
             if ($model->validate()) {
 

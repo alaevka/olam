@@ -73,6 +73,12 @@
 
 </div>
 
+<div class="col-sm-offset-3 col-sm-5" style="padding-top: 20px;">
+    <?= $form->field($model, 'is_active', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->checkbox() ?>
+</div>
+
 <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
         <?= \yii\helpers\Html::submitButton($model->isNewRecord ? 'Добавить' : 'Изменить', ['class' => 'btn btn-success']) ?><br>

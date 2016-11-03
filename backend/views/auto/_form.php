@@ -428,6 +428,11 @@
 
 		</div>
    	
+   	<div class="col-sm-offset-3 col-sm-5" style="padding-top: 20px;">
+    <?= $form->field($model, 'is_active', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->checkbox() ?>
+    </div>
 
 
     <div class="form-group">

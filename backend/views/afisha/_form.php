@@ -18,6 +18,8 @@ use common\models\NewsCategory;
 
     <?php echo $form->errorSummary($model); ?>
 
+    <div class="alert alert-info"><strong>Внимание!</strong> Поля адрес, время работы, телефон(ы), варианты оплаты и теги заполняются для заведений, но не событий!</div>
+
     <?= $form->field($model, 'category_id', [
         'inputOptions'=>['class'=>'form-control input-sm']
     ])->dropDownList([1 => 'Новости', 2 => 'Кинотеатры', 3 => 'Театры', 4 => 'Искусство', 5 => 'Рестораны', 6 => 'Клубы', 7 => 'Активный отдых'], ['prompt' => 'Укажите ...']) ?>
@@ -25,6 +27,8 @@ use common\models\NewsCategory;
     <?= $form->field($model, 'title', [
         'inputOptions'=>['class'=>'form-control input-sm']
     ])->textInput() ?>
+
+
 
     <?= $form->field($model, 'content')->widget(TinyMce::className(), [
         'options' => ['rows' => 15],
@@ -62,6 +66,26 @@ use common\models\NewsCategory;
         </div>
     </div>
     <?php } ?>
+
+    <?= $form->field($model, 'address', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->textInput() ?>
+
+    <?= $form->field($model, 'work_time', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->textInput() ?>
+
+    <?= $form->field($model, 'phone', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->textInput() ?>
+
+    <?= $form->field($model, 'pay_type', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->textInput() ?>
+
+    <?= $form->field($model, 'tags', [
+        'inputOptions'=>['class'=>'form-control input-sm']
+    ])->textInput() ?>
 
 
     <?= $form->field($model, 'seoTitle', [

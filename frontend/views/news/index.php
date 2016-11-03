@@ -16,8 +16,19 @@ SeoContentHelper::registerAll($news_category);
     $this->registerJs(
         '$(document).on(\'pjax:success\', function() {
             $(\'body\').scrollTo(\'#central-content\', 400);                
+        });
+
+        $(document).on(\'change\', \'#provider\', function(e) {
+            $.pjax({
+                timeout: 4000,
+                url: $(\'#filter-form\').attr(\'action\'),
+                container: \'#w0\',
+                fragment: \'#w0\',
+                data: {type: this.options[this.selectedIndex].value},
+           });
         });'
     );
+
 ?>
 <div class="row">
     <div class="col-md-3">
@@ -28,9 +39,17 @@ SeoContentHelper::registerAll($news_category);
         </div>
     </div>
     <div class="col-md-9 central-content" id="central-content">
-        <h1><?= $news_category->title; ?></h1>
+        <h1>
+            <?= $news_category->title; ?>
+            <div class="pull-right">
+                <?=Html::beginForm(Url::current(), 'GET', ['id'=>'filter-form']);?>
+                     <?=Html::activeDropDownList($model_filter, 'type', \yii\helpers\Arrayhelper::map(\common\models\NewsMaterial::find()->asArray()->all(), 'id', 'title'), ['class' => 'form-control', 'id'=>'provider']); ?>
+                <?=Html::endForm(); ?>
+            </div>
+        </h1>
+        
         <div class="row news-list">
-        <?php \yii\widgets\Pjax::begin() ?>
+        <?php \yii\widgets\Pjax::begin(['id' => 'lists']) ?>
         <?= 
             ListView::widget([
                 'dataProvider' => $listDataProvider,

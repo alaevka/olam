@@ -16,7 +16,7 @@ class SearchVacancy extends Vacancy
     {
         return [
             [['id'], 'integer'],
-            [['title', 'text_query', 'wage_level', 'suggestion_sphere', 'suggestion_employment'], 'safe'],
+            [['title', 'text_query', 'wage_level', 'suggestion_sphere', 'suggestion_employment', 'is_active'], 'safe'],
         ];
     }
 
@@ -32,6 +32,32 @@ class SearchVacancy extends Vacancy
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere(['>=', 'wage_level', $this->wage_level]);
+
+        $query->joinWith('company'); 
+        $query->andFilterWhere(['like', 'companies.company_spheres', $this->suggestion_sphere]);
+
+        $query->orFilterWhere(['like', 'title', $this->text_query])->orFilterWhere(['like', 'vacancy_description', $this->text_query])->orFilterWhere(['like', 'duties', $this->text_query])->orFilterWhere(['like', 'requirements', $this->text_query])->orFilterWhere(['like', 'conditions', $this->text_query]);
+
+        $query->andFilterWhere(['like', 'suggestion_employment', $this->suggestion_employment]);
+
+        return $dataProvider;
+    }
+
+    public function search_notactive($params)
+    {
+        $query = Vacancy::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        $query->andFilterWhere(['is_active' => 0]);
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;

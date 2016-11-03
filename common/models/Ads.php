@@ -233,7 +233,7 @@ class Ads extends \yii\db\ActiveRecord
                     return $(\"#ads-new_location_raion\").val() == '';
                 }"],
 
-            [['price_conditions', 'gallery', 'new_location_raion', 'new_location_street', 'area_for_living', 'area_total', 'area_kitchen', 'level', 'total_levels', 'loggias_count', 'balconies_count', 'year_of_construction', 'additional_info', 'build_type'], 'safe'],
+            [['price_conditions', 'gallery', 'new_location_raion', 'new_location_street', 'area_for_living', 'area_total', 'area_kitchen', 'level', 'total_levels', 'loggias_count', 'balconies_count', 'year_of_construction', 'additional_info', 'build_type', 'is_active'], 'safe'],
             [['rlty_type', 'rlty_action', 'location_city', 'rooms_count', 'flat_type', 'flat_plan', 'flat_repairs', 'type_of_ownership', 'house_type', 'house_material', 'user_id', 'created_at', 'updated_at', 'build_type', 'is_hot'], 'integer'],
             [['price'], 'number'],
         ];
@@ -282,6 +282,7 @@ class Ads extends \yii\db\ActiveRecord
             'build_type' => Yii::t('app', 'rlty.is_new_building'),
             'new_location_raion' =>  Yii::t('app', 'rlty.new_location_raion'),
             'new_location_street' =>  Yii::t('app', 'rlty.new_location_street'),
+            'is_active' => 'Отображать на сайте',
         ];
     }
 }
